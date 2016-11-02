@@ -30,7 +30,7 @@
     <a href="#"><i class="pe-7s-clock pe-2x"></i></a>
   </div>
   <div class="dp-nav-logout dp-right">
-    <a href="#"><i class="pe-7s-power pe-2x"></i></a>   
+    <a href="{{ url('/logout') }}"><i class="pe-7s-power pe-2x"></i></a>   
   </div>
   <div class="dp-nav-user">
     
