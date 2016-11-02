@@ -19,7 +19,7 @@
 	<div class="login-banner"><img src="images/Login-Banner.png"></div>
 	<form class="login-form" action="{{ Url('dashboard') }}">
 		<div class="login-feed">
-			<span class="pe-7s-mail pe-2x login-icon"></span><input type="Email" placeholder="Email Address" class="login-input">
+			<span class="pe-7s-mail pe-2x login-icon"></span><input type="Email" placeholder="Email Addresss" class="login-input">
 		</div>
 		<div class="login-feed">
 			<span class="pe-7s-lock pe-2x login-icon"></span><input type="password" placeholder="Password" class="login-input">
