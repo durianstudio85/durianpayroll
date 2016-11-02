@@ -43,8 +43,6 @@
 	      
 	    </label>
 
-	    <br>
-
 	    <a class="login-forgot-pass" href="{{ url('/register') }}">Register</a>
 
 	    <input type="submit" class="btn-login" value="Log In">
