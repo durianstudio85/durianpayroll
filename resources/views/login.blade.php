@@ -39,10 +39,14 @@
 		<label class="control control--checkbox">Keep me logged in
       		<input type="checkbox" name="remember">
 	      <div class="control__indicator"></div>
-	      <a href="#" class="login-forgot-pass" href="{{ url('/password/reset') }}">Forgot password?</a>
+	      <a class="login-forgot-pass" href="{{ url('/password/reset') }}">Forgot password?</a>
 	    </label>
 
 	    <input type="submit" class="btn-login" value="Log In">
+
+	    or
+
+	    <a class="login-forgot-pass" href="{{ url('/register') }}">SIGNUP</a>
 
 	</form>
 </div>
