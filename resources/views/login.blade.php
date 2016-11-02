@@ -17,18 +17,29 @@
 <body bgcolor="#f1f3f6">
 <div class="login-panel">
 	<div class="login-banner"><img src="{{ asset('images/Login-Banner.png') }}"></div>
-	<form class="login-form" action="{{ Url('dashboard') }}">
+	<form class="login-form" method="POST" role="form" action="{{ url('/login') }}">
+	{{ csrf_field() }}
 		<div class="login-feed">
-			<span class="pe-7s-mail pe-2x login-icon"></span><input type="Email" placeholder="Email Address" class="login-input">
+			<span class="pe-7s-mail pe-2x login-icon"></span><input class="login-input" id="email" type="email" class="form-control" name="email" placeholder="Email Address" value="{{ old('email') }}">
+			@if ($errors->has('email'))
+	            <span class="help-block">
+	            	<strong>{{ $errors->first('email') }}</strong>
+	            </span>
+            @endif
 		</div>
 		<div class="login-feed">
-			<span class="pe-7s-lock pe-2x login-icon"></span><input type="password" placeholder="Password" class="login-input">
+			<span class="pe-7s-lock pe-2x login-icon"></span><input id="password" type="password"  placeholder="Password" class="login-input class="form-control" name="password">
+			@if ($errors->has('password'))
+	            <span class="help-block">
+	            	<strong>{{ $errors->first('password') }}</strong>
+	            </span>
+            @endif
 		</div>
 
 		<label class="control control--checkbox">Keep me logged in
-      		<input type="checkbox"/>
+      		<input type="checkbox" name="remember">
 	      <div class="control__indicator"></div>
-	      <a href="#" class="login-forgot-pass">Forgot password?</a>
+	      <a href="#" class="login-forgot-pass" href="{{ url('/password/reset') }}">Forgot password?</a>
 	    </label>
 
 	    <input type="submit" class="btn-login" value="Log In">
