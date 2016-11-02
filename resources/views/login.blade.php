@@ -16,6 +16,7 @@
 
 <body bgcolor="#f1f3f6">
 <div class="login-panel">
+	<div class="login-banner"><img src="{{ asset('images/Login-Banner.png') }}"></div>
 	<form class="login-form" action="{{ Url('dashboard') }}">
 		<div class="login-feed">
 			<span class="pe-7s-mail pe-2x login-icon"></span><input type="Email" placeholder="Email Address" class="login-input">
