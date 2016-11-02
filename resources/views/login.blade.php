@@ -44,9 +44,9 @@
 
 	    <input type="submit" class="btn-login" value="Log In">
 
-	    or
+	    <center><label> Or </label></center>
 
-	    <a class="login-forgot-pass" href="{{ url('/register') }}">SIGNUP</a>
+	    <center><a href="{{ url('/register') }}">SIGNUP</a></center>
 
 	</form>
 </div>
