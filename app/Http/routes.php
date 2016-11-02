@@ -133,3 +133,6 @@ Route::get('company/expenses-type','PagesController@company_expenses_type');
 
 // *** COMPANY AUTOMATION ***
 Route::get('company/work-flows','PagesController@company_work_flows');
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
