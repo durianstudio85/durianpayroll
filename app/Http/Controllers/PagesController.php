@@ -19,7 +19,7 @@ class PagesController extends Controller
 	
 	public function login()
 	   {
-	   	return view('login');
+	   	return view('pages.dashboard');
 	   }
 
    	public function dashboard()
