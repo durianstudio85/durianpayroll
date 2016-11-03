@@ -16,19 +16,13 @@ class PagesController extends Controller
 	   	return view('login');
 	   }
 
-   public function dashboard()
+   	public function dashboard()
 	   {
 	   	return view('pages.dashboard');
 	   }
 
 
-
-
-
-
-
-
-
+	   
 
 
 
@@ -72,18 +66,6 @@ class PagesController extends Controller
 
 
 // END PAYROLL FUNCTION
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
