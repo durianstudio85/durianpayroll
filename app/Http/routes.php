@@ -23,7 +23,7 @@
 //     return view('pages.dashboard');
 // });
 
-Route::get('/login','PagesController@login');
+Route::get('/','PagesController@login');
 
 
 
