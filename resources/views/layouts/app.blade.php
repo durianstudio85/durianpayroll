@@ -23,11 +23,24 @@
         .fa-btn {
             margin-right: 6px;
         }
+
+        .navbar-brand {
+          padding: 0px;
+        }
+        .navbar-brand>img {
+          height: 100%;
+          padding: 15px;
+          width: auto;
+        }
+
+        .example2 .navbar-brand>img {
+          padding: 7px 15px;
+        }
     </style>
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
+        <div class="container example2">
             <div class="navbar-header">
 
                 <!-- Collapsed Hamburger -->
@@ -39,20 +52,21 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('images/Login-Banner.png') }}">
+                
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <!-- <li><a href="{{ url('/') }}">Home</a></li> -->
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
+                    <li><a href="{{ url('/') }}">Home</a></li>
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
