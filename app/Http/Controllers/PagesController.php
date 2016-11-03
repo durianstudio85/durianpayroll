@@ -13,7 +13,7 @@ class PagesController extends Controller
 {
 	public function login()
 	   {
-	   	return view('login');
+	   	return view('auth.login');
 	   }
 
    public function dashboard()
