@@ -10,11 +10,23 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}">
 
 
-    <link href="{{ asset('css/dataTables.bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/dataTables.responsive.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+  <link href="{{ asset('css/dataTables.bootstrap.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/dataTables.responsive.css') }}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 
   <script src="{{ asset('js/Chart.min.js') }}"></script>
+
+  <style type="text/css">
+    
+    i.active {
+
+        background-color: #1fb4ae; 
+        color: #fff;    
+
+    }
+  
+  </style>
+
 
 </head><body onload="displayLineChart();">
 
@@ -23,10 +35,10 @@
     <img src="{{ asset('images/logo.png') }}">
   </div>
   <div class="dp-nav-menu">
-    <a href="{{ Url('dashboard') }}"><i class="pe-7s-home pe-2x"></i></a>
-    <a href="{{ Url('payroll') }}"><i class="pe-7s-cash pe-2x"></i></a>
-    <a href="{{ Url('pay/account') }}"><i class="pe-7s-credit pe-2x"></i></a>
-    <a href="{{ Url('employee-201') }}"><i class="pe-7s-add-user pe-2x"></i></a>
+    <a href="{{ Url('dashboard') }}"><i class="{{ Request::is('dashboard*') ? 'active' : '' }} pe-7s-home pe-2x"></i></a>
+    <a class="" href="{{ Url('payroll') }}"><i class="{{ Request::is('payroll*') ? 'active' : '' }} pe-7s-cash pe-2x"></i></a>
+    <a class="" href="{{ Url('pay/account') }}"><i class="{{ Request::is('pay/account*') ? 'active' : '' }} pe-7s-credit pe-2x"></i></a>
+    <a class="" href="{{ Url('employee-201') }}"><i class="{{ Request::is('employee-201*') ? 'active' : '' }} pe-7s-add-user pe-2x"></i></a>
     <a href="#"><i class="pe-7s-clock pe-2x"></i></a>
   </div>
   <div class="dp-nav-logout dp-right">
@@ -43,10 +55,7 @@
 </nav>
 
 
-
   @yield('content')
-
-
 
 
 <script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
@@ -56,12 +65,14 @@
 <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/dataTables.responsive.js') }}"></script>
 
- <script>
+  <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
             responsive: true
         });
     });
-    </script>
+  </script>
+
+ 
 </body>
 </html>
