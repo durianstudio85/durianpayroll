@@ -31,13 +31,13 @@
 
         
         <input class="register-input firstname" id="firstname" type="text" class="form-control" name="firstname" placeholder="First Name" value="">
+            
+        <input class="register-input lastname" id="lastname" type="text" class="form-control" name="lastname" placeholder="Last Name" value="">
             @if ($errors->has('name'))
                 <span class="help-block">
                     <strong>{{ $errors->first('name') }}</strong>
                 </span>
             @endif
-        <input class="register-input lastname" id="lastname" type="text" class="form-control" name="lastname" placeholder="Last Name" value="">
-
        
 
         <div class="clearfix"></div>
