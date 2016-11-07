@@ -324,6 +324,87 @@ input:checked + .slider:before {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media (min-width: 1200px){
 .container {
     width: 1300px !important;
@@ -332,3 +413,4 @@ input:checked + .slider:before {
 .container {
     width: 1300px !important;
 }
+
