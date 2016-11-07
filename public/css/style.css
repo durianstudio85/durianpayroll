@@ -57,6 +57,7 @@ table.dataTable thead .sorting:after {
 
 /*LOGIN PAGE*/
 .login-panel{width: 480px; margin: 0 auto; border:1px solid #e8e8e8; background-color: #ffffff; margin-top: 10%;}
+.login-panel{width: 480px; margin: 0 auto; border:1px solid #e8e8e8; background-color: #ffffff; margin-top: 10%;}
 .login-banner{text-align: center;margin-top: 5%;}
 .login-form{width: 390px;margin: 0 auto;margin-top: 5%;}
 .login-feed{position: relative;margin-bottom: 15px;}
@@ -76,8 +77,20 @@ table.dataTable thead .sorting:after {
 .control input:checked ~ .control__indicator:after {display: block;}
 .control--checkbox .control__indicator:after {left: 8px;top: 4px;width: 3px;height: 8px;border: solid #fff;border-width: 0 2px 2px 0;transform: rotate(45deg);}
 .control--checkbox input:disabled ~ .control__indicator:after {border-color: #7b7b7b;}
-.login-forgot-pass{float: right; font-size: 14px; color: #1fb4ae; text-decoration: none;}
-.btn-login{width: 100%;border: 0px;height: 43px;background-color: #1fb4ae;color: #fff;font-size: 15px;margin-top: 15px;margin-bottom: 35px;outline-color: #00fef4;}
+.login-forgot-pass {float: right; font-size: 14px; color: #1fb4ae; text-decoration: none;}
+.btn-login {width: 100%;border: 0px;height: 43px;background-color: #1fb4ae;color: #fff;font-size: 15px;margin-top: 15px;margin-bottom: 20px;outline-color: #00fef4;}
+.landing-page-link {width: 480px; margin:0 auto;}
+.landing-page-link a {position: relative; top: 175px; font-size: 14px; color:#1fb4ae;}
+
+.register-input {margin-top:20px;outline-color: #1fb4ae;box-shadow: none;border-color: #b7b7b7;display: block;height: 45px;width: 100%;padding-left: 10px;font-size: 13px;line-height: 1.42857143;color: #b7b7b7;background-color: #fff;background-image: none;border: 1px solid #b7b7b7;border-radius: 0px;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);box-shadow: inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;}
+.firstname {width: 48%; float: left;}
+.lastname {width: 48%; float: right;}
+.register-terms {color:#1fb4ae;}
+.login-now {padding-bottom: 10px;}
+.register-section {padding-bottom:20px;}
+.register-section a {font-size:14px; color:#1fb4ae;}
+.register-feed {font-family: 'Open Sans', sans-serif; font-size: 25px; text-align: center; font-weight: 400!important; color:#4a576a;}
+.register-feed-2 {font-family: 'Open Sans', sans-serif; font-size: 14px; text-align: center; font-weight: 300!important; color:#4a576a;}
 @media screen and (max-width: 480px){.login-panel {zoom:60%;} }
 /*END LOGIN PAGE*/
 
@@ -292,94 +305,22 @@ input:checked + .slider:before {
 
 
 
+.navbar-brand {
+  padding: 0px;
+}
+.navbar-brand>img {
+  height: 100%;
+  padding: 15px;
+  width: auto;
+}
 
 
-
-
+.example2 .navbar-brand>img {
+  padding: 7px 15px!important;
+}
 
 
 .dp-portrait{width:150px;height:200px;background-color: #d5d5d5;}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -391,4 +332,3 @@ input:checked + .slider:before {
 .container {
     width: 1300px !important;
 }
-

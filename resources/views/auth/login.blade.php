@@ -17,6 +17,14 @@
 
 
 <body bgcolor="#f1f3f6">
+
+<div class="landing-page-link">
+ 
+    <a href="#"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i>&nbsp;&nbsp;Back to Durian Payroll Main Site</a>
+
+</div>
+
+
 <div class="login-panel">
     <div class="login-banner"><img src="{{ asset('images/Login-Banner.png') }}"></div>
     <form class="login-form" method="POST" role="form" action="{{ url('/login') }}">
@@ -45,12 +53,14 @@
           
         </label>
 
-        <a class="login-forgot-pass" href="{{ url('/register') }}">Register</a>
+        <div class="register-section">
 
-        <input type="submit" class="btn-login" value="Log In">
+            <input type="submit" class="btn-login" value="Log In">
+            <center>
+                <label>Don’t have an account? </label><a href="{{ url('/register') }}"> Register</a>
+            </center>
 
-      
-        
+        </div>
 
     </form>
 </div>
