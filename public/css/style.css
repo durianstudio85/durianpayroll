@@ -95,6 +95,35 @@ table.dataTable thead .sorting:after {
 /*END LOGIN PAGE*/
 
 
+/*LANDING PAGE*/
+
+.firstsection {background-image: url("../images/Section-1.jpg"); min-height: 100vh; min-width: 100vw; overflow: hidden; background-size: cover; background-position: top right; }
+.secondsection {min-height: 712px; min-width: 100vw;}
+.thirdsection {min-height: 712px; min-width: 100vw; background-color: #1fb4ae;}
+.fourthsection {min-height: 781px; min-width: 100vw; background-color: #28384f;}
+.fifthsection {min-height: 310px; min-width: 100vw; background-color: #ffffff;}
+.sixthsection {min-height: 830px; min-width: 100vw; background-color: #f8f8f8;}
+.seventhsection {min-height: 244px; min-width: 100vw; background-color: #1fb4ae;}
+.eightsection {min-height: 505px; min-width: 100vw; background-color: #28384f;}
+.eightsection {min-height: 78px; min-width: 100vw; background-color: #1e2c40;}
+
+.login-register { position: relative; top: 17px;}
+.bordered-link {border-style: solid; border-width: 1px;}
+
+.landing-nav {margin-top: 37px;}
+.landing-nav a {font-family: 'Open Sans', sans-serif !important; font-size: 16px; font-weight: 700!important; color: #fff; padding: 15px 25px;}
+.landing-jumbo {position: relative; top: 280px;}
+.landing-jumbo h1 {color: #fff; font-size: 64px; font-family: 'Open Sans', sans-serif!important; font-weight: 700!important}
+.landing-jumbo h3 {color: #fff; font-size: 42.56px; font-family: 'Open Sans', sans-serif!important; font-weight: 400!important;}
+.landing-bt {position: relative; top:320px;}
+.landing-arrow-down {position: relative; top:495px;}
+.landing-arrow-down i {color: #fff;}
+
+
+
+/*END OF LANDING PAGE*/
+
+
 
 .dp-right{float: right;}
 .dp-left{float: left;}
