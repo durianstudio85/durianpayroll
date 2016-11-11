@@ -20,7 +20,7 @@
 
 <div class="landing-page-link">
  
-    <a href="#"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i>&nbsp;&nbsp;Back to Durian Payroll Main Site</a>
+    <a href="{{ url('/') }}"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i>&nbsp;&nbsp;Back to Durian Payroll Main Site</a>
 
 </div>
 

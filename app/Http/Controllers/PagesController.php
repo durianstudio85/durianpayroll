@@ -12,14 +12,16 @@ use DB;
 class PagesController extends Controller
 {
 
-	public function __construct()
-    {
-        $this->middleware('auth');
-    }
-	
+
+
+	public function landingpage()
+	   {
+	   	return view('landingpage');
+	   }
+
 	public function login()
 	   {
-	   	return view('pages.dashboard');
+	   	return view('auth.login');
 	   }
 
    	public function dashboard()
@@ -336,6 +338,19 @@ class PagesController extends Controller
 		 {
 		   	return view('pages.company-setup.company-automation.company-work-flows');
 		 }		 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
