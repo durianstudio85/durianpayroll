@@ -24,7 +24,7 @@
     <form class="login-form" method="POST" role="form" action="{{ url('/register') }}">
     {{ csrf_field() }}
         
-        <p class="register-feed">Sign Up for a Free 30 Day Trial</p>
+        <p class="register-feed">Sign Up for a Free Account</p>
         <p class="register-feed-2">No commitment. No credit card required.</p>
 
         <input class="register-input" id="companyname" type="text" class="form-control" name="companyname" placeholder="Company Name" value="">
