@@ -107,6 +107,8 @@ table.dataTable thead .sorting:after {
 .eightsection {min-height: 505px; min-width: 100vw; background-color: #28384f;}
 .eightsection {min-height: 78px; min-width: 100vw; background-color: #1e2c40;}
 
+
+
 .login-register { position: relative; top: 17px;}
 .bordered-link {border-style: solid; border-width: 1px;}
 
@@ -118,6 +120,13 @@ table.dataTable thead .sorting:after {
 .landing-bt {position: relative; top:320px;}
 .landing-arrow-down {position: relative; top:495px;}
 .landing-arrow-down i {color: #fff;}
+
+
+.landing-bt-inner-1 p {color: #fff; position: relative; top:20px; left: 20px; text-align:left; line-height: 0.8em; float: left;}
+.landing-bt-inner-1 i {color: #fff; position: relative; right: 30px; top: -10px; font-size: 45.45px; float: right;}
+.landing-bt-text1 {font-family: 'Open Sans', sans-serif!important; font-size: 34.38px; font-weight: 700!important;}
+.landing-bt-text2 {font-family: 'Open Sans', sans-serif!important; font-size: 20.48px; font-weight: 400!important;}
+
 
 
 

@@ -53,7 +53,18 @@
 
 			<div class="landing-bt">
 				<center>
-					<a href="{{ url('/register') }}"><img src="{{ asset('images/CTA-Button.png') }}"></a>
+					<a href="{{ url('/login') }}">
+					<div style="width: 430px; height: 101px; background-color: #1fb4ae;">
+		
+						<div class="landing-bt-inner-1">
+							<p class="landing-bt-text1">GET STARTED NOW</p>
+							<p class="landing-bt-text2">NO COMMITMENT CREDIT CARD</p>
+
+							<i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+						</div>
+							
+					</div>
+					</a>
 				</center>
 			</div>
 
@@ -78,7 +89,8 @@
 
 	</section>
 
-	<section class="secondsection">
+	<!-- <section class="secondsection">
+
 
 
 
@@ -132,7 +144,7 @@
 
 
 
-	</section>
+	</section> -->
 
 
 
