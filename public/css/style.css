@@ -107,9 +107,9 @@ table.dataTable thead .sorting:after {
 .eightsection {min-height: 505px; min-width: 100vw; background-color: #28384f;}
 .eightsection {min-height: 78px; min-width: 100vw; background-color: #1e2c40;}
 
+.secondsection h1 {font-family: 'Open Sans', sans-serif!important; font-size: 35px; margin: 0; padding-top: 72px; color: #3b3b3b; text-align: center; }
 
-
-.login-register { position: relative; top: 17px;}
+.login-register { position: relative; top: 17px; }
 .bordered-link {border-style: solid; border-width: 1px;}
 
 .landing-nav {margin-top: 37px;}
@@ -126,6 +126,15 @@ table.dataTable thead .sorting:after {
 .landing-bt-inner-1 i {color: #fff; position: relative; right: 30px; top: -10px; font-size: 45.45px; float: right;}
 .landing-bt-text1 {font-family: 'Open Sans', sans-serif!important; font-size: 34.38px; font-weight: 700!important;}
 .landing-bt-text2 {font-family: 'Open Sans', sans-serif!important; font-size: 20.48px; font-weight: 400!important;}
+
+.secondsection {background-color: #ffffff!important;}
+.header-line {margin-top: 30px!important;}
+.section1divs{background-color: #f4f4f4!important;}
+.section1divs img{margin-top: 60px!important;}
+.section1divs h4{font-size: 20px; font-weight: 600!important; color: #3b3b3b!important; padding-top: 20px; padding-bottom: 10px;}
+.section1divs p{font-size: 16px; color: #6f6f6f; font-weight: 400!important; padding-bottom: 60px!important;}
+.col-div-3 {margin-top: 63px!important;}
+
 
 
 
@@ -359,6 +368,15 @@ input:checked + .slider:before {
 
 
 .dp-portrait{width:150px;height:200px;background-color: #d5d5d5;}
+
+.padleftright{padding-left: 10px; padding-right: 10px;}
+.margtop100 {margin-top:100px!important;}
+.carousel-inner {
+   margin-bottom:50px!important;
+}
+.carousel-indicators {
+  bottom:-50px!important;
+}
 
 
 
