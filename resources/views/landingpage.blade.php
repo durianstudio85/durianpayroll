@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/helper.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/pe-icon-7-stroke.css') }}">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script><!-- Tether for Bootstrap --> 
 
 
@@ -187,8 +188,26 @@
 
 				<div class="margtop100">
 					
-					
+					<h1>Say goodbye to payroll errors</h1>
 
+					<img class="rectangle" src="{{ asset('images/Rectangle2.png') }}">
+
+					<p>Manually computing payroll is wasting valuable HR time and leads to many preventable mistakes. Human Resources can now focus on high value productivity for its organization.</p>
+
+					<h3>We developed Salarium to alleviate the burden of manual payroll computing and to optimize HR processes:</h3>
+
+					<p>
+
+						<i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;Easily manage your employees information anytime, anywhere from the cloud;
+						<br><br>
+						<i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;Employees’ attendance is automatically calculated and sent directly to payroll;
+						<br><br>
+						<i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;Compute payroll for 1,000s of employees in minutes with just a few clicks;
+						<br><br>
+						<i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;Disburse salary in seconds through SAL Pay or Banks; and
+						<br><br>
+						<i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;Keep track and manage requests from employees online
+					</p>
 				</div>
 				
 			</div>
@@ -197,12 +216,53 @@
 
 	</section>
 
-	<!-- <section class="fourthsection">
+	<section class="fourthsection">
 		
+		<div class="container">
+
+			<div class="col-md-6">
+
+				<div class="margtop100">
+					
+					<h1>Access the platfrom from <br> anywhere in the world</h1>
+
+					<img src="{{ asset('images/Rectangle.png') }}">
+
+					<br> <br>
 
 
+					<h3>We remove information requests to HR by giving employees the info directly</h3>
 
-</section> -->
+					<h3>Payslips are sent automatically to Employees</h3>
+
+					<p>
+						
+						Employees can access the payslips and YTD payroll information from any internet ready device 24/7
+						<br><br>
+						Both HR and your employees can conveniently monitor time records which is also being simultaneously computed into the payroll.
+						<br><br>
+						Your employees can easily access their Employee Self Service dashboard to access their Wallet and manage their finances.
+
+					</p>
+
+				</div>
+
+			</div>
+
+			<div class="col-md-6">
+
+				<div class="margtop100">
+					
+					
+
+				</div>
+				
+			</div>
+
+		</div>
+
+
+	</section>
 
 	<!-- <section class="fifthsection">
 		

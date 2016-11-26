@@ -107,8 +107,13 @@ table.dataTable thead .sorting:after {
 .eightsection {min-height: 505px; min-width: 100vw; background-color: #28384f;}
 .eightsection {min-height: 78px; min-width: 100vw; background-color: #1e2c40;}
 
-.secondsection h1 {font-family: 'Open Sans', sans-serif!important; font-size: 35px; margin: 0; padding-top: 72px; color: #3b3b3b; text-align: center; }
-
+.secondsection h1 {font-family: 'Open Sans', sans-serif !important;  font-family: 'Open Sans', sans-serif!important; font-size: 35px; margin: 0; padding-top: 72px; color: #3b3b3b; text-align: center; }
+.thirdsection h1 {font-family: 'Open Sans', sans-serif !important;  color: #ffffff; font-size: 35px;}
+.thirdsection p {font-family: 'Open Sans', sans-serif !important;  color: #ffffff; font-size: 16px; margin-top:26px;}
+.thirdsection h3 {font-family: 'Open Sans', sans-serif !important;  color: #ffffff; font-size: 20px; margin-top:40px;}
+.fourthsection h1{font-family: 'Open Sans', sans-serif !important; color: #ffffff; font-size: 35px;}
+.fourthsection p {font-family: 'Open Sans', sans-serif !important;  color: #ffffff; font-size: 16px; margin-top:26px;}
+.fourthsection h3 {font-family: 'Open Sans', sans-serif !important;  color: #ffffff; font-size: 20px; margin-top:40px;}
 .login-register { position: relative; top: 17px; }
 .bordered-link {border-style: solid; border-width: 1px;}
 
@@ -122,7 +127,7 @@ table.dataTable thead .sorting:after {
 .landing-arrow-down i {color: #fff;}
 
 
-.landing-bt-inner-1 p {color: #fff; position: relative; top:20px; left: 20px; text-align:left; line-height: 0.8em; float: left;}
+.landing-bt-inner-1 p {font-family: 'Open Sans', sans-serif !important;  color: #fff; position: relative; top:20px; left: 20px; text-align:left; line-height: 0.8em; float: left;}
 .landing-bt-inner-1 i {color: #fff; position: relative; right: 30px; top: -10px; font-size: 45.45px; float: right;}
 .landing-bt-text1 {font-family: 'Open Sans', sans-serif!important; font-size: 34.38px; font-weight: 700!important;}
 .landing-bt-text2 {font-family: 'Open Sans', sans-serif!important; font-size: 20.48px; font-weight: 400!important;}
@@ -131,10 +136,10 @@ table.dataTable thead .sorting:after {
 .header-line {margin-top: 30px!important;}
 .section1divs{background-color: #f4f4f4!important;}
 .section1divs img{margin-top: 60px!important;}
-.section1divs h4{font-size: 20px; font-weight: 600!important; color: #3b3b3b!important; padding-top: 20px; padding-bottom: 10px;}
-.section1divs p{font-size: 16px; color: #6f6f6f; font-weight: 400!important; padding-bottom: 60px!important;}
+.section1divs h4{font-family: 'Open Sans', sans-serif !important;  font-size: 20px; font-weight: 600!important; color: #3b3b3b!important; padding-top: 20px; padding-bottom: 10px;}
+.section1divs p{font-family: 'Open Sans', sans-serif !important;  font-size: 16px; color: #6f6f6f; font-weight: 400!important; padding-bottom: 60px!important;}
 .col-div-3 {margin-top: 63px!important;}
-
+.rectangle {margin-top:20px!important;}
 
 
 
