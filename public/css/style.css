@@ -98,22 +98,35 @@ table.dataTable thead .sorting:after {
 /*LANDING PAGE*/
 
 .firstsection {background-image: url("../images/Section-1.jpg"); min-height: 100vh; min-width: 100vw; overflow: hidden; background-size: cover; background-position: top right; }
-.secondsection {min-height: 712px; min-width: 100vw;}
+.secondsection {min-height: 712px; min-width: 100vw;text-align: center;background-color: #fff;}
 .thirdsection {min-height: 712px; min-width: 100vw; background-color: #1fb4ae;}
 .fourthsection {min-height: 781px; min-width: 100vw; background-color: #28384f;}
-.fifthsection {min-height: 310px; min-width: 100vw; background-color: #ffffff;}
+.fifthsection {min-height: 300px; min-width: 100vw; background-color: #ffffff;}
 .sixthsection {min-height: 830px; min-width: 100vw; background-color: #f8f8f8;}
 .seventhsection {min-height: 244px; min-width: 100vw; background-color: #1fb4ae;}
 .eightsection {min-height: 505px; min-width: 100vw; background-color: #28384f;}
-.eightsection {min-height: 78px; min-width: 100vw; background-color: #1e2c40;}
+.ninthsection {min-height: 78px; min-width: 100vw; background-color: #1e2c40;color: #fff;}
 
-.secondsection h1 {font-family: 'Open Sans', sans-serif !important;  font-family: 'Open Sans', sans-serif!important; font-size: 35px; margin: 0; padding-top: 72px; color: #3b3b3b; text-align: center; }
-.thirdsection h1 {font-family: 'Open Sans', sans-serif !important;  color: #ffffff; font-size: 35px;}
-.thirdsection p {font-family: 'Open Sans', sans-serif !important;  color: #ffffff; font-size: 16px; margin-top:26px;}
-.thirdsection h3 {font-family: 'Open Sans', sans-serif !important;  color: #ffffff; font-size: 20px; margin-top:40px;}
-.fourthsection h1{font-family: 'Open Sans', sans-serif !important; color: #ffffff; font-size: 35px;}
-.fourthsection p {font-family: 'Open Sans', sans-serif !important;  color: #ffffff; font-size: 16px; margin-top:26px;}
-.fourthsection h3 {font-family: 'Open Sans', sans-serif !important;  color: #ffffff; font-size: 20px; margin-top:40px;}
+.secondsection h1 {font-family: 'Open Sans', sans-serif!important; font-size: 35px; margin: 0; padding-top: 72px; color: #3b3b3b; text-align: center; }
+.secondsection img{margin: 30px auto;}
+.secondsection-sub-title{font-size: 20px;color: #a7a7a7;}
+.secondsection .box-element{background-color: #f4f4f4;padding: 50px 50px;margin: 40px auto;}
+.secondsection i{background-color: #1fb4ae;color: #fff;padding: 15px 16px;border-radius: 50px;margin: 20px auto;}
+.secondsection h4, .secondsection p{margin: 20px auto;}
+.secondsection .col-md-4{margin-bottom: 50px;}
+
+
+.thirdsection .img-slide{margin-top: 100px;}
+.thirdsection .right-description{margin-top: 100px;color: #fff;font-size: 16px;line-height: 30px;}
+
+
+
+.fourthsection .img-right{margin-top: 100px;}
+.fourthsection  .left-description{margin-top: 100px;color: #fff;font-size: 16px;line-height: 30px;}
+
+
+
+
 .login-register { position: relative; top: 17px; }
 .bordered-link {border-style: solid; border-width: 1px;}
 
@@ -127,21 +140,57 @@ table.dataTable thead .sorting:after {
 .landing-arrow-down i {color: #fff;}
 
 
-.landing-bt-inner-1 p {font-family: 'Open Sans', sans-serif !important;  color: #fff; position: relative; top:20px; left: 20px; text-align:left; line-height: 0.8em; float: left;}
+.landing-bt-inner-1 p {color: #fff; position: relative; top:20px; left: 20px; text-align:left; line-height: 0.8em; float: left;}
 .landing-bt-inner-1 i {color: #fff; position: relative; right: 30px; top: -10px; font-size: 45.45px; float: right;}
 .landing-bt-text1 {font-family: 'Open Sans', sans-serif!important; font-size: 34.38px; font-weight: 700!important;}
 .landing-bt-text2 {font-family: 'Open Sans', sans-serif!important; font-size: 20.48px; font-weight: 400!important;}
 
-.secondsection {background-color: #ffffff!important;}
-.header-line {margin-top: 30px!important;}
-.section1divs{background-color: #f4f4f4!important;}
-.section1divs img{margin-top: 60px!important;}
-.section1divs h4{font-family: 'Open Sans', sans-serif !important;  font-size: 20px; font-weight: 600!important; color: #3b3b3b!important; padding-top: 20px; padding-bottom: 10px;}
-.section1divs p{font-family: 'Open Sans', sans-serif !important;  font-size: 16px; color: #6f6f6f; font-weight: 400!important; padding-bottom: 60px!important;}
-.col-div-3 {margin-top: 63px!important;}
-.rectangle {margin-top:20px!important;}
+.box-element h4{color:#3b3b3b;}
+
+.green{background-color: #1fb4ae !important;color: #fff !important;}
+.dark-blue{background-color: #28384f !important;color: #fff !important;}
+.white{background-color: #fff !important;color: #1fb4ae !important;}
+
+.landing-btn-section{
+    text-decoration:none; 
+    padding: 20px 25px;
+}
+
+.fifthsection h1{margin: 0 auto; text-align: center;padding-top: 50px;color:#3b3b3b;}
+.fifthsection .container{margin-top: 50px;}
+
+.six-intro{text-align: center;}
+
+.six-intro h1{padding-top: 50px;color:#3b3b3b;text-align: center;margin-top: 0px;}
+.six-intro .six-subtitle{font-size: 20px;margin: 10px auto;margin-bottom: 30px;color: #979797;text-align: center;}
 
 
+
+.sixthsection h3.team-name{color:#3b3b3b;padding: 0px;margin: 0px;margin-top: 10px;}
+.sixthsection p.team-position{color:#979797;}
+.sixthsection p.team-qoute{color:#6f6f6f;}
+
+.team-div{margin-top: 20px;margin-bottom: 40px;}
+
+
+
+.seventhsection h1{margin-top: 18%;color: #fff;}
+.seventhsection .right-btn-features{margin-top: 19.5% !important;}
+
+
+.footer-one, .footer-two, .footer-three{margin-top: 15%;color: #fff;line-height: 25px;font-size: 15px;}
+.footer-one img{margin-bottom: 20px;}
+
+.footer-two .col-md-12, .footer-two .col-md-2{padding-left: 0px !important;/*padding-right: 5px !important;*/}
+.footer-two{padding-left: 15px;}
+
+
+
+
+.footer-three .form-control{border-radius: 0px !important;}
+.footer-three textarea{min-height: 115px;}
+
+.ninthsection h5{margin-top: 2.5%;}
 
 
 /*END OF LANDING PAGE*/
@@ -373,15 +422,6 @@ input:checked + .slider:before {
 
 
 .dp-portrait{width:150px;height:200px;background-color: #d5d5d5;}
-
-.padleftright{padding-left: 10px; padding-right: 10px;}
-.margtop100 {margin-top:100px!important;}
-.carousel-inner {
-   margin-bottom:50px!important;
-}
-.carousel-indicators {
-  bottom:-50px!important;
-}
 
 
 

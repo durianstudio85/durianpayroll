@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/helper.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/pe-icon-7-stroke.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}">
+<script src="{{ asset('js/Chart.min.js') }}"></script>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script><!-- Tether for Bootstrap --> 
-
 
 
 <body bgcolor="#f1f3f6" style="overflow-x: hidden;">
@@ -56,16 +56,16 @@
 			<div class="landing-bt">
 				<center>
 					<a href="{{ url('/login') }}">
-						<div style="width: 430px; height: 101px; background-color: #1fb4ae;">
+					<div style="width: 430px; height: 101px; background-color: #1fb4ae;">
+		
+						<div class="landing-bt-inner-1">
+							<p class="landing-bt-text1">GET STARTED NOW</p>
+							<p class="landing-bt-text2">NO COMMITMENT CREDIT CARD</p>
 
-							<div class="landing-bt-inner-1">
-								<p class="landing-bt-text1">GET STARTED NOW</p>
-								<p class="landing-bt-text2">NO COMMITMENT CREDIT CARD</p>
-
-								<i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-							</div>
-							
+							<i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
 						</div>
+							
+					</div>
 					</a>
 				</center>
 			</div>
@@ -94,215 +94,296 @@
 	<section class="secondsection">
 
 		<h1>Friendly, easy to use navigation for small businesses</h1>
+		<img src="{{ asset('images/line-short-green.png') }}">
+		<p class="secondsection-sub-title">Straightforward menus and features make it easy to use for HR & Non-HR alike</p>
 		
-		<center>
-			<div class="header-line">
-				
-				<img src="{{ asset('images/Rectangle.png') }}">
+		<div class="container">
 
-				<div class="container">
-
-					<div class="row col-div-3">
-						<div class="col-sm-6 col-md-4">
-							<div class="section1divs">
-								<div class="padleftright">
-									<img src="{{ asset('images/section1-1.png') }}">
-
-									<h4>Quickly setup your company and manage its data online</h4>
-									<p>Salarium is easy to setup for small and medium businesses with little or no HR<br> support.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6 col-md-4">
-							<div class="section1divs">
-								<div class="padleftright">
-									<img src="{{ asset('images/section1-2.png') }}">
-
-									<h4>Enrolling new employees takes seconds</h4>
-									<p>Each employee has a 201 file that allows for easy data maintenance and access<br> anywhere in the world.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6 col-md-4">
-							<div class="section1divs">
-								<div class="padleftright">
-									<img src="{{ asset('images/section1-3.png') }}">
-
-									<h4>Pay your employees in five seconds or less</h4>
-									<p>The beauty of having an automated payroll system is that processing payroll is<br> just a few clicks away.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-
+			<div class="col-md-4">
+				<div class="box-element">
+					<i class="pe-7s-config pe-4x"></i>
+					<h4>Quickly setup your company and manage its data online</h4>
+					<p>Salarium is easy to setup for small and medium businesses with little or no HR support.</p>
+				</div>	
 			</div>
-		</center>
+			
+			<div class="col-md-4">
+				<div class="box-element">
+					<i class="pe-7s-users pe-4x"></i>
+
+					<h4>Enrolling new employees takes seconds</h4>
+					<p>Each employee has a 201 file that allows for easy data maintenance and access anywhere in the world.</p>
+				</div>	
+			</div>
+			
+			<div class="col-md-4">
+				<div class="box-element">
+					<i class="pe-7s-credit pe-4x"></i>
+
+					<h4>Pay your employees in five seconds or less</h4>
+					<p>The beauty of having an automated payroll system is that processing payroll is just a few clicks away.</p>
+				</div>	
+			</div>
+		</div>
+
+
 	</section>
 
 	<section class="thirdsection">
 
-		<div class="container">
-
-			<div class="col-md-6">
-
-				<div id="carousel-example-generic" class="carousel slide margtop100" data-ride="carousel" >
-					<!-- Indicators -->
-					<ol class="carousel-indicators margtop100">
-						<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-						<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-						<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-					</ol>
-
-					<!-- Wrapper for slides -->
-					<div class="carousel-inner" role="listbox">
-						<div class="item active">
-							<img src="{{ asset('images/PC-Slide.png') }}" alt="...">
-							
-						</div>
-						<div class="item">
-							<img src="{{ asset('images/PC-Slide.png') }}" alt="...">
-							
-						</div>
-						<div class="item">
-							<img src="{{ asset('images/PC-Slide.png') }}" alt="...">
-							
-						</div>
-					</div>
-
-					<!-- Controls -->
-					<a style="display: none;" class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a>
-					<a style="display: none;" class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>
-				</div>
-
+	<div class="container">
+		<div class="col-md-6">
+			<div class="img-slide">
+				<img src="{{ asset('images/computer.png') }}">
 			</div>
-
-			<div class="col-md-6">
-
-				<div class="margtop100">
-					
-					<h1>Say goodbye to payroll errors</h1>
-
-					<img class="rectangle" src="{{ asset('images/Rectangle2.png') }}">
-
-					<p>Manually computing payroll is wasting valuable HR time and leads to many preventable mistakes. Human Resources can now focus on high value productivity for its organization.</p>
-
-					<h3>We developed Salarium to alleviate the burden of manual payroll computing and to optimize HR processes:</h3>
-
-					<p>
-
-						<i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;Easily manage your employees information anytime, anywhere from the cloud;
-						<br><br>
-						<i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;Employees’ attendance is automatically calculated and sent directly to payroll;
-						<br><br>
-						<i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;Compute payroll for 1,000s of employees in minutes with just a few clicks;
-						<br><br>
-						<i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;Disburse salary in seconds through SAL Pay or Banks; and
-						<br><br>
-						<i class="fa fa-chevron-circle-right" aria-hidden="true"></i> &nbsp;Keep track and manage requests from employees online
-					</p>
-				</div>
-				
-			</div>
-
 		</div>
+
+		<div class="col-md-6">
+		 	<div class="right-description">
+		 	<h3>Say goodbye to payroll errors</h3>
+		 	<img src="{{ asset('images/line-short-white.jpg') }}">
+
+		 	<br><br>
+			<p>
+				Manually computing payroll is wasting valuable HR time and leads to many preventable mistakes. Human Resources can now focus on high value productivity for its organization.
+			</p>	
+
+			<br>
+			<h4>We developed Salarium to alleviate the burden of manual payroll computing and to optimize HR processes:</h4>
+
+			<p><img src="{{ asset('images/list-arrow.png') }}"> Easily manage your employees information anytime, anywhere from the cloud;</p>
+
+			<p><img src="{{ asset('images/list-arrow.png') }}"> Employees’ attendance is automatically calculated and sent directly to payroll;</p>
+			<p><img src="{{ asset('images/list-arrow.png') }}"> Compute payroll for 1,000s of employees in minutes with just a few clicks;</p>
+			<p><img src="{{ asset('images/list-arrow.png') }}"> Disburse salary in seconds through SAL Pay or Banks; and</p>
+			<p><img src="{{ asset('images/list-arrow.png') }}"> Keep track and manage requests from employees online</p>
+ 
+			</div>
+		</div>
+	</div>
+
 
 	</section>
 
 	<section class="fourthsection">
 		
-		<div class="container">
+	<div class="container">
+		
+		<div class="col-md-6">
+		 	<div class="left-description">
+		 	<h3>Access the platfrom from anywhere in the world</h3>
+		 	<img src="{{ asset('images/line-short-green.png') }}">
 
-			<div class="col-md-6">
+		 	<br><br>
+			<p>
+				We remove information requests to HR by giving employees the info directly
 
-				<div class="margtop100">
-					
-					<h1>Access the platfrom from <br> anywhere in the world</h1>
+			</p>	
 
-					<img src="{{ asset('images/Rectangle.png') }}">
+			<br>
+			<h4>Payslips are sent automatically to Employees</h4>
+			<br>
+			<p>Employees can access the payslips and YTD payroll information from any internet ready device 24/7</p>
 
-					<br> <br>
-
-
-					<h3>We remove information requests to HR by giving employees the info directly</h3>
-
-					<h3>Payslips are sent automatically to Employees</h3>
-
-					<p>
-						
-						Employees can access the payslips and YTD payroll information from any internet ready device 24/7
-						<br><br>
-						Both HR and your employees can conveniently monitor time records which is also being simultaneously computed into the payroll.
-						<br><br>
-						Your employees can easily access their Employee Self Service dashboard to access their Wallet and manage their finances.
-
-					</p>
-
-				</div>
-
+			<p>Both HR and your employees can conveniently monitor time records which is also being simultaneously computed into the payroll.</p>
+			<p>Your employees can easily access their Employee Self Service dashboard to access their Wallet and manage their finances.</p>
+			
+			<br><br>
+ 			<a href="#" class="landing-btn-section green">EXPLORE ALL FEATURES</a>
 			</div>
-
-			<div class="col-md-6">
-
-				<div class="margtop100">
-					
-					
-
-				</div>
-				
-			</div>
-
 		</div>
 
 
-	</section>
 
-	<!-- <section class="fifthsection">
-		
-
-
-
-</section> -->
-
-	<!-- <section class="sixthsection">
-		
-
-
-
-</section> -->
-
-	<!-- <section class="seventhsection">
-		
-
-
-
-</section> -->
-
-	<!-- <section class="eightsection">
-		
-
-
-
-</section> -->
-
-	<!-- <section class="ninthsection">
-		
-
+		<div class="col-md-6">
+			<div class="img-right">
+				<img src="{{ asset('images/hand-mobile.png') }}">
+			</div>
+		</div>
+	</div>
 
 
 	</section>
--->
+
+	<section class="fifthsection">
+		<h1>Trusted by the best companies in the Philippines</h1>
+
+	<div class="container">
+		<div class="col-md-3">
+			<img src="{{ asset('images/logo1.png') }}">
+		</div>
+		<div class="col-md-3">
+			<img src="{{ asset('images/logo2.png') }}">
+		</div>
+		<div class="col-md-3">
+			<img src="{{ asset('images/logo3.png') }}">
+		</div>
+		<div class="col-md-3">
+			<img src="{{ asset('images/logo4.png') }}">
+		</div>
+
+	</div>
+
+	</section>
+
+	<section class="sixthsection">
+	<div class="six-intro">
+		<h1>Our Team</h1>
+		<img src="{{ asset('images/line-short-green.png') }}">
+		<p class="six-subtitle">A Team of bright professionals</p>
+	</div>	
+		<div class="container">
+
+			<div class="col-md-6 team-div">
+				<div class="col-md-4">
+					<img src="{{ asset('images/vector1.png') }}">
+				</div>
+
+				<div class="col-md-8 pull-right">
+					<h3 class="team-name">Eduardo Barrete</h3>
+					<p class="team-position">Founder, Project Manager</p>
+
+					<p class="team-quote">Dictum nulla glavrida amet ipsum a suscipit vehiculat ullamcorper ac sit amet lacus dolor. Nulla for urabitur pellen to neque.</p>
+
+					<a href="#"><img src="{{ asset('images/facebook.png') }}"></a>
+					<a href="#"><img src="{{ asset('images/twitter.png') }}"></a>
+					<a href="#"><img src="{{ asset('images/linkin.png') }}"></a>
+				</div>
+			</div>
 
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+			<div class="col-md-6 team-div">
+				<div class="col-md-4">
+					<img src="{{ asset('images/vector2.png') }}">
+				</div>
+
+				<div class="col-md-8 pull-right">
+					<h3 class="team-name">Daryl Lanaban</h3>
+					<p class="team-position">Laravel Developer</p>
+
+					<p class="team-quote">Dictum nulla glavrida amet ipsum a suscipit vehiculat ullamcorper ac sit amet lacus dolor. Nulla for urabitur pellen to neque.</p>
+
+					<a href="#"><img src="{{ asset('images/facebook.png') }}"></a>
+					<a href="#"><img src="{{ asset('images/twitter.png') }}"></a>
+					<a href="#"><img src="{{ asset('images/linkin.png') }}"></a>
+				</div>
+			</div>
+
+
+			<div class="col-md-6 team-div">
+				<div class="col-md-4">
+					<img src="{{ asset('images/vector4.png') }}">
+				</div>
+
+				<div class="col-md-8 pull-right">
+					<h3 class="team-name">Zhar Jill Donga</h3>
+					<p class="team-position">Web Developer</p>
+
+					<p class="team-quote">Dictum nulla glavrida amet ipsum a suscipit vehiculat ullamcorper ac sit amet lacus dolor. Nulla for urabitur pellen to neque.</p>
+
+					<a href="#"><img src="{{ asset('images/facebook.png') }}"></a>
+					<a href="#"><img src="{{ asset('images/twitter.png') }}"></a>
+					<a href="#"><img src="{{ asset('images/linkin.png') }}"></a>
+				</div>
+			</div>
+
+
+			<div class="col-md-6 team-div">
+				<div class="col-md-4">
+					<img src="{{ asset('images/vector3.png') }}">
+				</div>
+
+				<div class="col-md-8 pull-right">
+					<h3 class="team-name">Ritchel Abella</h3>
+					<p class="team-position">Web Graphic Designer</p>
+
+					<p class="team-quote">Dictum nulla glavrida amet ipsum a suscipit vehiculat ullamcorper ac sit amet lacus dolor. Nulla for urabitur pellen to neque.</p>
+
+
+					<a href="#"><img src="{{ asset('images/facebook.png') }}"></a>
+					<a href="#"><img src="{{ asset('images/twitter.png') }}"></a>
+					<a href="#"><img src="{{ asset('images/linkin.png') }}"></a>
+				</div>
+			</div>
+
+
+
+		</div>
+	</section>
+
+	<section class="seventhsection">
+		<div class="container">
+			<div class="col-md-6">
+		
+				<h1>See how we speed up your work</h1>
+			</div>
+
+			<div class="col-md-6">
+			
+				<div class="right-btn-features">
+					<a href="#" class="landing-btn-section white">EXPLORE ALL FEATURES</a>
+					<a href="#" class="landing-btn-section dark-blue">GET YOUR FREE TRIALS</a>
+				</div>	
+			</div>
+		</div>
+	</section>
+
+	<section class="eightsection">
+		<div class="container">
+			<div class="col-md-4">
+				<div class="footer-one">
+				<img src="{{ asset('images/footer-logo.png') }}">
+
+					<p>We are an ethically founded company that was founded to reignite the passion in all of our communities.Our mission is to make an ease access to the videos, music, lifestyle, sports and everything that goes viral to the people in the world. </p>
+
+					<p>We provide excellence to the people everyday through the viral trending in the world and to get Updated.</p>
+				</div>	
+			</div>
+
+			<div class="col-md-4">
+				<div class="footer-two">
+				<h3>Contact Information</h3>
+				<br>
+				<div class="col-md-12"><div class="col-md-2"><img src="{{ asset('images/phone.png') }}"></div> <div class="col-md-10">Phone: 09351759747</div></div><br><br>
+				<div class="col-md-12"><div class="col-md-2"><img src="{{ asset('images/location.png') }}"></div> <div class="col-md-10">121 Rock Sreet, 21 Avenue, New York, NY 92103-9000</div></div><br><br>
+				<div class="col-md-12"><div class="col-md-2"><img src="{{ asset('images/email.png') }}"></div> <div class="col-md-10">Email: info@durianpayroll.com</div></div>
+					
+				</div>	
+			</div>
+
+
+			<div class="col-md-4">
+				<div class="footer-three">
+				<h3>Contact Information</h3>
+				<br>
+				<input type="text" class="form-control" placeholder="Full Name"><br>
+
+				<input type="Email" class="form-control" placeholder="Email Address"><br>
+
+				<textarea class="form-control" placeholder="Message"></textarea>
+					
+				</div>	
+			</div>
+
+
+		</div>
+	</section>
+
+	<section class="ninthsection">
+		<div class="container">
+			<h5 class="pull-left">
+				© Durian Payroll. All rights reserved.
+			</h5>
+
+			<h5 class="pull-right">Designed by: Durian Studio</h5>
+		</div>
+	</section>
+
+
+
+	<script src="{{ asset('js/jquery-1.9.1.min.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.js') }}"></script>
+	<script src="{{ asset('js/npm.js') }}"></script>
 </body>
 </html>
