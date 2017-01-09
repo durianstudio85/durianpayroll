@@ -23,10 +23,10 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $user = Auth::User();  
-        $id = $user->id;
-        $company = Company::where('user_id', '=', $id)->get()->first();
-        return view('pages.company-setup.company-organization.company', compact('company'));
+            $user = Auth::User();  
+            $id = $user->id;
+            $company = Company::where('user_id', '=', $id)->get()->first();
+            return redirect('/company/setup/'.$company->id); 
     }
 
     /**
@@ -69,7 +69,9 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $company_id = session('company_id');
+        $company = Company::findOrFail($id);
+        return view('pages.company-setup.company-organization.company', compact('company'));
     }
 
     /**
@@ -86,7 +88,7 @@ class CompanyController extends Controller
             'company_name' => $request->get('company_name'), 
             'trade_name' => $request->get('trade_name'), 
             'org_type' => $request->get('org_type'),
-            'company_logo' => $this->uploadLogo($request->file('company_logo')),
+            'company_logo' => $this->uploadLogo($request->file('company_logo'), $company->company_logo),
             'business_address' => $request->get('business_address'),
             'business_city' => $request->get('business_city'),
             'business_zip' => $request->get('business_zip'),
@@ -105,7 +107,7 @@ class CompanyController extends Controller
             'gov_philhealth' => $request->get('gov_philhealth'),
         ];
         $company->update($data);
-        return redirect('/courses/'.$id.'/edit');
+        return redirect('/company/setup/'.$id);
     }
 
     /**
@@ -119,7 +121,7 @@ class CompanyController extends Controller
         //
     }
 
-    public function uploadLogo($file)
+    public function uploadLogo($file, $current)
     {
         
         $photo = $file;
@@ -127,7 +129,7 @@ class CompanyController extends Controller
             $filename = str_random(20).$photo->getClientOriginalName();
             $photo->move(public_path().'/upload',$filename);
         }else{
-            $filename = $course->photo;
+            $filename = $current;
         }
         return $filename;
     }

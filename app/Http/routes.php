@@ -88,7 +88,8 @@ Route::get('YTD-summary','PagesController@ytd_summary');
 // *** COMPANY SETUP ***
 // Route::get('company/setup','PagesController@company');
 Route::get('company/setup','CompanyController@index');
-Route::patch('company/setup','CompanyController@update');
+Route::get('company/setup/{id}','CompanyController@edit');
+Route::patch('company/setup/{id}','CompanyController@update');
 
 
 
