@@ -23,11 +23,29 @@
 //     return view('pages.dashboard');
 // });
 
-Route::get('/','PagesController@landingpage');
+// Landing Page
+Route::get('/','HomeController@index');
+
+// Dashboard
+Route::get('dashboard','DashboardController@index');
 
 
 
-Route::get('dashboard','PagesController@dashboard');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -68,7 +86,12 @@ Route::get('YTD-summary','PagesController@ytd_summary');
 
 
 // *** COMPANY SETUP ***
-Route::get('company/setup','PagesController@company');
+// Route::get('company/setup','PagesController@company');
+Route::get('company/setup','CompanyController@index');
+Route::patch('company/setup','CompanyController@update');
+
+
+
 
 
 // *** COMPANY ORGANIZATIONAL ***

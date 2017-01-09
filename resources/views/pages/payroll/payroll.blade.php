@@ -40,20 +40,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                               @foreach ($dp_payroll as $payroll_tb)
+                              
                                     <tr class="odd gradeX">
                                         <td><input type="checkbox"></td>
-                                        <td>{{ $payroll_tb->payroll_group }}</td>
-                                        <td>{{ $payroll_tb->payroll_run }}</td>
-                                        <td>{{ $payroll_tb->payroll_period }}</td>
-                                        <td>{{ $payroll_tb->payroll_company }}</td>
-                                        <td>{{ $payroll_tb->payroll_employee }}</td>
-                                        <td>{{ $payroll_tb->payroll_gross_income }}</td>
-                                        <td>{{ $payroll_tb->payroll_net_pay }}</td>
-                                        <td>{{ $payroll_tb->payroll_status }}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                
-                               @endforeach     
+                                 
                                     
                                 </tbody>
                             </table>

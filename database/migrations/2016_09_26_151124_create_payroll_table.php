@@ -12,7 +12,7 @@ class CreatePayrollTable extends Migration
      */
     public function up()
     {
-        Schema::create('payroll_table', function (Blueprint $table) {
+        Schema::create('payrolls', function (Blueprint $table) {
             $table->increments('id');
             $table->string('payroll_group', 150);
             $table->string('payroll_run', 150);
@@ -33,6 +33,6 @@ class CreatePayrollTable extends Migration
      */
     public function down()
     {
-        Schema::drop('payroll_table');
+        Schema::drop('payrolls');
     }
 }

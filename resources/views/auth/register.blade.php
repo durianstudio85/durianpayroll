@@ -20,19 +20,18 @@
 <body bgcolor="#f1f3f6">
 
 <div class="login-panel">
-    
     <form class="login-form" method="POST" role="form" action="{{ url('/register') }}">
     {{ csrf_field() }}
         
         <p class="register-feed">Sign Up for a Free Account</p>
         <p class="register-feed-2">No commitment. No credit card required.</p>
 
-        <input class="register-input" id="companyname" type="text" class="form-control" name="companyname" placeholder="Company Name" value="">
+        <input class="register-input" id="companyname" type="text" class="form-control" name="company_name" placeholder="Company Name" value="">
 
         
-        <input class="register-input firstname" id="firstname" type="text" class="form-control" name="firstname" placeholder="First Name" value="">
+        <input class="register-input firstname" id="firstname" type="text" class="form-control" name="first_name" placeholder="First Name" value="">
             
-        <input class="register-input lastname" id="lastname" type="text" class="form-control" name="lastname" placeholder="Last Name" value="">
+        <input class="register-input lastname" id="lastname" type="text" class="form-control" name="last_name" placeholder="Last Name" value="">
             @if ($errors->has('name'))
                 <span class="help-block">
                     <strong>{{ $errors->first('name') }}</strong>

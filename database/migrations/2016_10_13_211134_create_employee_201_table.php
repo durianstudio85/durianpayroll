@@ -12,7 +12,7 @@ class CreateEmployee201Table extends Migration
      */
     public function up()
     {
-        Schema::create('employee_201_table', function (Blueprint $table) {
+        Schema::create('employees', function (Blueprint $table) {
             $table->increments('employee_id');
             $table->string('employee_last_name');  
             $table->string('employee_first_name'); 
@@ -87,6 +87,6 @@ class CreateEmployee201Table extends Migration
      */
     public function down()
     {
-        Schema::drop('employee_201_table');
+        Schema::drop('employees');
     }
 }

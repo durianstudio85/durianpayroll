@@ -16,7 +16,7 @@ class PagesController extends Controller
 
 	public function landingpage()
 	   {
-	   	return view('landingpage');
+	   	return view('landingpage'); // Done
 	   }
 
 	public function login()
@@ -26,7 +26,7 @@ class PagesController extends Controller
 
    	public function dashboard()
 	   {
-	   	return view('pages.dashboard');
+	   	return view('pages.dashboard'); // Done
 	   }
 
 
@@ -38,37 +38,37 @@ class PagesController extends Controller
 
 	public function payroll()
 	   {
-	   	$dp_payroll = DB::table('payroll_table')->get();
-	   	return view('pages.payroll.payroll',compact('dp_payroll') );
+	   	
+	   	return view('pages.payroll.payroll');
 	   } 
 
 	public function payslip()
 	   {
-	   	$dp_payslip = DB::table('payslip_table')->get();
+	   	$dp_payslip = DB::table('payslips')->get();
 	   	return view('pages.payroll.payslip',compact('dp_payslip') );
 	   }  
 
 	public function bank()
 	   {
-	   	$dp_bank = DB::table('bank_table')->get();
+	   	$dp_bank = DB::table('banks')->get();
 	   	return view('pages.payroll.bank',compact('dp_bank') );
 	   } 
 
 	public function governmentforms()
 	   {
-	   	$dp_governmentform = DB::table('government_form_table')->get();
+	   	$dp_governmentform = DB::table('government_forms')->get();
 	   	return view('pages.payroll.governmentforms',compact('dp_governmentform')  );
 	   }   
 
 	public function bonus()
 	   {
-	   	$dp_bonus = DB::table('bonus_table')->get();
+	   	$dp_bonus = DB::table('bonuss')->get();
 	   	return view('pages.payroll.bonus',compact('dp_bonus') );
 	   }
 
 	public function commision()
 	   {
-	   	$dp_commision = DB::table('commision_table')->get();
+	   	$dp_commision = DB::table('commisions')->get();
 	   	return view('pages.payroll.commision',compact('dp_commision') );
 	   }
 
@@ -117,7 +117,7 @@ class PagesController extends Controller
 
 	 public function employee_201()
 	   {
-	   	$dp_employee_201 = DB::table('employee_201_table')->get();
+	   	$dp_employee_201 = DB::table('employees')->get();
 	   	return view('pages.employee.employee-201',compact('dp_employee_201') );
 	   } 
 	 public function earnings()
