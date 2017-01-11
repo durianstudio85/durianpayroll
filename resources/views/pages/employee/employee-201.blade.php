@@ -4,8 +4,7 @@
 @section('content')
 
 <div class="dp-submenu">
-  
-        <ul>
+    <ul>
         <li><a href="{{ Url('employee-201') }}"> 201 Files </a></li>
         <li><a href="{{ Url('earnings') }}"> Earnings </a></li>
         <li><a href="{{ Url('payAdjustment') }}"> Basic Pay Adjustments </a></li>
@@ -17,54 +16,50 @@
         <li><a href="{{ Url('leaves') }}"> Leaves </a></li>
         <li><a href="{{ Url('termination') }}"> Terminations </a></li>
         <li><a href="{{ Url('YTD-summary') }}"> YTD Summary </a></li>
-      </ul>
-    
+    </ul>
 </div>
 
 
 
 
 <div class="container">
-<div class="dp-right full-width dp-text-right">
-  <button class="btn dp-primary-bg" data-toggle="modal" data-target="#Add-Employee">Add Employees</button>
-  <button class="btn dp-primary-bg" data-toggle="modal" data-target="#Mass-Employee"><i class="fa fa-upload"></i> Mass and Employees</button>
-  <button class="btn dp-primary-bg" data-toggle="modal" data-target="#Update-Mass-Employee"><i class="fa fa-upload"></i> Mass Update Employees</button>
-  <button class="btn dp-danger-bg"><i class="fa fa-download"></i> Download 201</button>
-  
-</div>
-             <table width="100%" class="table table-striped table-hover" id="dataTables-example">
-                                <thead>
-                                    <tr>
-                                        <th><input type="checkbox"></th>
-                                        <th>Picture</th>
-                                        <th>Employee ID</th>
-                                        <th>Last Name</th>
-                                        <th>First Name</th>
-                                        <th>Email</th>
-                                        <th>Tel</th>
-                                        <th>Mobile Active</th>
-                                        <th>Created By</th>
-                                        <th>Updated By</th>
-                                       
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="odd gradeX">
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                    </tr>
-                                                                      
-                                </tbody>
-                            </table>
-
+    <div class="dp-right full-width dp-text-right">
+        <button class="btn dp-primary-bg" data-toggle="modal" data-target="#Add-Employee">Add Employees</button>
+        <button class="btn dp-primary-bg" data-toggle="modal" data-target="#Mass-Employee"><i class="fa fa-upload"></i> Mass and Employees</button>
+        <button class="btn dp-primary-bg" data-toggle="modal" data-target="#Update-Mass-Employee"><i class="fa fa-upload"></i> Mass Update Employees</button>
+        <button class="btn dp-danger-bg"><i class="fa fa-download"></i> Download 201</button>
+    </div>
+    <table width="100%" class="table table-striped table-hover" id="dataTables-example">
+        <thead>
+            <tr>
+                <th><input type="checkbox"></th>
+                <th>Picture</th>
+                <th>Employee ID</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Email</th>
+                <th>Tel</th>
+                <th>Mobile Active</th>
+                <th>Created By</th>
+                <th>Updated By</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="odd gradeX">
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+                                                          
+        </tbody>
+    </table>
 </div>
 
 <!-- ADD EMPLOYEE FORM-->

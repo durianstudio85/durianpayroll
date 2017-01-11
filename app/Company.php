@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Options\Company_user;
+use Auth;
 
 class Company extends Model
 {
@@ -34,5 +36,11 @@ class Company extends Model
     public function user()
     {
     	return $this->belongsToMany('App\User');
+    }
+
+    public function getComId(){
+        $userId = Auth::User()->id;
+        $getComId = Company_user::where('user_id', '=', $userId)->get()->first();
+        return $getComId->company_id;
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 use App\Company;
+use App\Options\Company_user;
 
 class AuthController extends Controller
 {
@@ -78,6 +79,11 @@ class AuthController extends Controller
         $business = Company::create([
             'user_id' => $lastid,
             'company_name' => $data['company_name'],
+        ]);
+
+        $connect = Company_user::create([
+            'user_id' => $lastid,
+            'company_id' => $business->id,
         ]);
 
         return $user;

@@ -33,18 +33,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 @foreach ($dp_bank as $bank_tb)
-
-                                    <tr class="odd gradeX">
-                                        <td><input type="checkbox"></td>
-                                        <td>{{ $bank_tb->bank_employee_name }}</td>
-                                        <td>{{ $bank_tb->bank_payroll_group }}</td>
-                                        <td>{{ $bank_tb->bank_date }}</td>
-                                        <td>{{ $bank_tb->bank_download }}</td>
-                                        
-                                    </tr>
-                               
-                               @endforeach     
                                     
                                 </tbody>
                             </table>

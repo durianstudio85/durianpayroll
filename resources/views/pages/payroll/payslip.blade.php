@@ -35,19 +35,7 @@
                                 </thead>
                                 <tbody>
 
-                                @foreach ($dp_payslip as $payslip_tb)
-
-                                    <tr class="odd gradeX">
-                                        
-                                        <td>{{ $payslip_tb->payslip_employee_name }}</td>
-                                        <td>{{ $payslip_tb->payslip_payroll_group }}</td>
-                                        <td>{{ $payslip_tb->payslip_issued_on }}</td>
-                                        <td>{{ $payslip_tb->payslip_access_by_employee }}</td>
-                                        <td>{{ $payslip_tb->payslip_download }}</td>
-   
-                                    </tr>
                                
-                                @endforeach
                                     
                                 </tbody>
                             </table>

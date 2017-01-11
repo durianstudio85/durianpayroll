@@ -36,19 +36,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($dp_bonus as $bonus_tb)
-
-                                    <tr class="odd gradeX">
-                                        <td><input type="checkbox"></td>
-                                        <td>{{ $bonus_tb->bonus_group_type }}</td>
-                                        <td>{{ $bonus_tb->bonus_recipients }}</td>
-                                        <td>{{ $bonus_tb->bonus_bonus_date }}</td>
-                                        <td>{{ $bonus_tb->bonus_amount}}</td>
-                                        <td>{{ $bonus_tb->bonus_created_by}}</td>
-                                        <td>{{ $bonus_tb->bonus_created_date}}</td>
-                                    </tr>
-                               
-                               @endforeach     
+                             
                                     
                                 </tbody>
                             </table>

@@ -44,31 +44,31 @@ class PagesController extends Controller
 
 	public function payslip()
 	   {
-	   	$dp_payslip = DB::table('payslips')->get();
+	   	$dp_payslip = "";
 	   	return view('pages.payroll.payslip',compact('dp_payslip') );
 	   }  
 
 	public function bank()
 	   {
-	   	$dp_bank = DB::table('banks')->get();
+	   	$dp_bank = "";
 	   	return view('pages.payroll.bank',compact('dp_bank') );
 	   } 
 
 	public function governmentforms()
 	   {
-	   	$dp_governmentform = DB::table('government_forms')->get();
+	   	$dp_governmentform = "";
 	   	return view('pages.payroll.governmentforms',compact('dp_governmentform')  );
 	   }   
 
 	public function bonus()
 	   {
-	   	$dp_bonus = DB::table('bonuss')->get();
+	   	$dp_bonus = "";
 	   	return view('pages.payroll.bonus',compact('dp_bonus') );
 	   }
 
 	public function commision()
 	   {
-	   	$dp_commision = DB::table('commisions')->get();
+	   	$dp_commision = "";
 	   	return view('pages.payroll.commision',compact('dp_commision') );
 	   }
 
@@ -117,7 +117,7 @@ class PagesController extends Controller
 
 	 public function employee_201()
 	   {
-	   	$dp_employee_201 = DB::table('employees')->get();
+	   	$dp_employee_201 = "";
 	   	return view('pages.employee.employee-201',compact('dp_employee_201') );
 	   } 
 	 public function earnings()

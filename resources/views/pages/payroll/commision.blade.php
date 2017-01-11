@@ -39,21 +39,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   @foreach ($dp_commision as $commision_tb)
-
-                                    <tr class="odd gradeX">
-                                        <td><input type="checkbox"></td>
-                                        <td>{{ $commision_tb->commision_type }}</td>
-                                        <td>{{ $commision_tb->commision_employees }}</td>
-                                        <td>{{ $commision_tb->commision_payroll }}</td>
-                                        <td>{{ $commision_tb->commision_amount}}</td>
-                                        <td>{{ $commision_tb->commision_created_by}}</td>
-                                        <td>{{ $commision_tb->commision_created_date}}</td>
-                                        <td>{{ $commision_tb->commision_updated_by}}</td>
-                                        <td>{{ $commision_tb->commision_updated_date}}</td>
-                                    </tr>
-                               
-                               @endforeach         
+                                      
                                     
                                 </tbody>
                             </table>

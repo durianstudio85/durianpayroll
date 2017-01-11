@@ -23,10 +23,10 @@ class CompanyController extends Controller
      */
     public function index()
     {
-            $user = Auth::User();  
-            $id = $user->id;
-            $company = Company::where('user_id', '=', $id)->get()->first();
-            return redirect('/company/setup/'.$company->id); 
+        $user = Auth::User();  
+        $id = $user->id;
+        $company = Company::where('user_id', '=', $id)->get()->first();
+        return redirect('/company/setup/'.$company->id); 
     }
 
     /**
@@ -47,7 +47,7 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

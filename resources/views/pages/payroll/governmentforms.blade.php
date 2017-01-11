@@ -37,20 +37,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($dp_governmentform as $governmentform_tb)
-
-                                    <tr class="odd gradeX">
-                                        
-                                        <td>{{ $governmentform_tb->government_type }}</td>
-                                        <td>{{ $governmentform_tb->government_form }}</td>
-                                        <td>{{ $governmentform_tb->government_date }}</td>
-                                        <td>{{ $governmentform_tb->government_frequency}}</td>
-                                        <td>{{ $governmentform_tb->government_download}}</td>
-                                        <td>{{ $governmentform_tb->government_action}}</td>
-                                        
-                                    </tr>
                                
-                               @endforeach
                                     
                                 </tbody>
                             </table>

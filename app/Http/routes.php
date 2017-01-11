@@ -96,11 +96,29 @@ Route::patch('company/setup/{id}','CompanyController@update');
 
 
 // *** COMPANY ORGANIZATIONAL ***
-Route::get('company/location&officess','PagesController@company_location_officess');
-Route::get('company/departments','PagesController@company_departments');
-Route::get('company/positions','PagesController@company_positions');
-Route::get('company/ranks','PagesController@company_ranks');
-Route::get('company/employment-type','PagesController@company_employment_type');
+// Location & Office function
+Route::get('company/location&officess','LocationController@index');
+Route::post('company/location&officess/create','LocationController@store');
+
+// Department function
+Route::get('company/departments','OptionController@departmentIndex');
+Route::post('company/departments','OptionController@departmentStore');
+Route::patch('company/departments/{id}','OptionController@departmentUpdate');
+
+// Postion function
+Route::get('company/positions','OptionController@positionIndex');
+Route::post('company/positions','OptionController@positionStore');
+Route::patch('company/positions/{id}','OptionController@positionUpdate');
+
+// Rank function
+Route::get('company/ranks','OptionController@rankIndex');
+Route::post('company/ranks','OptionController@rankStore');
+Route::patch('company/ranks/{id}','OptionController@rankUpdate');
+
+// Employee Type function
+Route::get('company/employment-type','OptionController@employeetypeIndex');
+Route::post('company/employment-type','OptionController@employeetypeStore');
+Route::patch('company/employment-type/{id}','OptionController@employeetypeUpdate');
 
 
 
