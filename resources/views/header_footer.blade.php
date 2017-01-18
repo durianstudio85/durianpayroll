@@ -15,8 +15,8 @@
   <link href="{{ asset('css/dataTables.bootstrap.css') }}" rel="stylesheet">
   <link href="{{ asset('css/dataTables.responsive.css') }}" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-
   <script src="{{ asset('js/Chart.min.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
   <style type="text/css">
     
@@ -60,6 +60,7 @@
   @yield('content')
 
 
+
 <script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/npm.js') }}"></script>
@@ -74,6 +75,10 @@
         });
     });
   </script>
+
+  
+
+  
 
  
 </body>

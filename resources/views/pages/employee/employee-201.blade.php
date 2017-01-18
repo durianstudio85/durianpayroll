@@ -18,17 +18,34 @@
         <li><a href="{{ Url('YTD-summary') }}"> YTD Summary </a></li>
     </ul>
 </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            &nbsp;
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @if(Session::has('flash_message'))
+                <div class="alert {{ Session::get('flash_message_important') }} ">
+                    {{session('flash_message')}}
+                </div>
+            @endif
+        </div>
+    </div>
+</div>
 
 
 
 
-<div class="container">
+<div class="container-fluid">
     <div class="dp-right full-width dp-text-right">
         <button class="btn dp-primary-bg" data-toggle="modal" data-target="#Add-Employee">Add Employees</button>
         <button class="btn dp-primary-bg" data-toggle="modal" data-target="#Mass-Employee"><i class="fa fa-upload"></i> Mass and Employees</button>
         <button class="btn dp-primary-bg" data-toggle="modal" data-target="#Update-Mass-Employee"><i class="fa fa-upload"></i> Mass Update Employees</button>
         <button class="btn dp-danger-bg"><i class="fa fa-download"></i> Download 201</button>
     </div>
+
     <table width="100%" class="table table-striped table-hover" id="dataTables-example">
         <thead>
             <tr>
@@ -45,98 +62,91 @@
             </tr>
         </thead>
         <tbody>
+            @foreach($employee_list as $employee)
             <tr class="odd gradeX">
+               <td><input type="checkbox"></td>
                <td></td>
-               <td></td>
-               <td></td>
-               <td></td>
-               <td></td>
-               <td></td>
-               <td></td>
-               <td></td>
-               <td></td>
-               <td></td>
+               <td>{{ $employee->employee_id }}</td>
+               <td>{{ $employee->last_name }}</td>
+               <td>{{ $employee->first_name }}</td>
+               <td>{{ $employee->email }}</td>
+               <td>{{ $employee->telephone_no }}</td>
+               <td>{{ $employee->mobile_no }}</td>
+               <td>{{ $employee->created_by }}</td>
+               <td>{{ $employee->updated_by }}</td>
             </tr>
-                                                          
+            @endforeach          
         </tbody>
     </table>
 </div>
 
 <!-- ADD EMPLOYEE FORM-->
 
- <div class="modal fade" id="Add-Employee" role="dialog">
+<div class="modal fade" id="Add-Employee" role="dialog">
     <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3 class="modal-title">Add Employee</h3>
-        </div>
-        <div class="modal-body">
-
-          <form class="form-horizontal">
-                <div class="form-group">
-                  <label class="control-label col-sm-3">Employee ID*</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control">
-                  </div>
+        <!-- Modal content-->
+        {!! Form::open(['url'=>'employee-201', 'class' => 'form-horizontal']) !!}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Add Employee</h3>
                 </div>
-                <div class="form-group">
-                  <label class="control-label col-sm-3" >Last Name</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control">
-                  </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        {!! Form::label('employee_id', 'Employee ID*', ['class' => 'control-label col-sm-3']) !!}
+                        <div class="col-sm-9">
+                            {!! Form::text('employee_id', null,['class'=>'form-control', 'placeholder'=>'', 'require']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('last_name', 'Last Name', ['class' => 'control-label col-sm-3']) !!}
+                        <div class="col-sm-9">
+                            {!! Form::text('last_name', null,['class'=>'form-control', 'placeholder'=>'', 'require']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">First Name*</label>
+                        <div class="col-sm-9">
+                            {!! Form::text('first_name', null,['class'=>'form-control', 'placeholder'=>'', 'require']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">Middle Name</label>
+                        <div class="col-sm-9">
+                            {!! Form::text('middle_name', null,['class'=>'form-control', 'placeholder'=>'', 'require']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">Gender</label>
+                        <div class="col-sm-9">
+                            {!! Form::select('gender', ['Male' => 'Male', 'Female' => 'Female'], null, [ 'class' => 'form-control', 'placeholder' => 'Select']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">Email</label>
+                        <div class="col-sm-9">
+                            {!! Form::email('email', null,['class'=>'form-control', 'placeholder'=>'', 'require']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">Telephone Number</label>
+                        <div class="col-sm-9">
+                            {!! Form::text('telephone_no', null,['class'=>'form-control', 'placeholder'=>'' ]) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">Mobile Number</label>
+                        <div class="col-sm-9">
+                            {!! Form::text('mobile_no', null,['class'=>'form-control', 'placeholder'=>'']) !!}
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                  <label class="control-label col-sm-3">First Name*</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control">
-                  </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    {!! Form::submit('Generate', ['class' => 'btn dp-primary-bg']) !!}
                 </div>
-                <div class="form-group">
-                  <label class="control-label col-sm-3">Middle Name</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="control-label col-sm-3">Gender</label>
-                  <div class="col-sm-9">
-                    <select class="form-control">
-                        <option>Select</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                    </select>
-                  </div>
-                </div>
-                 <div class="form-group">
-                  <label class="control-label col-sm-3">Email</label>
-                  <div class="col-sm-9">
-                    <input type="email" class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="control-label col-sm-3">Telephone Number</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="control-label col-sm-3">Mobile Number</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-            </form>
-
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <input type="button" class="btn dp-primary-bg" value="Generate">
-        </div>
-      </div>
+            </div>
+        {!! Form::close() !!} 
    </div>
 </div>
 

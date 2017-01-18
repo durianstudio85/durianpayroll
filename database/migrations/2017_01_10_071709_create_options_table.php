@@ -60,6 +60,12 @@ class CreateOptionsTable extends Migration
             $table->integer('update_user_id')->unsigned();
             $table->timestamps();
         });
+
+        Schema::create('pay_types', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('type');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -75,5 +81,6 @@ class CreateOptionsTable extends Migration
         Schema::drop('positions');
         Schema::drop('ranks');
         Schema::drop('employees');
+        Schema::drop('pay_types');
     }
 }

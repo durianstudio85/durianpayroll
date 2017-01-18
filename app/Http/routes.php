@@ -70,9 +70,21 @@ Route::get('pay/account/create','PagesController@pay_account_create');
 
 
 // *** EMPLOYEE ***
-Route::get('employee-201','PagesController@employee_201');
+Route::get('employee-201','EmployeeController@index');
+Route::post('employee-201','EmployeeController@store');
+
+
+
 Route::get('earnings','PagesController@earnings');
-Route::get('payAdjustment','PagesController@payAdjustment');
+
+// Payadjustment
+Route::get('payAdjustment','PayAdjustmentController@index');
+Route::post('payAdjustment','PayAdjustmentController@store');
+
+
+
+
+
 Route::get('allowance','PagesController@allowance');
 Route::get('loan','PagesController@loan');
 Route::get('deduction','PagesController@deduction');

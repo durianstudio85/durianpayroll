@@ -21,21 +21,21 @@
 <div class="dp-right full-width dp-text-right">
   <button class="btn dp-primary-bg">Download Payslip</button>
 </div>
-             <table width="100%" class="table table-striped table-hover" id="dataTables-example">
-                                <thead>
-                                    <tr>
-                                        
-                                        <th>Employee Name</th>
-                                        <th>Payroll Group</th>
-                                        <th>Date</th>
-                                        <th>Download</th>
-                                       
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                </tbody>
-                            </table>
+    <table width="100%" class="table table-striped table-hover" id="dataTables-example">
+        <thead>
+            <tr>
+                
+                <th>Employee Name</th>
+                <th>Payroll Group</th>
+                <th>Date</th>
+                <th>Download</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
 
 
  

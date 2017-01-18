@@ -29,4 +29,14 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Company');
     }
 
+    public function getUser()
+    {
+        $user = User::get();
+        $userInfo = [];
+        foreach ($user as $userGet) {
+            $userInfo[$userGet->id] = $userGet->first_name.' '.$userGet->last_name;
+        }
+        return $userInfo;
+    }
+
 }

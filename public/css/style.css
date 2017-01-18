@@ -423,6 +423,7 @@ input:checked + .slider:before {
 
 .dp-portrait{width:150px;height:200px;background-color: #d5d5d5;}
 
+.alert{border-radius: 0px !important;}
 
 
 
