@@ -80,7 +80,7 @@ class CreateOptionsTable extends Migration
         Schema::drop('departments');
         Schema::drop('positions');
         Schema::drop('ranks');
-        Schema::drop('employees');
+        Schema::drop('employeetypes');
         Schema::drop('pay_types');
     }
 }

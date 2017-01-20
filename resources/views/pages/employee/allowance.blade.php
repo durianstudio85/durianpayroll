@@ -21,10 +21,25 @@
     
 </div>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            &nbsp;
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @if(Session::has('flash_message'))
+                <div class="alert {{ Session::get('flash_message_important') }} ">
+                    {{session('flash_message')}}
+                </div>
+            @endif
+        </div>
+    </div>
+</div>
 
 
-
-<div class="container">
+<div class="container-fluid">
 <div class="dp-right full-width dp-text-right">
   <button class="btn dp-primary-bg" data-toggle="modal" data-target="#Add-Allowance">Add Allowance</button>
   <button class="btn dp-primary-bg" data-toggle="modal" data-target="#Mass-Allowance">Mass Add Allowance</button>

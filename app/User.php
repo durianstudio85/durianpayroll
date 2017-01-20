@@ -34,7 +34,7 @@ class User extends Authenticatable
         $user = User::get();
         $userInfo = [];
         foreach ($user as $userGet) {
-            $userInfo[$userGet->id] = $userGet->first_name.' '.$userGet->last_name;
+            $userInfo[$userGet->id] = $userGet->first_name.', '.$userGet->last_name ;
         }
         return $userInfo;
     }

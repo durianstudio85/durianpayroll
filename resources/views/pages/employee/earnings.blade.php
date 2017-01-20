@@ -24,7 +24,7 @@
 
 
 
-<div class="container">
+<div class="container-fluid">
 <br><br><br>
              <table width="100%" class="table table-striped table-hover" id="dataTables-example">
                                 <thead>
@@ -41,7 +41,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="odd gradeX">
+                                    <!-- <tr class="odd gradeX">
                                        <td></td>
                                        <td></td>
                                        <td></td>
@@ -51,7 +51,7 @@
                                        <td></td>
                                        <td></td>
                                       
-                                    </tr>
+                                    </tr> -->
                                                                       
                                 </tbody>
                             </table>

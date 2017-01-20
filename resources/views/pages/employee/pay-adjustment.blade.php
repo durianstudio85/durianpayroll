@@ -54,14 +54,13 @@
                 <th>Adjustment Reason</th>
                 <th>Created By</th>
                 <th class="sorting_asc">Created Date</th>
-                <th>Mobile Active</th>
                 <th>Updated By</th>
                 <th>Updated Date</th>               
             </tr>
         </thead>
         <tbody>
             @foreach( $employee_adjustment as $employee)
-                <tr class="odd gradeX" data-toggle="modal" data-target="#edit-edit-adjustment-{{ $employee->id }}">
+                <tr class="odd gradeX" data-toggle="modal" data-target="#edit-adjustment-{{ $employee->id }}">
                     <td>{{ Form::checkbox('name', 'value', false) }}</td>
                    <td>
                         @foreach ( $userInfo as $userID => $userValue )
@@ -92,9 +91,14 @@
                         @endforeach
                     </td>
                    <td>{{ $employee->created_at }}</td>
-                   <td></td>
-                   <td></td>
-                   <td>{{ $difference }}</td>
+                   <td>
+                        @foreach ( $userInfo as $userID => $userValue )
+                            @if ( $userID == $employee->updated_by )
+                                {{ $userValue }}
+                            @endif
+                        @endforeach
+                   </td>
+                   <td>{{ $employee->updated_at }}</td>
                 </tr>
             @endforeach
         </tbody>
@@ -117,7 +121,7 @@
                         <label class="control-label col-sm-3">Employee Name</label>
                         <div class="col-sm-9">
                     <!-- <input type="text" class="form-control" placeholder="Search Employees"> -->
-                            <select name="employee_id" id="employee_list" class="js-select form-control" required>
+                            <select name="employee_id" id="employee_list" class="js-select form-control" onchange="myFunction()" required>
                                 <option value=""> -- Select Employee --</option>
                                 @foreach ( $employee_list as $list )
                                     <option value="{{ $list->user_id }}">{{ $list->last_name.', '.$list->first_name.' '.$list->middle_name  }}</option>
@@ -172,18 +176,109 @@
 
 <!-- END ADD PAY ADJUSTMENT FORM -->  
 
-
 <!-- EDIT PAY ADJUSTMENT FORM -->
-
+@foreach( $employee_adjustment as $employeeEdit)
+    <div class="modal fade" id="edit-adjustment-{{ $employeeEdit->id }}" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+            <!-- {!! Form::open(['url'=>'payAdjustment', 'class' => 'form-horizontal']) !!} -->
+            {!! Form::model($employeeEdit, ['method'=>'patch', 'action'=>['PayAdjustmentController@update', $employeeEdit->id],'class' => 'form-horizontal', 'files'=>'true']) !!}
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title">Edit Employee Basic Pay Adjustments</h3>
+                    </div>
+                    <div class="modal-body">
+                        @if ( $employeeEdit->status == 'current' )
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">Current Basic Pay</label>
+                                <div class="col-sm-9">
+                                    @foreach ( $getCurrentSalary as $id => $salary)
+                                        @if ( $employeeEdit->employee_id == $id )
+                                            {!! Form::text('basic_pay',  $salary,['class'=>'form-control', 'id' => 'current_basic_pay', 'placeholder'=>'', 'required']) !!}         
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        @else
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">Employee Name</label>
+                                <div class="col-sm-9">
+                                    @foreach ( $userInfo as $userID => $userContent )
+                                        @if ( $userID == $employeeEdit->employee_id )
+                                            {!! Form::text('viewonly', $userContent,['class'=>'form-control', 'id' => 'current_basic_pay', 'placeholder'=>'','disabled']) !!}
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">Current Basic Pay</label>
+                                <div class="col-sm-9">
+                                    @foreach ( $getCurrentSalary as $id => $salary)
+                                        @if ( $employeeEdit->employee_id == $id )
+                                            {!! Form::text('cbp',  number_format($salary, 2),['class'=>'form-control', 'id' => 'current_basic_pay', 'placeholder'=>'','disabled']) !!}         
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">New Basic Pay*</label>
+                                <div class="col-sm-9">
+                                    <div class="col-md-6">
+                                        {!! Form::text('basic_pay', $employeeEdit->basic_pay ,['class'=>'form-control', 'placeholder'=>'','required']) !!}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {!! Form::select('rate_type', $pay_type_list, $employeeEdit->rate_type,['id'=>'tag_list','class'=>'form-control',  'required']) !!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">Effective Date*</label>
+                                <div class="col-sm-9">
+                                    {!! Form::date('effective_date', $employeeEdit->effective_date,['class'=>'form-control', 'placeholder'=>'', 'required']) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">Adjustemt Date (Optional)</label>
+                                <div class="col-sm-9">
+                                    {!! Form::date('adjustment_date', $employeeEdit->adjustment_date,['class'=>'form-control', 'placeholder'=>'']) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">Adjustemt Reason (Optional)</label>
+                                <div class="col-sm-9">
+                                    {!! Form::text('adjustment_reason', $employeeEdit->effective_reason,['class'=>'form-control', 'placeholder'=>'']) !!}
+                                </div>
+                            </div>
+                        
+                        @endif
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      {!! Form::submit('Save', ['class' => 'btn dp-primary-bg']) !!}
+                    </div>
+                </div>
+            {!! Form::close() !!} 
+        </div>
+    </div>
+@endforeach
 
 <!--  END EDIT PAY ADJUSTMENT FORM -->
 
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#employee_list").click(function(){
-            $("#current_basic_pay").val('Wala Pa sila basic Pay');
-        });
-    });
+<script>
+    function myFunction() {
+        var x = document.getElementById("employee_list").value;
+        if ( x != '' ){    
+             document.getElementById("current_basic_pay").value = "No Current Pay Adjustment";
+        }
+        @foreach ( $getCurrentSalary as $id => $salary)
+            if ( x == {{ $id }} ){    
+                 document.getElementById("current_basic_pay").value = "{{ number_format($salary, 2) }}";
+            }
+        @endforeach
+        
+    
+    }
 </script>
 
 

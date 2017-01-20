@@ -80,6 +80,7 @@ Route::get('earnings','PagesController@earnings');
 // Payadjustment
 Route::get('payAdjustment','PayAdjustmentController@index');
 Route::post('payAdjustment','PayAdjustmentController@store');
+Route::patch('payAdjustment/{id}','PayAdjustmentController@update');
 
 
 
