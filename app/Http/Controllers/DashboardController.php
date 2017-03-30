@@ -8,7 +8,6 @@ use App\Http\Requests;
 
 class DashboardController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -18,9 +17,11 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
-        return view('pages.dashboard');
+        return view('admin.dashboard', compact('employee_list'));
     }
 
     /**

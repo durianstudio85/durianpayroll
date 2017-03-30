@@ -26,8 +26,14 @@
 // Landing Page
 Route::get('/','HomeController@index');
 
-// Dashboard
+// Admin Dashboard
+Route::get('dashboard/redirect','DashboardController@dashboardRedirect');
+
 Route::get('dashboard','DashboardController@index');
+
+// Admin Employees
+Route::get('employees', 'EmployeeController@index');
+Route::post('employees', 'EmployeeController@store');
 
 
 
@@ -103,7 +109,6 @@ Route::get('YTD-summary','PagesController@ytd_summary');
 Route::get('company/setup','CompanyController@index');
 Route::get('company/setup/{id}','CompanyController@edit');
 Route::patch('company/setup/{id}','CompanyController@update');
-
 
 
 

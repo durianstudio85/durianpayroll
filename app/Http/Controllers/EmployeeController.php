@@ -25,17 +25,10 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-
         $company = new Company;
         $comId = $company->getComId();
-
-        $company_user_list = Company_user::where('company_id', '=', $comId)->get();
-        $items = array();
-        foreach($company_user_list as $company_user) {
-            $items[] = $company_user->user_id;
-        }
-        $employee_list = Employee::whereIn('user_id', $items)->get();
-        return view('pages.employee.employee-201', compact('employee_list'));
+        $employee = Employee::where('company_id', '=', $comId)->get();
+        return view('admin.employees', compact('employee'));
     }
 
     /**
@@ -59,51 +52,40 @@ class EmployeeController extends Controller
 
         $current_user = Auth::User()->id;
 
-        $getEmailValidation = User::where('email','=', $request->get('email'))->count();
+        $getEmailValidation = Employee::where('email','=', $request->get('email'))->count();
         if ($getEmailValidation > 0) {
             session()->flash('flash_message', 'Email Already Exist!');
             session()->flash('flash_message_important', 'alert-danger');
         }else{
-             $company = new Company;
+            $company = new Company;
             $comId = $company->getComId();
 
-            $pass = str_random(5);
-            $userData = [
-                'first_name' => $request->get('first_name'),
-                'last_name' => $request->get('last_name'),
-                'email' => $request->get('email'),
-                'password' => bcrypt($pass)
-            ];
-            $user = User::create($userData);
             $employeeData = [
-                'user_id' => $user->id,
+                'company_id' => $comId,
                 'employee_id' => $request->get('employee_id'),
                 'last_name' => $request->get('last_name'),
                 'first_name' => $request->get('first_name'),
                 'middle_name' => $request->get('middle_name'),
                 'gender' => $request->get('gender'),
+                'status' => $request->get('status'),
                 'email' => $request->get('email'),
-                'telephone_no' => $request->get('telephone_no'),
+                'tel_no' => $request->get('last_name'),
                 'mobile_no' => $request->get('mobile_no'),
-                'created_by' => $current_user,
+                'basic_pay' => $request->get('basic_pay'),
             ];
             $employee = Employee::create($employeeData);
 
-            $connect = Company_user::create([
-                'user_id' => $user->id,
-                'company_id' => $comId,
-            ]);
 
-            Mail::send('emails.reminder', compact('user', 'pass'), function ($m) use ($user) {
-                $m->from('no-reply@durianpayroll.com', 'No Reply');
-                $m->to('jaybeeumbay159@outlook.com', 'Jaabee')->subject('Account Details.');
-            });
+            // Mail::send('emails.reminder', compact('user', 'pass'), function ($m) use ($user) {
+            //     $m->from('no-reply@durianpayroll.com', 'No Reply');
+            //     $m->to('jaybeeumbay159@outlook.com', 'Jaabee')->subject('Account Details.');
+            // });
 
             session()->flash('flash_message', 'Employee Added Successfully..');
             session()->flash('flash_message_important', 'alert-success');
         }
 
-        return redirect('/employee-201');
+        return redirect('/employees');
     }
 
     /**

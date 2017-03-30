@@ -26,12 +26,12 @@
         <p class="register-feed">Sign Up for a Free Account</p>
         <p class="register-feed-2">No commitment. No credit card required.</p>
 
-        <input class="register-input" id="companyname" type="text" class="form-control" name="company_name" placeholder="Company Name" value="">
+        <input class="register-input" id="companyname" type="text" class="form-control" name="company_name" placeholder="Company Name" value="{{ old('company_name') }}">
 
         
-        <input class="register-input firstname" id="firstname" type="text" class="form-control" name="first_name" placeholder="First Name" value="">
+        <input class="register-input firstname" id="firstname" type="text" class="form-control" name="first_name" placeholder="First Name" value="{{ old('first_name') }}">
             
-        <input class="register-input lastname" id="lastname" type="text" class="form-control" name="last_name" placeholder="Last Name" value="">
+        <input class="register-input lastname" id="lastname" type="text" class="form-control" name="last_name" placeholder="Last Name" value="{{ old('last_name') }}">
             @if ($errors->has('name'))
                 <span class="help-block">
                     <strong>{{ $errors->first('name') }}</strong>
@@ -55,7 +55,7 @@
                 </span>
              @endif
 
-        <input class="register-input" id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" value="{{ old('email') }}">
+        <input class="register-input" id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" value="{{ old('password_confirmation') }}">
             @if ($errors->has('password_confirmation'))
                 <span class="help-block">
                     <strong>{{ $errors->first('password_confirmation') }}</strong>

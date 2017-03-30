@@ -1,69 +1,72 @@
-<!DOCTYPE html>
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>Durian Payroll</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('header_footer')
+@section('content')
+@include('pages.company-setup.include.admin-sidebar')
 
-  <link rel="shortcut icon" href="{{{ asset('images/favicon.png') }}}">
+<br><br></br>
 
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/open-sans.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/helper.css') }}">
+<div class="dp-container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="container-fluid">
+				<h1>Employees</h1>
+			</div>
+		</div>	
+		@include('notification.flash')
+	</div>
 
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/pe-icon-7-stroke.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="container-fluid">
+			    <div class="dp-right full-width dp-text-right">
+			        <button class="btn dp-primary-bg" data-toggle="modal" data-target="#addEmployee">Add Employees</button>
+			        <button class="btn dp-primary-bg" data-toggle="modal" data-target="#Mass-Employee"><i class="fa fa-upload"></i> Mass and Employees</button>
+			        <!-- <button class="btn dp-danger-bg"><i class="fa fa-download"></i> Download 201</button> -->
+			    </div>			    
+			    <table width="100%" class="table table-striped table-hover" id="dataTables-example">
+			        <thead>
+			            <tr>
+			                <th>Employee ID</th>
+			                <th>First Name</th>
+			                <th>Last Name</th>
+			                <th>Position</th>
+			                <th>Basic Pay</th>
+			                <th>SSS</th>
+			                <th>PagIbig</th>
+			                <th>PhilHealth</th>
+			                <th>Tax</th>
+			                <th>&nbsp;</th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			        	@foreach( $employee as $list )
+			        	<tr>
+			        		<td>{{ $list->employee_id }}</td>
+			        		<td>{{ $list->first_name }}</td>
+			        		<td>{{ $list->last_name }}</td>
+			        		<td>Janitor</td>
+			        		<td>{{ $list->basic_pay }}</td>
+			        		<td>0</td>
+			        		<td>0</td>
+			        		<td>0</td>
+			        		<td>0</td>
+			        		<td>
+			        			<center>
+				        			<a href="#view" style="color: #adacac;margin: 0px 5px;font-size: 15px;"><i class="fa fa-eye" aria-hidden="true"></i></a>
+				        			<a href="#edit" style="color: #adacac;margin: 0px 5px;font-size: 15px;"  data-toggle="modal" data-target="#editEmployee"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+				        			<a href="#trash" style="color: #adacac;margin: 0px 5px;font-size: 15px;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+			        			</center>
+			        		</td>
+			        	</tr>
+			        	@endforeach
+			        </tbody>
+			    </table>
+			</div>
+		</div>
+	</div>
+</div>
 
-
-  <link href="{{ asset('css/dataTables.bootstrap.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/dataTables.responsive.css') }}" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-  <script src="{{ asset('js/Chart.min.js') }}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-  <style type="text/css">
-    
-    i.active {
-
-        background-color: #1fb4ae; 
-        color: #fff;    
-
-    }
-  
-  </style>
-
-
-</head><body onload="displayLineChart();">
-
-<nav class="dp-nav">
-  <div class="dp-logo">
-    <img src="{{ asset('images/logo.png') }}">
-  </div>
-  <div class="dp-nav-menu">
-    <!-- <a href="{{ Url('dashboard') }}"><i class="{{ Request::is('dashboard*') ? 'active' : '' }} pe-7s-home pe-2x"></i></a>
-    <a class="" href="{{ Url('payroll') }}"><i class="{{ Request::is('payroll*') ? 'active' : '' }} pe-7s-cash pe-2x"></i></a>
-    <a class="" href="{{ Url('pay/account') }}"><i class="{{ Request::is('pay/account*') ? 'active' : '' }} pe-7s-credit pe-2x"></i></a>
-    <a class="" href="{{ Url('employee-201') }}"><i class="{{ Request::is('employee-201*') ? 'active' : '' }} pe-7s-add-user pe-2x"></i></a>
-    <a href="#"><i class="pe-7s-clock pe-2x"></i></a> -->
-  </div>
-  <div class="dp-nav-logout dp-right">
-    <a href="{{ url('/logout') }}"><i class="pe-7s-power pe-2x"></i></a>   
-  </div>
-  <div class="dp-nav-user">
-    
-  </div>
-  <div class="dp-nav-setting dp-right">
-    <a href="#"><i class="pe-7s-speaker pe-2x"></i></a>
-    <a href="#"><i class="pe-7s-help1 pe-2x"></i></a>
-    <a href="{{ Url('company/setup') }}"><i class="pe-7s-config pe-2x"></i></a>
-  </div>
-</nav>
-
-
-  @yield('content')
-
-
-@if ( App\Options\Company_user::getCompanyPosition() == 'admin' )
-
-<!-- Add Employee -->
-    <div class="modal fade" id="addEmployee" role="dialog">
+<!-- Edit Employee -->
+    <div class="modal fade" id="editEmployee" role="dialog">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 {!! Form::open(['url'=>'employees','files'=>'true' , 'class' => 'form-horizontal']) !!}
@@ -146,27 +149,5 @@
             </div>
         </div>
     </div>
-@endif 
-
-<script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/npm.js') }}"></script>
-<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/dataTables.responsive.js') }}"></script>
-
-  <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-            responsive: true
-        });
-    });
-  </script>
-
-  
-
-  
-
- 
-</body>
-</html>
+<!-- End Edit Employee -->
+@stop

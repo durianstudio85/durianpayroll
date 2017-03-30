@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use Auth;
+use App\Options\Company_user;
+
 class User extends Authenticatable
 {
     /**
@@ -28,6 +31,15 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Company');
     }
+
+
+    public function getCompanyUser()
+    {
+        $user_id = Auth::user()->id;
+        $company = Company_user::where('user_id')->first();
+        return $company;
+    }
+
 
     public function getUser()
     {

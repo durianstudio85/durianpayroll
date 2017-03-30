@@ -24,6 +24,7 @@ class AuthController extends Controller
     |
     */
 
+
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
@@ -84,6 +85,7 @@ class AuthController extends Controller
         $connect = Company_user::create([
             'user_id' => $lastid,
             'company_id' => $business->id,
+            'company_position' => 'admin',
         ]);
 
         return $user;
