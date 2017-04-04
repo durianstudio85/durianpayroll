@@ -43,11 +43,11 @@
 			        		<td>{{ $list->employee_id }}</td>
 			        		<td>{{ $list->first_name }}</td>
 			        		<td>{{ $list->last_name }}</td>
-			        		<td>Janitor</td>
+			        		<td>{{ Option::optionDetails($list->position)->name }}</td>
 			        		<td>{{ $list->basic_pay }}</td>
-			        		<td>0</td>
-			        		<td>0</td>
-			        		<td>0</td>
+			        		<td>{{ $benefit->getSSS($list->basic_pay) }}</td>
+			        		<td>100</td>
+			        		<td>{{ $benefit->getPhilhealth($list->basic_pay) }}</td>
 			        		<td>0</td>
 			        		<td>
 			        			<center>

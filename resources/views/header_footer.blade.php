@@ -74,66 +74,73 @@
                 <div class="modal-body">
                     <div style="padding: 0px 20px;">                
                         
-                            <div class="form-group">
-                                {!! Form::label('employee_id', 'Employee ID*', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::text('employee_id', null,['class'=>'form-control', 'placeholder'=>'', 'required']) !!}
-                                </div>
+                        <div class="form-group">
+                            {!! Form::label('employee_id', 'Employee ID*', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                {!! Form::text('employee_id', null,['class'=>'form-control', 'placeholder'=>'', 'required']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('last_name', 'Last Name*', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::text('last_name', null,['class'=>'form-control', 'placeholder'=>'', 'required']) !!}
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('last_name', 'Last Name*', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                {!! Form::text('last_name', null,['class'=>'form-control', 'placeholder'=>'', 'required']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('first_name', 'First Name*', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::text('first_name', null,['class'=>'form-control', 'placeholder'=>'', 'required']) !!}
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('first_name', 'First Name*', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                {!! Form::text('first_name', null,['class'=>'form-control', 'placeholder'=>'', 'required']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('middle_name', 'Middle Name', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::text('middle_name', null,['class'=>'form-control', 'placeholder'=>'']) !!}
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('middle_name', 'Middle Name', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                {!! Form::text('middle_name', null,['class'=>'form-control', 'placeholder'=>'']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('gender', 'Gender', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::select('gender', ['male' => 'Male', 'female' => 'Female'], null,['class'=>'form-control', 'placeholder'=>'Select', 'required']) !!}
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('gender', 'Gender', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                {!! Form::select('gender', ['male' => 'Male', 'female' => 'Female'], null,['class'=>'form-control', 'placeholder'=>'Select', 'required']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('status', 'Status', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::select('status', ['single' => 'Single', 'married' => 'Married'], null,['class'=>'form-control', 'placeholder'=>'Select', 'required']) !!}
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('status', 'Status', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                {!! Form::select('status', ['single' => 'Single', 'married' => 'Married'], null,['class'=>'form-control', 'placeholder'=>'Select', 'required']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('email', 'Email*', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::email('email', null,['class'=>'form-control', 'placeholder'=>'']) !!}
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('email', 'Email*', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                {!! Form::email('email', null,['class'=>'form-control', 'placeholder'=>'']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('tel_no', 'Telephone Number', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::text('tel_no', null,['class'=>'form-control', 'placeholder'=>'']) !!}
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('mobile_no', 'Mobile Number', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                {!! Form::text('mobile_no', null,['class'=>'form-control', 'placeholder'=>'']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('mobile_no', 'Mobile Number', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::text('mobile_no', null,['class'=>'form-control', 'placeholder'=>'']) !!}
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('position', 'Position', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                <select class="form-control" name="position" onchange="showNewPosition(this)" required>
+                                    <option  selected="selected" value="">Select</option>
+                                    @foreach ( Option::getCurrentOption('position') as $options )
+                                        <option value="{{ $options->id }}">{{ $options->name }}</option>
+                                    @endforeach
+                                    <option value="new">( Add New )</option>
+                                </select>
+                                {!! Form::text('other_position', null,['class'=>'form-control', 'placeholder'=>'New Position', 'id'=>'other_position', 'style'=>'display: none;']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('basic_pay', 'Basic Pay', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::number('basic_pay', null,['class'=>'form-control', 'placeholder'=>'']) !!}
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('basic_pay', 'Basic Pay', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                {!! Form::number('basic_pay', null,['class'=>'form-control', 'placeholder'=>'']) !!}
                             </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -146,6 +153,15 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function showNewPosition(elem){
+            if(elem.value == 'new')
+                document.getElementById('other_position').style.display = "block";
+            else
+                document.getElementById('other_position').style.display = "none";
+        }
+    </script>
+    
 @endif 
 
 <script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>

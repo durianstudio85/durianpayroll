@@ -24,6 +24,7 @@ class CreateEmployeeTable extends Migration
             $table->string('email');
             $table->string('tel_no');
             $table->string('mobile_no');
+            $table->integer('position');
             $table->decimal('basic_pay', 15, 2);
             $table->timestamps();
         });

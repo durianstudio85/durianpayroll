@@ -440,6 +440,8 @@ input:checked + .slider:before {
 .alert{border-radius: 0px !important;}
 
 
+#other_position{ margin-top: 8px; }
+
 
 
 

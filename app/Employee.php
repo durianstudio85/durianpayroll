@@ -17,6 +17,7 @@ class Employee extends Model
         'email',
         'tel_no',
         'mobile_no',
+        'position',
         'basic_pay',
     ];
 }

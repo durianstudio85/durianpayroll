@@ -38,9 +38,10 @@ class Company extends Model
     	return $this->belongsToMany('App\User');
     }
 
-    public function getComId(){
+    public function getComId()
+    {
         $userId = Auth::User()->id;
-        $getComId = Company_user::where('user_id', '=', $userId)->get()->first();
+        $getComId = Company_user::where('user_id', '=', $userId)->first();
         return $getComId->company_id;
     }
 }
