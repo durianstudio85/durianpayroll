@@ -55,7 +55,7 @@ class Option extends Model
 
         $philhealth = $benefit->getPhilhealth($salary);
         $sss = $benefit->getSSS($salary);
-        $totalDeduction = $sss + $philhealth;
+        $totalDeduction = $sss + $philhealth + 100;
         $totalSalaryDeduction = $salary - $totalDeduction;
 
         $taxData = Tax::where('status','=',$stat)->where('tax', '<=', $salary)->where('salary_type', '=', 'm')->orderBy('tax', 'desc')->first();
