@@ -39,24 +39,25 @@
 			        </thead>
 			        <tbody>
 			        	@foreach( $employee as $list )
-			        	<tr>
-			        		<td>{{ $list->employee_id }}</td>
-			        		<td>{{ $list->first_name }}</td>
-			        		<td>{{ $list->last_name }}</td>
-			        		<td>{{ Option::optionDetails($list->position)->name }}</td>
-			        		<td>{{ $list->basic_pay }}</td>
-			        		<td>{{ $benefit->getSSS($list->basic_pay) }}</td>
-			        		<td>100</td>
-			        		<td>{{ $benefit->getPhilhealth($list->basic_pay) }}</td>
-			        		<td>0</td>
-			        		<td>
-			        			<center>
-				        			<a href="#view" style="color: #adacac;margin: 0px 5px;font-size: 15px;"><i class="fa fa-eye" aria-hidden="true"></i></a>
-				        			<a href="#edit" style="color: #adacac;margin: 0px 5px;font-size: 15px;"  data-toggle="modal" data-target="#editEmployee"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-				        			<a href="#trash" style="color: #adacac;margin: 0px 5px;font-size: 15px;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-			        			</center>
-			        		</td>
-			        	</tr>
+    			        	<tr>
+    			        		<td>{{ $list->employee_id }}</td>
+    			        		<td>{{ $list->first_name }}</td>
+    			        		<td>{{ $list->last_name }}</td>
+    			        		<td>{{ Option::optionDetails($list->position)->name }}</td>
+    			        		<td>{{ $list->basic_pay }}</td>
+    			        		<td>{{ $benefit->getSSS($list->basic_pay) }}</td>
+    			        		<td>100</td>
+    			        		<td>{{ $benefit->getPhilhealth($list->basic_pay) }}</td>
+    			        		<td>{{ Option::salaryTax($list->basic_pay, $list->status) }}</td>
+    			        		<td>
+    			        			<center>
+    				        			<a href="#view" style="color: #adacac;margin: 0px 5px;font-size: 15px;"><i class="fa fa-eye" aria-hidden="true"></i></a>
+    				        			<a href="#edit" style="color: #adacac;margin: 0px 5px;font-size: 15px;"  data-toggle="modal" data-target="#editEmployee-{{ $list->id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+    				        			<a href="#trash" style="color: #adacac;margin: 0px 5px;font-size: 15px;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+    			        			</center>
+    			        		</td>
+                                
+    			        	</tr>
 			        	@endforeach
 			        </tbody>
 			    </table>
@@ -66,10 +67,12 @@
 </div>
 
 <!-- Edit Employee -->
-    <div class="modal fade" id="editEmployee" role="dialog">
+@foreach( $employee as $list_modal )
+<!-- Add Employee -->
+    <div class="modal fade" id="editEmployee-{{ $list_modal->id }}" role="dialog">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                {!! Form::open(['url'=>'employees','files'=>'true' , 'class' => 'form-horizontal']) !!}
+                {!! Form::model($list_modal, ['method'=>'patch', 'action'=>['EmployeeController@update', $list_modal->id], 'files'=>'true', 'class' => 'form-horizontal']) !!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h3 class="modal-title">Add Employee</h3>
@@ -77,66 +80,79 @@
                 <div class="modal-body">
                     <div style="padding: 0px 20px;">                
                         
-                            <div class="form-group">
-                                {!! Form::label('employee_id', 'Employee ID*', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::text('employee_id', null,['class'=>'form-control', 'placeholder'=>'', 'required']) !!}
-                                </div>
+                        <div class="form-group">
+                            {!! Form::label('employee_id', 'Employee ID*', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                {!! Form::text('employee_id', null,['class'=>'form-control', 'placeholder'=>'', 'required']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('last_name', 'Last Name*', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::text('last_name', null,['class'=>'form-control', 'placeholder'=>'', 'required']) !!}
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('last_name', 'Last Name*', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                {!! Form::text('last_name', null,['class'=>'form-control', 'placeholder'=>'', 'required']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('first_name', 'First Name*', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::text('first_name', null,['class'=>'form-control', 'placeholder'=>'', 'required']) !!}
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('first_name', 'First Name*', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                {!! Form::text('first_name', null,['class'=>'form-control', 'placeholder'=>'', 'required']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('middle_name', 'Middle Name', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::text('middle_name', null,['class'=>'form-control', 'placeholder'=>'']) !!}
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('middle_name', 'Middle Name', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                {!! Form::text('middle_name', null,['class'=>'form-control', 'placeholder'=>'']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('gender', 'Gender', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::select('gender', ['male' => 'Male', 'female' => 'Female'], null,['class'=>'form-control', 'placeholder'=>'Select', 'required']) !!}
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('gender', 'Gender', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                {!! Form::select('gender', ['male' => 'Male', 'female' => 'Female'], null,['class'=>'form-control', 'placeholder'=>'Select', 'required']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('status', 'Status', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::select('status', ['single' => 'Single', 'married' => 'Married'], null,['class'=>'form-control', 'placeholder'=>'Select', 'required']) !!}
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('status', 'Status', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                {!! Form::select('status', Option::TaxStatus(), null,['class'=>'form-control', 'required']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('email', 'Email*', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::email('email', null,['class'=>'form-control', 'placeholder'=>'']) !!}
-                                </div>
+
+                                <!-- ['single' => 'Single', 'married' => 'Married'] -->
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('email', 'Email*', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                {!! Form::email('email', null,['class'=>'form-control', 'placeholder'=>'']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('tel_no', 'Telephone Number', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::text('tel_no', null,['class'=>'form-control', 'placeholder'=>'']) !!}
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('mobile_no', 'Mobile Number', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                {!! Form::text('mobile_no', null,['class'=>'form-control', 'placeholder'=>'']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('mobile_no', 'Mobile Number', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::text('mobile_no', null,['class'=>'form-control', 'placeholder'=>'']) !!}
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('position', 'Position', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                <select class="form-control" name="position" onchange="showNewPosition(this)" required>
+                                    
+                                    @foreach ( Option::getCurrentOption('position') as $options )
+                                        @if($options->id == $list_modal->position )
+                                            <option selected="selected" value="{{ $options->id }}">{{ $options->name }}</option>
+                                        @else
+                                            <option value="{{ $options->id }}">{{ $options->name }}</option>
+                                        @endif
+                                    @endforeach
+                                    <option value="new">( Add New )</option>
+                                </select>
+                                {!! Form::text('other_position', null,['class'=>'form-control', 'placeholder'=>'New Position', 'id'=>'other_position', 'style'=>'display: none;']) !!}
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('basic_pay', 'Basic Pay', ['class' => 'col-sm-2 control-label']); !!}
-                                <div class="col-sm-10">
-                                    {!! Form::number('basic_pay', null,['class'=>'form-control', 'placeholder'=>'']) !!}
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('basic_pay', 'Basic Pay', ['class' => 'col-sm-2 control-label']); !!}
+                            <div class="col-sm-10">
+                                {!! Form::number('basic_pay', null,['class'=>'form-control', 'placeholder'=>'']) !!}
                             </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -149,5 +165,7 @@
             </div>
         </div>
     </div>
+    
+@endforeach
 <!-- End Edit Employee -->
 @stop

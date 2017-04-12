@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Options\Tax;
+
 class DashboardController extends Controller
 {
     public function __construct()
@@ -21,6 +23,9 @@ class DashboardController extends Controller
 
     public function index()
     {
+
+        $tax = new Tax;
+        $getTax = $tax->InsertTaxFunction();
         return view('admin.dashboard', compact('employee_list'));
     }
 

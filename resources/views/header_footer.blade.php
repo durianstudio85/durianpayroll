@@ -107,8 +107,10 @@
                         <div class="form-group">
                             {!! Form::label('status', 'Status', ['class' => 'col-sm-2 control-label']); !!}
                             <div class="col-sm-10">
-                                {!! Form::select('status', ['single' => 'Single', 'married' => 'Married'], null,['class'=>'form-control', 'placeholder'=>'Select', 'required']) !!}
+                                {!! Form::select('status', Option::TaxStatus(), 'S',['class'=>'form-control', 'required']) !!}
                             </div>
+
+                                <!-- ['single' => 'Single', 'married' => 'Married'] -->
                         </div>
                         <div class="form-group">
                             {!! Form::label('email', 'Email*', ['class' => 'col-sm-2 control-label']); !!}

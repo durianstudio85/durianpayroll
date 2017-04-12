@@ -34,6 +34,7 @@ Route::get('dashboard','DashboardController@index');
 // Admin Employees
 Route::get('employees', 'EmployeeController@index');
 Route::post('employees', 'EmployeeController@store');
+Route::patch('employees/{id}', 'EmployeeController@update');
 
 
 
