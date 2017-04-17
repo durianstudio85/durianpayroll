@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Options\Tax;
+use App\Options\Benefits\Benefit;
 
 class DashboardController extends Controller
 {
@@ -25,7 +26,9 @@ class DashboardController extends Controller
     {
 
         $tax = new Tax;
+        $benefit = new Benefit;
         $getTax = $tax->InsertTaxFunction();
+        $getBenefit = $benefit->InsertBenefitFunction();
         return view('admin.dashboard', compact('employee_list'));
     }
 

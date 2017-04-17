@@ -11,33 +11,6 @@ class Tax extends Model
     ];
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function InsertTaxFunction()
     {
     	if (Tax::count() == 0 ){
@@ -47,6 +20,33 @@ class Tax extends Model
 
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
