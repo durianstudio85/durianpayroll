@@ -48,7 +48,7 @@
     			        		<td>{{ $benefit->getSSS($list->basic_pay) }}</td>
     			        		<td>100</td>
     			        		<td>{{ $benefit->getPhilhealth($list->basic_pay) }}</td>
-    			        		<td>{{ Option::salaryTax($list->basic_pay, $list->status) }}</td>
+    			        		<td>{{ number_format(Option::salaryTax($list->basic_pay, $list->status), 2, '.', ',')  }}</td>
     			        		<td>
     			        			<center>
     				        			<a href="#view" style="color: #adacac;margin: 0px 5px;font-size: 15px;"><i class="fa fa-eye" aria-hidden="true"></i></a>
