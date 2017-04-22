@@ -36,6 +36,22 @@
           </div>
         </div>      
       </div>
+
+      <div class="panel-group">
+          <div class="panel panel-default">
+            <div class="panel-heading">  
+                <a href="{{ Url('payroll') }}"><span class="icon-sidebar"><i class="fa fa-file-text-o" aria-hidden="true"></i></span>PAYROLL</a>        
+            </div>
+          </div>      
+      </div>
+
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">  
+              <a href="#" data-toggle="modal" data-target="#createPayroll"><span class="icon-sidebar">&nbsp;&nbsp;&nbsp;</span>Create Payroll</a>        
+          </div>
+        </div>      
+      </div>
     <!-- <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
       <div class="panel-heading" role="tab">

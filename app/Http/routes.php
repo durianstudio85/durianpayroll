@@ -36,7 +36,8 @@ Route::get('employees', 'EmployeeController@index');
 Route::post('employees', 'EmployeeController@store');
 Route::patch('employees/{id}', 'EmployeeController@update');
 
-
+//Admin Payroll
+Route::get('payroll', 'PayrollController@index');
 
 
 
@@ -57,7 +58,7 @@ Route::patch('employees/{id}', 'EmployeeController@update');
 
 
 // *** PAYROLL ***
-Route::get('payroll','PagesController@payroll');
+Route::get('payrolls','PagesController@payroll');
 Route::get('payslip','PagesController@payslip');
 Route::get('bank','PagesController@bank');
 Route::get('governmentforms','PagesController@governmentforms');

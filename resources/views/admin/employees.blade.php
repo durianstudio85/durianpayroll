@@ -51,7 +51,6 @@
     			        		<td>{{ number_format(Option::salaryTax($list->basic_pay, $list->status), 2, '.', ',')  }}</td>
     			        		<td>
     			        			<center>
-    				        			<a href="#view" style="color: #adacac;margin: 0px 5px;font-size: 15px;"><i class="fa fa-eye" aria-hidden="true"></i></a>
     				        			<a href="#edit" style="color: #adacac;margin: 0px 5px;font-size: 15px;"  data-toggle="modal" data-target="#editEmployee-{{ $list->id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
     				        			<a href="#trash" style="color: #adacac;margin: 0px 5px;font-size: 15px;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
     			        			</center>
@@ -75,7 +74,7 @@
                 {!! Form::model($list_modal, ['method'=>'patch', 'action'=>['EmployeeController@update', $list_modal->id], 'files'=>'true', 'class' => 'form-horizontal']) !!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="modal-title">Add Employee</h3>
+                    <h3 class="modal-title">Edit Employee</h3>
                 </div>
                 <div class="modal-body">
                     <div style="padding: 0px 20px;">                

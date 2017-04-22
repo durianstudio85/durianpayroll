@@ -155,6 +155,62 @@
             </div>
         </div>
     </div>
+
+<!-- Create Payroll -->
+    <div class="modal fade" id="createPayroll" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Create Payroll</h3>
+                </div>
+                <div class="modal-body">
+                    <div style="padding: 0px 0px;">    
+                        {!! Form::open(['url'=>'employees','files'=>'true' , 'class' => 'form-horizontal']) !!}            
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    {!! Form::date('basic_pay', null,['class'=>'form-control', 'placeholder'=>'Date Start']) !!}
+                                </div>
+                                <div class="col-sm-3">
+                                    {!! Form::date('basic_pay', null,['class'=>'form-control', 'placeholder'=>'Date Start']) !!}
+                                </div>
+                            </div>
+
+                            <table width="100%" class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Employee ID #</th>
+                                        <th>Name</th>
+                                        <th>Basic Pay</th>
+                                        <th>SSS</th>
+                                        <th>PagIbig</th>
+                                        <th>PhilHealth</th>
+                                        <th>Tax</th>
+                                        <th>Deductions</th>
+                                        <th>Total Pay</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                </tbody>
+                            </table>
+
+
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div style="padding: 0px 20px;">    
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        {!! Form::submit('Save', ['class'=>'btn dp-primary-bg']) !!}    
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
     <script type="text/javascript">
         function showNewPosition(elem){
             if(elem.value == 'new')
@@ -163,7 +219,6 @@
                 document.getElementById('other_position').style.display = "none";
         }
     </script>
-    
 @endif 
 
 <script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
