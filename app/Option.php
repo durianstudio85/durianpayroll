@@ -10,6 +10,9 @@ use App\Options\Company_user;
 use App\Options\Benefits\Benefit;
 use App\Options\Tax;
 
+use App\Employee;
+use App\Payroll_item;
+
 class Option extends Model
 {
     protected $fillable = [
@@ -20,10 +23,13 @@ class Option extends Model
         'category', 
     ];
 
-    public function philhealth($value='')
+    public static function employeeName($id='')
     {
-        # code...
+        $name = Employee::find($id);
+        return $name;
     }
+
+    
 
     public static function comID()
     {
@@ -31,7 +37,20 @@ class Option extends Model
         $getComId = Company_user::where('user_id', '=', $userId)->first();
         return $getComId->company_id;
     }
+
+    public static function allEmployeeList(){
+        $company = new Company;
+        $comId = $company->getComId();
+        $employee = Employee::where('company_id', '=', $comId)->get();
+        return $employee;
+    }
     
+
+    public static function Benefits()
+    {
+        $benefit = new Benefit;
+        return $benefit;
+    }
     
     public static function getCurrentOption($cat='')
     {
@@ -65,14 +84,18 @@ class Option extends Model
 
            // 1,875 + [(24,006.20-17,917) X .25]
 
-
-
         return $totalTax;
     }
 
 
 
-
+    public static function getPayrollItems($id='')
+    {
+        $company = new Company;
+        $comId = $company->getComId();
+        $payroll_item = Payroll_item::where('payroll_id','=', $id)->where('company_id', '=', $comId)->get();
+        return $payroll_item;
+    }
 
 
 

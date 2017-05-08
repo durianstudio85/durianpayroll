@@ -52,6 +52,15 @@
           </div>
         </div>      
       </div>
+      
+
+      <div class="panel-group">
+          <div class="panel panel-default">
+            <div class="panel-heading">  
+                <a href="{{ Url('company/setup/') }}"><span class="icon-sidebar"><i class="fa fa-cog" aria-hidden="true"></i></span>COMPANY SETTING</a>        
+            </div>
+          </div>      
+      </div>
     <!-- <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
       <div class="panel-heading" role="tab">

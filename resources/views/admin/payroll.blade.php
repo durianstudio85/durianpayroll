@@ -35,14 +35,14 @@
 			        <tbody>
 			        	@foreach( $payroll as $list )
     			        	<tr>
-    			        		<td>{{ $list->payroll_id }}</td>
+    			        		<td>{{ 1000 + $list->id }}</td>
     			        		<td>{{ date('l, F d, Y', strtotime($list->date_start_range)) }} - {{ date('l, F d, Y', strtotime($list->date_end_range)) }}</td>
-    			        		<td>{{ $list->date_end_range - $list->date_start_range }}7 Days</td>
+    			        		<td>{{ round(abs(strtotime($list->date_start_range)-strtotime($list->date_end_range))/86400) }} Days</td>
                                 <td>{{ date('l, F d, Y', strtotime($list->created_at)) }}</td>
                                 <td>{{ $list->status }}</td>
     			        		<td>
     			        			<center>
-    				        			<a href="#edit" style="color: #adacac;margin: 0px 5px;font-size: 15px;"  data-toggle="modal" data-target="#editEmployee-{{ $list->id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+    				        			<a href="#edit" style="color: #adacac;margin: 0px 5px;font-size: 15px;"  data-toggle="modal" data-target="#editPayroll{{ $list->id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
     				        			<a href="#trash" style="color: #adacac;margin: 0px 5px;font-size: 15px;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
     			        			</center>
     			        		</td>
@@ -54,5 +54,74 @@
 		</div>
 	</div>
 </div>
+
+<!-- Create Payroll -->
+@foreach($payroll as $modalList)
+    <div class="modal fade" id="editPayroll{{ $modalList->id }}" role="dialog">
+        <div class="modal-dialog modal-dialog-extended modal-lg">
+            <div class="modal-content">
+                {!! Form::model($modalList, ['method'=>'patch', 'action'=>['PayrollController@update', $modalList->id], 'files'=>'true', 'class' => 'form-horizontal']) !!}       
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title">Create Payroll</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div style="padding: 0px 0px;">    
+                            <div class="container-fluid">
+                                <table width="100%" class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee ID #</th>
+                                            <th>Name</th>
+                                            <th>Basic Pay</th>
+                                            <th>SSS</th>
+                                            <th>PagIbig</th>
+                                            <th>PhilHealth</th>
+                                            <th>Tax</th>
+                                            <th>Deductions</th>
+                                            <th>Total Pay</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ( Option::getPayrollItems($modalList->id) as $payrollItems)
+                                            <tr>
+                                                <td>{{ Option::employeeName($payrollItems->employee_id)->employee_id }}</td>
+                                                <td>{{ Option::employeeName($payrollItems->employee_id)->last_name }}, {{ Option::employeeName($payrollItems->employee_id)->first_name }}</td>
+                                                <td>{{ $payrollItems->basic_pay }}</td>
+                                                <td>{{ $payrollItems->sss }}</td>
+                                                <td>{{ $payrollItems->pagibig }}</td>
+                                                <td>{{ $payrollItems->philhealth }}</td>
+                                                <td>{{ $payrollItems->tax }}</td>
+                                                <td>
+                                                    {!! Form::hidden('employee_id[]', $payrollItems->id) !!}
+                                                    {!! Form::number('deductions[]', $payrollItems->deduction,['class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px;' ,  'placeholder'=>'', 'required']) !!}
+                                                </td>
+                                                <td>
+                                                    {{ $payrollItems->total_pay }}
+                                                    <!-- {{ $payrollItems->basic_pay - ( $payrollItems->sss + $payrollItems->pagibig + $payrollItems->philhealth + $payrollItems->tax + $payrollItems->deduction ) }} -->
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        {!! Form::select('status', ['Paid' => 'Paid', 'Unpaid' => 'Unpaid'], $modalList->status, [ 'class' => 'form-control', 'required']) !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div style="padding: 0px 20px;">    
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            {!! Form::submit('Save', ['class'=>'btn dp-primary-bg']) !!}    
+                        </div>
+                    </div>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+@endforeach
 
 @stop

@@ -109,7 +109,6 @@
                             <div class="col-sm-10">
                                 {!! Form::select('status', Option::TaxStatus(), 'S',['class'=>'form-control', 'required']) !!}
                             </div>
-
                                 <!-- ['single' => 'Single', 'married' => 'Married'] -->
                         </div>
                         <div class="form-group">
@@ -160,20 +159,20 @@
     <div class="modal fade" id="createPayroll" role="dialog">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="modal-title">Create Payroll</h3>
-                </div>
-                <div class="modal-body">
-                    <div style="padding: 0px 0px;">    
-                        {!! Form::open(['url'=>'employees','files'=>'true' , 'class' => 'form-horizontal']) !!}            
+                {!! Form::open(['url'=>'payroll','files'=>'true' , 'class' => 'form-horizontal']) !!}            
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title">Create Payroll</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div style="padding: 0px 0px;">    
+                        
                             <div class="form-group">
                                 <div class="col-sm-3">
-                                    {!! Form::date('basic_pay', null,['class'=>'form-control', 'placeholder'=>'Date Start']) !!}
+                                    {!! Form::date('date_start', null,['class'=>'form-control', 'placeholder'=>'Date Start']) !!}
                                 </div>
                                 <div class="col-sm-3">
-                                    {!! Form::date('basic_pay', null,['class'=>'form-control', 'placeholder'=>'Date Start']) !!}
+                                    {!! Form::date('date_end', null,['class'=>'form-control', 'placeholder'=>'Date Start']) !!}
                                 </div>
                             </div>
 
@@ -188,26 +187,35 @@
                                         <th>PhilHealth</th>
                                         <th>Tax</th>
                                         <th>Deductions</th>
-                                        <th>Total Pay</th>
-                                        <th>&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+                                    @foreach ( Option::allEmployeeList() as $employee)
+                                        <tr>
+                                            <td>{{ $employee->employee_id }}</td>
+                                            <td>{{ $employee->last_name }}, {{ $employee->first_name }}</td>
+                                            <td>{{ $employee->basic_pay }}</td>
+                                            <td>{{ Option::Benefits()->getSSS($employee->basic_pay) }}</td>
+                                            <td>100</td>
+                                            <td>{{ Option::Benefits()->getPhilhealth($employee->basic_pay) }}</td>
+                                            <td>{{ number_format(Option::salaryTax($employee->basic_pay, $employee->status), 2, '.', ',')  }}</td>
+                                            <td>
+                                                {!! Form::hidden('employee_id[]', $employee->id) !!}
+                                                {!! Form::number('deductions[]', null,['class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px;' ,  'placeholder'=>'', 'required']) !!}
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
-
-
-                        {!! Form::close() !!}
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <div style="padding: 0px 20px;">    
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        {!! Form::submit('Save', ['class'=>'btn dp-primary-bg']) !!}    
+                    <div class="modal-footer">
+                        <div style="padding: 0px 20px;">    
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            {!! Form::submit('Save', ['class'=>'btn dp-primary-bg']) !!}    
+                        </div>
                     </div>
-                </div>
-                
+                {!! Form::close() !!}
             </div>
         </div>
     </div>

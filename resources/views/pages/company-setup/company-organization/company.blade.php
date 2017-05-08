@@ -169,9 +169,9 @@
             </div>
         </div>
      </div>
-    <div class="col-md-2 pull-right">
-      <input type="button" class="btn dp-white-bg pull-left" value="Cancel">
-      {!! Form::submit('Submit', ['class' => 'btn dp-primary-bg pull-right']) !!}
+    <div class="col-md-2">
+      <!-- <input type="button" class="btn dp-white-bg pull-left" value="Cancel"> -->
+      {!! Form::submit('Update Information', ['class' => 'btn dp-primary-bg']) !!}
       <!-- <input type="button" class="btn dp-primary-bg pull-right" value="Submit"> -->
       <br><br><br><br>
     </div>

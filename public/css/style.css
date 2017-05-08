@@ -532,3 +532,12 @@ input:checked + .slider:before {
     width: 1300px !important;
 }
 
+.modal-dialog-extended {
+  width: 80%;
+}
+
+.modal-dialog-extended .modal-content {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0;
+}

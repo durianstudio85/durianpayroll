@@ -10,6 +10,8 @@ use App\Company;
 use App\Employee;
 use App\Options\Benefits\Benefit;
 use App\Payroll;
+use App\Payroll_item;
+use App\Option;
 
 class PayrollController extends Controller
 {
@@ -50,7 +52,47 @@ class PayrollController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $benefit = new Benefit;
+        $company = new Company;
+        $comId = $company->getComId();
+
+        $paypal_data = [
+            'company_id' => $comId,
+            'date_start_range' => $request->get('date_start'),
+            'date_end_range' => $request->get('date_end'),
+            'status' => 'Unpaid',
+        ];
+
+        $paypal = Payroll::create($paypal_data);
+
+        foreach ($request->employee_id as $key => $value) {
+            $employee = Employee::find($request->employee_id[$key]);
+
+            $basic_pay = $employee->basic_pay;
+            $sss = $benefit->getSSS($employee->basic_pay);
+            $pagibig = 100;
+            $philhealth = $benefit->getPhilhealth($employee->basic_pay);
+            $tax = Option::salaryTax($employee->basic_pay, $employee->status);
+
+            $total_pay = $employee->basic_pay - ($sss + $pagibig + $philhealth + $tax + $request->deductions[$key]);
+
+            $data = [
+                'company_id' => $comId,
+                'payroll_id' => $paypal->id,
+                'basic_pay' => $employee->basic_pay,
+                'sss' => $sss,
+                'pagibig' => $pagibig,
+                'philhealth' => $philhealth,
+                'tax' => $tax,
+                'total_pay' => $total_pay,
+                'employee_id' => $request->employee_id[$key],
+                'deduction' => $request->deductions[$key],
+            ];
+
+            Payroll_item::create($data);
+        }
+        return redirect('/payroll');
     }
 
     /**
@@ -84,7 +126,25 @@ class PayrollController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $payrollParent = Payroll::findOrFail($id);
+        $payrollParentData = [
+            'status' => $request->get('status'),
+        ];    
+        $payrollParent->update($payrollParentData);
+
+        foreach ($request->employee_id as $key => $value) {
+            $payrollChild = Payroll_item::findOrFail($request->employee_id[$key]);
+
+            $total_pay = $payrollChild->basic_pay - ($payrollChild->sss + $payrollChild->pagibig + $payrollChild->philhealth + $payrollChild->tax + $request->deductions[$key]);
+
+            $payrollChilData = [
+                'deduction' => $request->deductions[$key],
+                'total_pay' => $total_pay,
+            ];
+            $payrollChild->update($payrollChilData);
+        }
+
+        return redirect('/payroll');
     }
 
     /**

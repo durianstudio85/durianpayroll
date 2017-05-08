@@ -240,6 +240,25 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sample = DB::table('payrollreports')
+                ->select('payrollreports.payroll_dt','employees.empLastName','employees.empFirstName','employees.empMiddleName',
+                    'branches.branch_name','companies.company_name','payrollreports.company_id','payrollreports.branch_id',
+                    'payrollreports.NHDays','payrollreports.empRatePerDay','payrollreports.empID','payrollreports.payOT',
+                    'employees.payDMA','payrollreports.cola','payrollreports.gross','payrollreports.payAA', 'payrollreports.payRA',
+                    DB::raw('payrollreports.empRatePerDay + payrollreports.cola + employees.payDMA as XX'),
+                    DB::raw('(payrollreports.empRatePerDay + payrollreports.cola + employees.payDMA) * payrollreports.NHDays as YY'),
+                    DB::raw('payrollreports.payOT + payrollreports.payRH + payrollreports.paySH as ZZ'),
+                    DB::raw('(payrollreports.totRD + payrollreports.DMAtotRD) + (payrollreports.totRRD + payrollreports.DMAtotRRD) + (payrollreports.totSRD + payrollreports.DMAtotSRD) as RD'),
+                    DB::raw('payrollreports.payRH + payrollreports.paySH + payrollreports.payRDMA + payrollreports.paySDMA as HH'),
+                    DB::raw('payrollreports.payOT + payrollreports.payDMAOTotal as OT'),
+                    DB::raw('payrollreports.payAA + payrollreports.payRA as ADJ'))
+                ->leftJoin('employees','payrollreports.empID','=','employees.empID')
+                ->leftJoin('branches','payrollreports.branch_id','=','branches.id')   
+                ->leftJoin('companies','payrollreports.company_id','=','companies.id')
+                ->where('payrollreports.payroll_dt','=',$payroll_dt)
+                ->where('payrollreports.company_id','=',$company_id)
+                ->where('branches.branch_type','=',$branch_type) //change this pag naa nay combo box
+                ->orderBy('payrollreports.branch_id')
+                ->get();
     }
 }

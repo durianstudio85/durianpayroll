@@ -38,6 +38,8 @@ Route::patch('employees/{id}', 'EmployeeController@update');
 
 //Admin Payroll
 Route::get('payroll', 'PayrollController@index');
+Route::post('payroll', 'PayrollController@store');
+Route::patch('payroll/edit/{id}', 'PayrollController@update');
 
 
 
