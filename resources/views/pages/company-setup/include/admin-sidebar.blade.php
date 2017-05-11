@@ -15,14 +15,14 @@
 
 <!-- **** ORGANIZATION **** -->
       <div class="panel-group">
-          <div class="panel panel-default">
-            <div class="panel-heading">  
-                <a href="{{ url('dashboard') }}" ><span class="icon-sidebar"><i class="fa fa-dashboard btn-fa"></i></span>DASHBOARD</a>        
+          <div class="panel panel-default {{{ ( Request::is('dashboard') ? 'active' : '') }}}" >
+            <div class="panel-heading ">  
+                <a href="{{ url('dashboard') }}"><span class="icon-sidebar"><i class="fa fa-dashboard btn-fa"></i></span>DASHBOARD</a>        
             </div>
           </div>      
       </div>
       <div class="panel-group">
-          <div class="panel panel-default">
+          <div class="panel panel-default {{{ ( Request::is('employees') ? 'active' : '') }}}">
             <div class="panel-heading">  
                 <a href="{{ Url('employees') }}"><span class="icon-sidebar"><i class="fa fa-user" aria-hidden="true"></i></span>EMPLOYEES</a>        
             </div>
@@ -30,7 +30,7 @@
       </div>
 
       <div class="panel-group">
-        <div class="panel panel-default">
+        <div class="panel panel-default ">
           <div class="panel-heading">  
               <a href="#" data-toggle="modal" data-target="#addEmployee"><span class="icon-sidebar">&nbsp;&nbsp;&nbsp;</span>Add Employee</a>        
           </div>
@@ -38,7 +38,7 @@
       </div>
 
       <div class="panel-group">
-          <div class="panel panel-default">
+          <div class="panel panel-default {{{ ( Request::is('payroll') ? 'active' : '') }}}">
             <div class="panel-heading">  
                 <a href="{{ Url('payroll') }}"><span class="icon-sidebar"><i class="fa fa-file-text-o" aria-hidden="true"></i></span>PAYROLL</a>        
             </div>

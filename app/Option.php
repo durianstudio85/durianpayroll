@@ -13,6 +13,8 @@ use App\Options\Tax;
 use App\Employee;
 use App\Payroll_item;
 
+use Carbon\Carbon;
+
 class Option extends Model
 {
     protected $fillable = [
@@ -29,6 +31,12 @@ class Option extends Model
         return $name;
     }
 
+    public static function convertDate($timestemp='')
+    {
+        $date = Carbon::createFromFormat('Y-m-d H:i:s', $timestemp);
+        return $date;
+        // Year, Month, Day
+    }
     
 
     public static function comID()

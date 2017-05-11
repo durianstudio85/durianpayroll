@@ -43,7 +43,13 @@
     			        		<td>
     			        			<center>
     				        			<a href="#edit" style="color: #adacac;margin: 0px 5px;font-size: 15px;"  data-toggle="modal" data-target="#editPayroll{{ $list->id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-    				        			<a href="#trash" style="color: #adacac;margin: 0px 5px;font-size: 15px;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                        {!! Form::open(['method'=>'delete','url' => ['payroll', $list->id], 'onsubmit' => 'return ConfirmDelete()', 'style' => 'display: inline;color: #adacac;']) !!}
+                                            <button type="submit" style="background-color: #f9f9f9;border: 1px solid #f9f9f9;">
+                                                <i class="fa fa-btn fa-trash-o"></i>
+                                            </button>
+                                        {!! Form::close() !!}
+                                </td>
+    				        			<!-- <a href="#trash" style="color: #adacac;margin: 0px 5px;font-size: 15px;"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
     			        			</center>
     			        		</td>
     			        	</tr>
@@ -54,6 +60,19 @@
 		</div>
 	</div>
 </div>
+
+<script>
+
+  function ConfirmDelete()
+  {
+  var x = confirm("Are you sure you want to delete?");
+  if (x)
+    return true;
+  else
+    return false;
+  }
+
+</script>
 
 <!-- Create Payroll -->
 @foreach($payroll as $modalList)

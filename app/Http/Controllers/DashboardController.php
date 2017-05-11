@@ -8,6 +8,9 @@ use App\Http\Requests;
 
 use App\Options\Tax;
 use App\Options\Benefits\Benefit;
+use App\Employee;
+use App\Company;
+use App\Payroll;
 
 class DashboardController extends Controller
 {
@@ -29,7 +32,26 @@ class DashboardController extends Controller
         $benefit = new Benefit;
         $getTax = $tax->InsertTaxFunction();
         $getBenefit = $benefit->InsertBenefitFunction();
-        return view('admin.dashboard', compact('employee_list'));
+
+        $company = new Company;
+        $comID = $company->getComId();
+
+        // For Employee Panel
+        $recentEmployee = Employee::where('company_id', '=', $comID)->skip(0)->take(5)->orderBy('created_at','desc')->get();
+        $lastEmployeeUpdate = Employee::where('company_id', '=', $comID)->orderBy('updated_at', 'desc')->first();
+
+        // Count Employee in Pie
+        $countMale = Employee::where('company_id', '=', $comID)->where('gender', '=', 'male')->count();
+        $countFemale = Employee::where('company_id', '=', $comID)->where('gender', '=', 'female')->count();
+
+        $percentMale =  ($countMale / ($countMale + $countFemale)) * 100;
+        $percentFemale =  ($countFemale / ($countMale + $countFemale)) * 100;
+
+        //Summary Report in Dashboard
+        $summaryPayrollCount = Payroll::where('company_id', '=', $comID)->count();
+        $summaryEmployeeCount = Employee::where('company_id', '=', $comID)->count();
+
+        return view('admin.dashboard', compact('recentEmployee', 'lastEmployeeUpdate', 'countMale', 'countFemale', 'percentMale', 'percentFemale', 'summaryPayrollCount', 'summaryEmployeeCount'));
     }
 
     /**

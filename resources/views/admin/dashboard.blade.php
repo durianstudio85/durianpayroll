@@ -42,7 +42,7 @@
               		</script>
               		<div class="dp-right dp-payroll-total">
                 		<h4>&#8369;226,802</h4>
-                		<span class="dp-default">JULY 2016</span>
+                		<span class="dp-default">{{ date('F Y', strtotime('2017-4-5 05:06:01')) }}</span>
                 		<br><br><br><br>
                 		<h4>&#8369;226,802</h4>
                 		<span class="dp-default">AUGUST 2016</span>
@@ -62,8 +62,8 @@
 			        <p class="dp-default">SUMMARY 
 			            <i class="dp-right pe-7s-note2 pe-2x"></i>
 			        </p>
-			        <p class="dp-default  dp-border-bottom">Total Payroll <b class="dp-primary dp-right">10</b></p>
-			        <p class="dp-default  dp-border-bottom">Total Employees<b class="dp-primary dp-right">6</b></p>
+			        <p class="dp-default  dp-border-bottom">Total Payroll <b class="dp-primary dp-right">{{ $summaryPayrollCount }}</b></p>
+			        <p class="dp-default  dp-border-bottom">Total Employees<b class="dp-primary dp-right">{{ $summaryEmployeeCount }}</b></p>
 			        <p class="dp-default ">Total Holidays<b class="dp-primary dp-right">0</b></p>
 
 		        </div>
@@ -81,47 +81,22 @@
 		          	</p>
 		          	<div class="table-responsive">
 			          	<table class="table">
-			          		<tr>
-			          			<td width="20px">
-			          				<i class="pe-7s-user pe-3x"></i>
-			          			</td>
-			          			<td><p>Ricthel Abella</p></td>
-			          			<td><p>Web Designer</p></td>
-			          			<td><p>Male</p></td>
-			          			<td><p>Single</p></td>
-			          		</tr>
-			          		<tr>
-			          			<td width="20px">
-			          				<i class="pe-7s-user pe-3x"></i>
-			          			</td>
-			          			<td><p>Bob Bernales</p></td>
-			          			<td><p>Web Designer</p></td>
-			          			<td><p>Male</p></td>
-			          			<td><p>Married</p></td>
-			          		</tr>
-			          		<tr>
-			          			<td width="20px">
-			          				<i class="pe-7s-user pe-3x"></i>
-			          			</td>
-			          			<td><p>Bob Bernales</p></td>
-			          			<td><p>Web Designer</p></td>
-			          			<td><p>Male</p></td>
-			          			<td><p>Married</p></td>
-			          		</tr>
-			          		<tr>
-			          			<td width="20px">
-			          				<i class="pe-7s-user pe-3x"></i>
-			          			</td>
-			          			<td><p>Bob Bernales</p></td>
-			          			<td><p>Web Designer</p></td>
-			          			<td><p>Male</p></td>
-			          			<td><p>Married</p></td>
-			          		</tr>
+			          		@foreach ( $recentEmployee as $employeeList )
+				          		<tr>
+				          			<td width="20px">
+				          				<i class="pe-7s-user pe-3x"></i>
+				          			</td>
+				          			<td><p>{{ $employeeList->first_name.' '.$employeeList->last_name }}</p></td>
+				          			<td><p>{{ Option::optionDetails($employeeList->position)->name }}</p></td>
+				          			<td><p>{{ ucfirst($employeeList->gender) }}</p></td>
+				          			<td><p>Single</p></td>
+				          		</tr>
+			          		@endforeach
 			          	</table>
 		          	</div>
 		        </div>
 		        <div class="dp-board-bottom">
-		          <p>Last update: 21.05.2015</p>
+		          <p>Last update: {{ date('l, F d, Y', strtotime($lastEmployeeUpdate->updated_at)) }}</p>
 		        </div>
 	        </div>
       	</div>
@@ -136,12 +111,12 @@
 	            	<script>
 	              		var pieData = [
 	               			{
-	                  			value: 30,
+	                  			value: {{ $countFemale }},
 	                  			label: 'Female',
 	                  			color: '#28384e'
 	               			},
 	               			{
-	                  			value: 20,
+	                  			value: {{ $countMale }},
 	                  			label: 'Male',
 	                  			color: '#1fb4ae'
 	               			}
@@ -151,8 +126,8 @@
 	            		var genderChart = new Chart(context).Pie(pieData);
 	            	</script>
 	            	<div class="dp-right dp-gender-label">
-	              		<i class="dp-gender-male"></i><label> Male 40%</label><br>
-	              		<i class="dp-gender-female"></i><label> Female 50%</label>
+	              		<i class="dp-gender-male"></i><label> Male {{ $percentMale }}% </label><br>
+	              		<i class="dp-gender-female"></i><label> Female {{ $percentFemale }}% </label>
 	            	</div>
 	            	
 	          	</div>

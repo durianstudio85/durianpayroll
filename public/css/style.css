@@ -309,6 +309,8 @@ table.dataTable thead .sorting:after {
 .panel-heading{border: 0px;border-radius: 0px !important;background-color: #223248 !important; padding: 13px 20px;font-size: 14px;}
 .panel-heading:hover, .list-group-item:hover{background-color: #1fb4ae !important;}
 
+.active > .panel-heading{background-color: #1fb4ae !important;}
+
 .icon-sidebar{ padding-right: 10px; font-size: 20px;}
 
 
@@ -450,7 +452,7 @@ input:checked + .slider:before {
 
 
 
-
+.active > .panel-heading{background-color: #1fb4ae !important;}
 
 
 

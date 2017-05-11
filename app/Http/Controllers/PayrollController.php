@@ -30,6 +30,7 @@ class PayrollController extends Controller
 
         $comId = $company->getComId();
         $payroll = Payroll::where('company_id', '=', $comId)->get();
+
         return view('admin.payroll', compact('payroll'));
 
     }
@@ -92,6 +93,10 @@ class PayrollController extends Controller
 
             Payroll_item::create($data);
         }
+
+        session()->flash('flash_message', 'Payroll Created Successfully..');
+        session()->flash('flash_message_important', 'alert-success');
+
         return redirect('/payroll');
     }
 
@@ -143,7 +148,8 @@ class PayrollController extends Controller
             ];
             $payrollChild->update($payrollChilData);
         }
-
+        session()->flash('flash_message', 'Payroll Updated Successfully..');
+        session()->flash('flash_message_important', 'alert-success');
         return redirect('/payroll');
     }
 
@@ -155,6 +161,16 @@ class PayrollController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Payroll::destroy($id);
+
+        $payrollItems = Payroll_item::where('payroll_id', '=', $id)->get();
+
+        foreach ($payrollItems as $item) {
+            Payroll_item::destroy($item->id);
+        }
+
+        session()->flash('flash_message', 'Payroll has been Removed Successfully!');
+        session()->flash('flash_message_important', 'alert-success');
+        return redirect('/payroll');
     }
 }

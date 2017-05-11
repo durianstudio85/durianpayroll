@@ -34,14 +34,18 @@
 
 <nav class="dp-nav">
   <div class="dp-logo">
-    <img src="{{ asset('images/logo.png') }}">
+    <a href="{{ url('/') }}">
+        <img src="{{ asset('images/logo.png') }}">
+    </a>
   </div>
   <div class="dp-nav-menu">
-    <!-- <a href="{{ Url('dashboard') }}"><i class="{{ Request::is('dashboard*') ? 'active' : '' }} pe-7s-home pe-2x"></i></a>
+
+    <a href="{{ Url('dashboard') }}"><i class="{{ Request::is('dashboard*') ? 'active' : '' }} pe-7s-home pe-2x"></i></a>
     <a class="" href="{{ Url('payroll') }}"><i class="{{ Request::is('payroll*') ? 'active' : '' }} pe-7s-cash pe-2x"></i></a>
     <a class="" href="{{ Url('pay/account') }}"><i class="{{ Request::is('pay/account*') ? 'active' : '' }} pe-7s-credit pe-2x"></i></a>
     <a class="" href="{{ Url('employee-201') }}"><i class="{{ Request::is('employee-201*') ? 'active' : '' }} pe-7s-add-user pe-2x"></i></a>
-    <a href="#"><i class="pe-7s-clock pe-2x"></i></a> -->
+    <a href="#"><i class="pe-7s-clock pe-2x"></i></a>
+    
   </div>
   <div class="dp-nav-logout dp-right">
     <a href="{{ url('/logout') }}"><i class="pe-7s-power pe-2x"></i></a>   

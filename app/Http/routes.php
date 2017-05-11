@@ -40,6 +40,7 @@ Route::patch('employees/{id}', 'EmployeeController@update');
 Route::get('payroll', 'PayrollController@index');
 Route::post('payroll', 'PayrollController@store');
 Route::patch('payroll/edit/{id}', 'PayrollController@update');
+Route::delete('payroll/{id}', 'PayrollController@destroy');
 
 
 
