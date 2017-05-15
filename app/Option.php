@@ -96,7 +96,6 @@ class Option extends Model
     }
 
 
-
     public static function getPayrollItems($id='')
     {
         $company = new Company;
@@ -106,14 +105,14 @@ class Option extends Model
     }
 
 
+    public static function getNavOption()
+    {
+        $company = new Company;
+        $comId = $company->getComId();
 
-
-
-
-
-
-
-
+        $getNavOption = Company::find($comId);
+        return $getNavOption->nav;
+    }
 
 
 

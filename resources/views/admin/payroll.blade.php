@@ -4,7 +4,11 @@
 
 <br><br></br>
 
-<div class="dp-container">
+@if ( Option::getNavOption() == 'side' )
+    <div class="dp-container">
+@else
+    <div class="container-fluid">
+@endif
 	<div class="row">
 		<div class="col-md-12">
 			<div class="container-fluid">

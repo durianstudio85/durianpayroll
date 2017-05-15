@@ -2,7 +2,11 @@
 @section('content')
 @include('pages.company-setup.include.admin-sidebar')
 
-<div class="dp-container">
+@if ( Option::getNavOption() == 'side' )
+    <div class="dp-container">
+@else
+    <div class="container-fluid">
+@endif
 {!! Form::model($company, ['method'=>'patch', 'action'=>['CompanyController@update', $company->id], 'files'=>'true']) !!}
 <br><br><br>
     <p>Basic information about your company. The Company Logo you upload here will be visible in the top left corner of the navigation bar as well as your payslips, clock in app and bank advice.</p>

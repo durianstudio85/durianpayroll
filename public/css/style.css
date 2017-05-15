@@ -231,7 +231,7 @@ table.dataTable thead .sorting:after {
 .dp-border-bottom{border-bottom:1px solid #dfe3ea;}
 .dp-border-top{border-top:1px solid #dfe3ea;}
 .dp-board{background-color: #fff;min-height: 260px;}
-.dp-margin-top{margin-top: 3%;}
+.dp-margin-top{/*margin-top: 3%;*/ margin-top: 30px;}
 .dp-margin-bottom{margin-bottom: 3%;}
 .dp-margin{margin: 15px;}
 .board-progress-container{background-color: #f5f5f5;height: 20px;border-radius: 20px;width: 100%;}
@@ -254,7 +254,7 @@ table.dataTable thead .sorting:after {
 .dp-gender-label{font-size: 12px;color:#979797;line-height: 10px;margin-top: 15px;}
 .dp-gender-male{background-color: #1fb4ae;padding: 0px 10px;margin-right: 5px;}
 .dp-gender-female{background-color: #28384e;padding: 0px 10px;margin-right: 5px;}
-.dp-payroll-total{width: 150px;line-height: 10px;}
+.dp-payroll-total{/*width: 150px;*/ width: 16%; line-height: 10px;}
 /*-------END DASHBOARD PAGE--------*/
 
 
@@ -458,7 +458,7 @@ input:checked + .slider:before {
 
 
 
-
+#lineChart{width: 80% !important; height: 255px !important;}
 
 
 

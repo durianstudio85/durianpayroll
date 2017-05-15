@@ -3,8 +3,11 @@
 @include('pages.company-setup.include.admin-sidebar')
 
 <br><br></br>
-
-<div class="dp-container">
+@if ( Option::getNavOption() == 'side' )
+    <div class="dp-container">
+@else
+    <div class="container-fluid">
+@endif
 	<div class="row">
 		<div class="col-md-12">
 			<div class="container-fluid">
@@ -19,7 +22,7 @@
 			<div class="container-fluid">
 			    <div class="dp-right full-width dp-text-right">
 			        <button class="btn dp-primary-bg" data-toggle="modal" data-target="#addEmployee">Add Employees</button>
-			        <button class="btn dp-primary-bg" data-toggle="modal" data-target="#Mass-Employee"><i class="fa fa-upload"></i> Mass and Employees</button>
+			        <!-- <button class="btn dp-primary-bg" data-toggle="modal" data-target="#Mass-Employee"><i class="fa fa-upload"></i> Mass and Employees</button> -->
 			        <!-- <button class="btn dp-danger-bg"><i class="fa fa-download"></i> Download 201</button> -->
 			    </div>			    
 			    <table width="100%" class="table table-striped table-hover" id="dataTables-example">

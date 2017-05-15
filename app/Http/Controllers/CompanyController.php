@@ -69,9 +69,17 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        $company_id = session('company_id');
-        $company = Company::findOrFail($id);
-        return view('pages.company-setup.company-organization.company', compact('company'));
+        $company = new Company;
+        $comID = $company->getComId();
+        
+        if ( $comID == $id ){
+            $company = Company::findOrFail($id);
+            return view('pages.company-setup.company-organization.company', compact('company'));
+        }else{
+            return redirect('/company/setup/'.$comID); 
+        }
+
+        
     }
 
     /**

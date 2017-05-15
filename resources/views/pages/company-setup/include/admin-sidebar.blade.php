@@ -1,3 +1,4 @@
+@if ( Option::getNavOption() == 'side' )
 <div class="dp-sidebar">
   <div class="side-menu-title" style="background-color: #28384e;">
     <div class="dp-employee-primary">
@@ -171,3 +172,5 @@
  <br><br><br>
 
 </div>
+
+@endif
