@@ -172,7 +172,24 @@
                 </div>
             </div>
         </div>
-     </div>
+    </div>
+    <div class="dp-panel-form col-md-12">
+        <h3>Personalize</h3>
+        <br>
+        <div class="form-horizontal">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('nav', 'Menu Position', ['class' => 'control-label col-sm-4']); !!}
+                    <div class="col-sm-8">
+                        {!! Form::select('nav', ['top' => 'Top', 'side' => 'Side'], $company->nav,['class'=>'form-control', 'required']) !!}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+        </div>
+    </div>
     <div class="col-md-2">
       <!-- <input type="button" class="btn dp-white-bg pull-left" value="Cancel"> -->
       {!! Form::submit('Update Information', ['class' => 'btn dp-primary-bg']) !!}

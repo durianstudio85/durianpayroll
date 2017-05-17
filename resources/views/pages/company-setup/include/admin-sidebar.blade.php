@@ -8,7 +8,7 @@
         </div>
         <div>
           <h4>Eduardo Barette</h4>
-          <p>Super Admin</p>
+          <p>Admin</p>
         </div>
       </center>
     </div>

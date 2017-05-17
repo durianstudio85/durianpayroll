@@ -44,7 +44,7 @@
             <a class="" href="{{ Url('payroll') }}"><i class="{{ Request::is('payroll') ? 'active' : '' }} pe-7s-cash pe-2x"></i></a>
             <!-- <a class="" href="{{ Url('pay/account') }}"><i class="{{ Request::is('pay/account*') ? 'active' : '' }} pe-7s-credit pe-2x"></i></a> -->
             <a class="" href="{{ Url('employees') }}"><i class="{{ Request::is('employees') ? 'active' : '' }} pe-7s-add-user pe-2x"></i></a>
-            <a href="#"><i class="pe-7s-clock pe-2x"></i></a>
+            <!-- <a href="#"><i class="pe-7s-clock pe-2x"></i></a> -->
         </div>
     @endif
   <div class="dp-nav-logout dp-right">

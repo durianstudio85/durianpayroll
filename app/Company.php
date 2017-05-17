@@ -31,6 +31,7 @@ class Company extends Model
         'gov_tin',
         'gov_sss',
         'gov_philhealth',
+        'nav',
     ];
 
     public function user()
