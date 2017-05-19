@@ -79,6 +79,7 @@
 </script>
 
 <!-- Create Payroll -->
+
 @foreach($payroll as $modalList)
     <div class="modal fade" id="editPayroll{{ $modalList->id }}" role="dialog">
         <div class="modal-dialog modal-dialog-extended modal-lg">
@@ -105,6 +106,7 @@
                                             <th>Total Pay</th>
                                         </tr>
                                     </thead>
+                                    
                                     <tbody>
                                         @foreach ( Option::getPayrollItems($modalList->id) as $payrollItems)
                                             <tr>
@@ -126,6 +128,7 @@
                                             </tr>
                                         @endforeach
                                     </tbody>
+                                    
                                 </table>
                                 <div class="row">
                                     <div class="col-md-2">
@@ -146,5 +149,6 @@
         </div>
     </div>
 @endforeach
+
 
 @stop

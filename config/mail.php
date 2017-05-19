@@ -30,7 +30,7 @@ return [
     */
 
     // 'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-    'host' => "mailtrap.io",
+    'host' => "smtp.gmail.com",
 
     /*
     |--------------------------------------------------------------------------
@@ -43,8 +43,8 @@ return [
     |
     */
 
-    // 'port' => env('MAIL_PORT', 587),
-    'port' => 2525,
+    'port' => env('MAIL_PORT', 587),
+    // 'port' => 2525,
 
     /*
     |--------------------------------------------------------------------------
@@ -57,7 +57,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'no-reply@durianpayroll.com', 'name' => 'support'],
+    'from' => ['address' => 'durianpayroll@gmail.com', 'name' => 'Support'],
 
     /*
     |--------------------------------------------------------------------------
@@ -84,7 +84,7 @@ return [
     */
 
     // 'username' => env('MAIL_USERNAME'),
-    'username' => '59ec4e5a04e96b',
+    'username' => 'durianpayroll@gmail.com',
 
     /*
     |--------------------------------------------------------------------------
@@ -98,7 +98,7 @@ return [
     */
 
     // 'password' => env('MAIL_PASSWORD'),
-    'password' => 'a621ad621b6991',
+    'password' => 'durianpayroll2017!',
 
     /*
     |--------------------------------------------------------------------------
@@ -113,6 +113,5 @@ return [
 
     'sendmail' => '/usr/sbin/sendmail -bs',
 
-    'to' => [ 'address' => 'jaybeeumbay159@outlook.com', 'name' => 'Dev Example'],
 
 ];

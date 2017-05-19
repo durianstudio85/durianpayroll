@@ -110,15 +110,27 @@ class EmployeeController extends Controller
                 ];    
                 $employee = Employee::create($employeeData);
 
+                Mail::send('emails.reminder', array('employee' => $employee), function($message)
+                {
+                    $message->to('jaybeeumbay159@gmail.com', 'Jaybee')->subject('Welcome to Durianpayroll');
+                });
+
                 session()->flash('flash_message', 'Employee Added Successfully..');
                 session()->flash('flash_message_important', 'alert-success');
             }
-            // Mail::send('emails.reminder', compact('user', 'pass'), function ($m) use ($user) {
+
+
+            
+            // $user = $employee->email;
+            // $pass = $employee->last_name;
+            // Mail::send('emails.reminder', compact('user', 'pass'), function ($m) use ($current_user) {
             //     $m->from('no-reply@durianpayroll.com', 'No Reply');
             //     $m->to('jaybeeumbay159@outlook.com', 'Jaabee')->subject('Account Details.');
             // });
             
         }
+
+
 
         return redirect('/employees');
     }

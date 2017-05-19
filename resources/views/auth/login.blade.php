@@ -19,9 +19,7 @@
 <body bgcolor="#f1f3f6">
 
 <div class="landing-page-link">
- 
     <a href="{{ url('/') }}"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i>&nbsp;&nbsp;Back to Durian Payroll Main Site</a>
-
 </div>
 
 
@@ -38,7 +36,7 @@
             @endif
         </div>
         <div class="login-feed">
-            <span class="pe-7s-lock pe-2x login-icon"></span><input id="password" type="password"  placeholder="Password" class="login-input class="form-control" name="password">
+            <span class="pe-7s-lock pe-2x login-icon"></span><input id="password" type="password"  placeholder="Password" class="login-input" class="form-control" name="password">
             @if ($errors->has('password'))
                 <span class="help-block">
                     <strong>{{ $errors->first('password') }}</strong>

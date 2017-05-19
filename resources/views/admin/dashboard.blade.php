@@ -93,7 +93,9 @@
 				          	</div>
 				        </div>
 				        <div class="dp-board-bottom">
-				          <p>Last update: {{ date('l, F d, Y', strtotime($lastEmployeeUpdate->updated_at)) }}</p>
+				        	@if( !empty($lastEmployeeUpdate->updated_at))
+				          		<p>Last update: {{ date('l, F d, Y', strtotime($lastEmployeeUpdate->updated_at)) }}</p>
+				          	@endif
 				        </div>
 			        </div>
 	        	</div>

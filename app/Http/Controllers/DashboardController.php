@@ -36,6 +36,9 @@ class DashboardController extends Controller
         $company = new Company;
         $comID = $company->getComId();
 
+        $countMale = 0;
+        $countFemale = 0;
+
         // For Employee Panel
         $recentEmployee = Employee::where('company_id', '=', $comID)->skip(0)->take(5)->orderBy('created_at','desc')->get();
         $lastEmployeeUpdate = Employee::where('company_id', '=', $comID)->orderBy('updated_at', 'desc')->first();
@@ -44,8 +47,14 @@ class DashboardController extends Controller
         $countMale = Employee::where('company_id', '=', $comID)->where('gender', '=', 'male')->count();
         $countFemale = Employee::where('company_id', '=', $comID)->where('gender', '=', 'female')->count();
 
-        $percentMale =  ($countMale / ($countMale + $countFemale)) * 100;
-        $percentFemale =  ($countFemale / ($countMale + $countFemale)) * 100;
+        if ($countMale == 0 AND $countFemale == 0) {
+            $percentMale = 0;
+            $percentFemale = 0;
+        }else{
+            $percentMale =  ($countMale / ($countMale + $countFemale)) * 100;
+            $percentFemale =  ($countFemale / ($countMale + $countFemale)) * 100;    
+        }
+        
 
         //Summary Report in Dashboard
         $summaryPayrollCount = Payroll::where('company_id', '=', $comID)->count();
