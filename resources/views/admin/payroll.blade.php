@@ -52,7 +52,6 @@
                                                 <i class="fa fa-btn fa-trash-o"></i>
                                             </button>
                                         {!! Form::close() !!}
-                                </td>
     				        			<!-- <a href="#trash" style="color: #adacac;margin: 0px 5px;font-size: 15px;"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
     			        			</center>
     			        		</td>
@@ -66,16 +65,14 @@
 </div>
 
 <script>
-
-  function ConfirmDelete()
-  {
-  var x = confirm("Are you sure you want to delete?");
-  if (x)
-    return true;
-  else
-    return false;
-  }
-
+    function ConfirmDelete()
+    {
+        var x = confirm("Are you sure you want to delete?");
+        if (x)
+            return true;
+        else
+            return false;
+    }
 </script>
 
 <!-- Create Payroll -->
@@ -102,8 +99,9 @@
                                             <th>PagIbig</th>
                                             <th>PhilHealth</th>
                                             <th>Tax</th>
-                                            <th>Deductions</th>
+                                            <th>Total Deductions</th>
                                             <th>Total Pay</th>
+                                            <th>..</th>
                                         </tr>
                                     </thead>
                                     
@@ -118,17 +116,20 @@
                                                 <td>{{ $payrollItems->philhealth }}</td>
                                                 <td>{{ $payrollItems->tax }}</td>
                                                 <td>
-                                                    {!! Form::hidden('employee_id[]', $payrollItems->id) !!}
-                                                    {!! Form::number('deductions[]', $payrollItems->deduction,['class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px;' ,  'placeholder'=>'', 'required']) !!}
+                                                    {{ $payrollItems->deduction }}
+                                                    <!-- {!! Form::hidden('employee_id[]', $payrollItems->id) !!}
+                                                    {!! Form::number('deductions[]', $payrollItems->deduction,['class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px;' ,  'placeholder'=>'', 'required']) !!} -->
                                                 </td>
                                                 <td>
                                                     {{ $payrollItems->total_pay }}
                                                     <!-- {{ $payrollItems->basic_pay - ( $payrollItems->sss + $payrollItems->pagibig + $payrollItems->philhealth + $payrollItems->tax + $payrollItems->deduction ) }} -->
                                                 </td>
+                                                <td>
+                                                    <a href="#edit" style="color: #adacac;margin: 0px 5px;font-size: 15px;" data-toggle="modal" data-target="#editPayslip{{ $modalList->id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
-                                    
                                 </table>
                                 <div class="row">
                                     <div class="col-md-2">
@@ -149,6 +150,5 @@
         </div>
     </div>
 @endforeach
-
 
 @stop

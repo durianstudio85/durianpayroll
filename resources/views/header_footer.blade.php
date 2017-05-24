@@ -161,7 +161,7 @@
 
 <!-- Create Payroll -->
     <div class="modal fade" id="createPayroll" role="dialog">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-dialog-extended modal-lg">
             <div class="modal-content">
                 {!! Form::open(['url'=>'payroll','files'=>'true' , 'class' => 'form-horizontal']) !!}            
                     <div class="modal-header">
@@ -179,7 +179,7 @@
                                     {!! Form::date('date_end', null,['class'=>'form-control', 'placeholder'=>'Date Start']) !!}
                                 </div>
                             </div>
-
+                            <div class="table-responsive">
                             <table width="100%" class="table table-striped table-hover">
                                 <thead>
                                     <tr>
@@ -190,13 +190,16 @@
                                         <th>PagIbig</th>
                                         <th>PhilHealth</th>
                                         <th>Tax</th>
-                                        <th>Deductions</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ( Option::allEmployeeList() as $employee)
                                         <tr>
-                                            <td>{{ $employee->employee_id }}</td>
+                                            <td>
+                                                {!! Form::hidden('employee_id[]', $employee->id) !!}
+                                                {{ $employee->employee_id }}
+                                            </td>
                                             <td>{{ $employee->last_name }}, {{ $employee->first_name }}</td>
                                             <td>{{ $employee->basic_pay }}</td>
                                             <td>{{ Option::Benefits()->getSSS($employee->basic_pay) }}</td>
@@ -204,13 +207,15 @@
                                             <td>{{ Option::Benefits()->getPhilhealth($employee->basic_pay) }}</td>
                                             <td>{{ number_format(Option::salaryTax($employee->basic_pay, $employee->status), 2, '.', ',')  }}</td>
                                             <td>
-                                                {!! Form::hidden('employee_id[]', $employee->id) !!}
-                                                {!! Form::number('deductions[]', null,['class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px;' ,  'placeholder'=>'', 'required']) !!}
+                                                <a href="#edit" style="color: #adacac;margin: 0px 5px;font-size: 15px;"  data-toggle="modal" data-target="#editPayslip{{ $employee->employee_id }}"><i class="fa fa-pencil fa-btn" aria-hidden="true"></i> Edit </a>
+                                                <!-- Employee Modal -->
+                                                
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -223,15 +228,98 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        function showNewPosition(elem){
-            if(elem.value == 'new')
-                document.getElementById('other_position').style.display = "block";
-            else
-                document.getElementById('other_position').style.display = "none";
-        }
-    </script>
+    
 @endif 
+
+<!-- Payslip Modal -->
+@foreach ( Option::allEmployeeList() as $employee)
+<div class="modal modal2 fade" id="editPayslip{{ $employee->employee_id }}" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                <h3 class="modal-title">Payslip</h3>
+            </div>
+            <div class="modal-body">
+                <center>
+                    <img src="{{ asset('upload/'.Option::comDetails('company_logo')) }}" style="max-height: 60px; margin-bottom: 20px;">
+                    <p>{{ Option::comDetails('business_address') }}</p>
+                    @if ( Option::comDetails('contact_telephone') != '' )
+                        <p>Tel: {{ Option::comDetails('contact_telephone') }}</p>
+                    @endif
+                </center>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class='row'>
+                            <div class="col-xs-5"><p>Employee Name:</p></div>
+                            <div class="col-xs-7"><p>{{ $employee->first_name.' '.$employee->last_name }}</p></div>
+                        </div>
+                        <div class='row'>
+                            <div class="col-xs-5"><p>Employee Adress:</p></div>
+                            <div class="col-xs-7"><p>To Be Added</p></div>
+                        </div>
+                        <div class='row'>
+                            <div class="col-xs-5"><p>Employee ID:</p></div>
+                            <div class="col-xs-7"><p>{{ $employee->employee_id }}</p></div>
+                        </div>
+                        <div class='row'>
+                            <div class="col-xs-5"><p>Employee Contact:</p></div>
+                            <div class="col-xs-7"><p>{{ $employee->mobile_no }}</p></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class='row'>
+                            <div class="col-xs-5"><p>Salary Date:</p></div>
+                            <div class="col-xs-7"><p>To Be Added</p></div>
+                        </div>
+                        <div class='row'>
+                            <div class="col-xs-5"><p>Employee SSN:</p></div>
+                            <div class="col-xs-7"><p>To Be Added</p></div>
+                        </div>
+                        <div class='row'>
+                            <div class="col-xs-5"><p>Mode of Payment:</p></div>
+                            <div class="col-xs-7"><p>To Be Added</p></div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"  data-number="2">Close</button>
+                {!! Form::submit('Save', ['class'=>'btn dp-primary-bg']) !!}    
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+
+
+
+
+<script type="text/javascript">
+    function showNewPosition(elem){
+        if(elem.value == 'new')
+            document.getElementById('other_position').style.display = "block";
+        else
+            document.getElementById('other_position').style.display = "none";
+    }
+</script>
+
+<script>
+    $(document).ready(function() {
+        $("button[data-number=1]").click(function(){
+            $('#addItemModal').modal('hide');
+        });
+
+        $("button[data-number=2]").click(function(){
+            $('.modal2').modal('hide');
+        });
+    });
+
+</script>
+
 
 <script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -247,6 +335,8 @@
         });
     });
   </script>
+  
+  
 
   
 

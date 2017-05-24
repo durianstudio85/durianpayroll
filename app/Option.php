@@ -45,6 +45,22 @@ class Option extends Model
         $getComId = Company_user::where('user_id', '=', $userId)->first();
         return $getComId->company_id;
     }
+    
+    
+    public static function comDetails($value='')
+    {
+        $company = new Company;
+        $comId = $company->getComId();
+        $company_detail = Company::find($comId);
+        return $company_detail->$value;
+    }
+    
+    public static function employeeDetails($id='', $value='')
+    {
+        $employee = Employee::find($id);
+        return $employee->$value;
+    }
+    
 
     public static function allEmployeeList(){
         $company = new Company;
@@ -86,9 +102,14 @@ class Option extends Model
         $totalSalaryDeduction = $salary - $totalDeduction;
 
         $taxData = Tax::where('status','=',$stat)->where('tax', '<=', $salary)->where('salary_type', '=', 'm')->orderBy('tax', 'desc')->first();
-        $taxDeduction = $totalSalaryDeduction - $taxData->tax;
-        $getPercent = $taxDeduction * $taxData->percent_over;
-        $totalTax = $taxData->salary_range + $getPercent ;
+        if ( empty($taxData)) {
+            $totalTax = 0;
+        }else{
+            $taxDeduction = $totalSalaryDeduction - $taxData->tax;
+            $getPercent = $taxDeduction * $taxData->percent_over;
+            $totalTax = $taxData->salary_range + $getPercent ;    
+        }
+        
 
            // 1,875 + [(24,006.20-17,917) X .25]
 
