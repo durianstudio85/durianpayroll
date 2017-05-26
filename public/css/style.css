@@ -447,6 +447,14 @@ input:checked + .slider:before {
 
 .modal2 .modal-dialog{ margin-top: 60px; }
 
+.payslip-head{ background-color: #f3f3f3; padding: 8px 12px; font-weight: bold !important; color: #1fb4ae; }
+
+.payslip-foot p{ background-color: #1fb4ae; color: #ffffff;}
+
+.netPayRounded, .netPayRounded span  { background-color: #f3f3f3; padding: 14px 20px; font-weight: bold !important; color: #1fb4ae; font-size: 19px; text-align: right;}
+
+.netPayRounded span{     margin-right: 30px; }
+
 
 
 

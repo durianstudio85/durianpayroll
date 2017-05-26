@@ -232,67 +232,7 @@
 @endif 
 
 <!-- Payslip Modal -->
-@foreach ( Option::allEmployeeList() as $employee)
-<div class="modal modal2 fade" id="editPayslip{{ $employee->employee_id }}" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                <h3 class="modal-title">Payslip</h3>
-            </div>
-            <div class="modal-body">
-                <center>
-                    <img src="{{ asset('upload/'.Option::comDetails('company_logo')) }}" style="max-height: 60px; margin-bottom: 20px;">
-                    <p>{{ Option::comDetails('business_address') }}</p>
-                    @if ( Option::comDetails('contact_telephone') != '' )
-                        <p>Tel: {{ Option::comDetails('contact_telephone') }}</p>
-                    @endif
-                </center>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-6 col-xs-12">
-                        <div class='row'>
-                            <div class="col-xs-5"><p>Employee Name:</p></div>
-                            <div class="col-xs-7"><p>{{ $employee->first_name.' '.$employee->last_name }}</p></div>
-                        </div>
-                        <div class='row'>
-                            <div class="col-xs-5"><p>Employee Adress:</p></div>
-                            <div class="col-xs-7"><p>To Be Added</p></div>
-                        </div>
-                        <div class='row'>
-                            <div class="col-xs-5"><p>Employee ID:</p></div>
-                            <div class="col-xs-7"><p>{{ $employee->employee_id }}</p></div>
-                        </div>
-                        <div class='row'>
-                            <div class="col-xs-5"><p>Employee Contact:</p></div>
-                            <div class="col-xs-7"><p>{{ $employee->mobile_no }}</p></div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xs-12">
-                        <div class='row'>
-                            <div class="col-xs-5"><p>Salary Date:</p></div>
-                            <div class="col-xs-7"><p>To Be Added</p></div>
-                        </div>
-                        <div class='row'>
-                            <div class="col-xs-5"><p>Employee SSN:</p></div>
-                            <div class="col-xs-7"><p>To Be Added</p></div>
-                        </div>
-                        <div class='row'>
-                            <div class="col-xs-5"><p>Mode of Payment:</p></div>
-                            <div class="col-xs-7"><p>To Be Added</p></div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default"  data-number="2">Close</button>
-                {!! Form::submit('Save', ['class'=>'btn dp-primary-bg']) !!}    
-            </div>
-        </div>
-    </div>
-</div>
-@endforeach
+
 
 
 

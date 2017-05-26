@@ -38,7 +38,5 @@ class CreateNavOptionsAndImagesForEmployee extends Migration
             $table->dropColumn('photo');
         });
 
-
-
     }
 }

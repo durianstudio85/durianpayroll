@@ -55,10 +55,10 @@ class Option extends Model
         return $company_detail->$value;
     }
     
-    public static function employeeDetails($id='', $value='')
+    public static function employeeDetails($id='')
     {
         $employee = Employee::find($id);
-        return $employee->$value;
+        return $employee;
     }
     
 

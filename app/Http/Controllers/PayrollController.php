@@ -88,7 +88,6 @@ class PayrollController extends Controller
                 'tax' => $tax,
                 'total_pay' => $total_pay,
                 'employee_id' => $request->employee_id[$key],
-                'deduction' => $request->deductions[$key],
             ];
 
             Payroll_item::create($data);
