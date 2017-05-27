@@ -17,8 +17,10 @@ class AddNewFieldPayrollItems extends Migration
             $table->decimal('night_differential', 15, 2);
             $table->decimal('double_pay', 15, 2);
             $table->decimal('holiday', 15, 2);
-            $table->decimal('bunos', 15, 2);
+            $table->decimal('bonus', 15, 2);
             $table->decimal('absent', 15, 2);
+            $table->decimal('loans', 15, 2);
+            $table->decimal('others', 15, 2);
         });
 
         Schema::table('employees', function (Blueprint $table) {
@@ -41,8 +43,10 @@ class AddNewFieldPayrollItems extends Migration
             $table->dropColumn('night_differential');
             $table->dropColumn('double_pay');
             $table->dropColumn('holiday');
-            $table->dropColumn('bunos');
+            $table->dropColumn('bonus');
             $table->dropColumn('absent');
+            $table->dropColumn('loans');
+            $table->dropColumn('others');
         });
 
         Schema::table('employees', function (Blueprint $table) 

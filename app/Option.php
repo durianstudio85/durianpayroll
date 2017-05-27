@@ -92,7 +92,7 @@ class Option extends Model
     }
 
 
-    public static function salaryTax($salary='', $stat ='')
+    public static function salaryTax($salary='', $stat = '')
     {
         $benefit = new Benefit;
 
@@ -109,8 +109,6 @@ class Option extends Model
             $getPercent = $taxDeduction * $taxData->percent_over;
             $totalTax = $taxData->salary_range + $getPercent ;    
         }
-        
-
            // 1,875 + [(24,006.20-17,917) X .25]
 
         return $totalTax;

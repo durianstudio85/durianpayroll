@@ -19,5 +19,8 @@ class Employee extends Model
         'mobile_no',
         'position',
         'basic_pay',
+        'address',
+        'ssn',
+        'payment_mode',
     ];
 }

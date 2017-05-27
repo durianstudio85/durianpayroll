@@ -17,5 +17,13 @@ class Payroll_item extends Model
         'tax',
         'deduction',
         'total_pay',
+        'overtime',
+        'night_differential',
+        'double_pay',
+        'holiday',
+        'bonus',
+        'absent',
+        'loans',
+        'others'
     ];
 }

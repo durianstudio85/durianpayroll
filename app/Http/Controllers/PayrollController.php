@@ -130,26 +130,68 @@ class PayrollController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $payrollParent = Payroll::findOrFail($id);
-        $payrollParentData = [
-            'status' => $request->get('status'),
-        ];    
-        $payrollParent->update($payrollParentData);
-
-        foreach ($request->employee_id as $key => $value) {
-            $payrollChild = Payroll_item::findOrFail($request->employee_id[$key]);
-
-            $total_pay = $payrollChild->basic_pay - ($payrollChild->sss + $payrollChild->pagibig + $payrollChild->philhealth + $payrollChild->tax + $request->deductions[$key]);
-
-            $payrollChilData = [
-                'deduction' => $request->deductions[$key],
+        if ( isset($request->status) ) {
+            $payrollParent = Payroll::findOrFail($id);
+            $payrollParentData = [
+                'status' => $request->status,
+            ];    
+            $payrollParent->update($payrollParentData);
+            
+            session()->flash('flash_message', 'Payroll Updated Successfully..');
+            session()->flash('flash_message_important', 'alert-success');
+        }else{
+            $payrollItems = Payroll_item::findOrFail($request->child_id);
+            $employee = Employee::findOrFail($payrollItems->employee_id);
+            
+            $totalEarnings = ($employee->basic_pay + $request->overtime + $request->night_differential + $request->double_pay + $request->holiday + $request->bonus) - ( $request->absent + $request->others );
+                        
+            $totalTaxSalary = Option::salaryTax($totalEarnings, $employee->status);
+            
+            $total_pay  = $totalEarnings - ( $payrollItems->sss + $payrollItems->pagibig + $payrollItems->philhealth + $request->absent + $request->others + $request->loans + $totalTaxSalary );
+            
+            $data = [
+                'overtime' => $request->overtime,
+                'night_differential' => $request->night_differential,
+                'double_pay' => $request->double_pay,
+                'holiday' => $request->holiday,
+                'absent' => $request->absent,
+                'loans' => $request->loans,
+                'others' => $request->others,
+                'bonus' => $request->bonus,
                 'total_pay' => $total_pay,
+                'tax' => $totalTaxSalary
+            
             ];
-            $payrollChild->update($payrollChilData);
-        }
-        session()->flash('flash_message', 'Payroll Updated Successfully..');
-        session()->flash('flash_message_important', 'alert-success');
+            
+            $payrollItems->update($data);
+            
+            session()->flash('parent_modal_flash_message', $request->parent_id);
+            session()->flash('child_modal_flash_message', 'Employee payslip updated Successfully');
+            
+        }   
+            
+
+        // foreach ($request->employee_id as $key => $value) {
+        //     $payrollChild = Payroll_item::findOrFail($request->employee_id[$key]);
+
+        //     $total_pay = $payrollChild->basic_pay - ($payrollChild->sss + $payrollChild->pagibig + $payrollChild->philhealth + $payrollChild->tax + $request->deductions[$key]);
+
+        //     $payrollChilData = [
+        //         'deduction' => $request->deductions[$key],
+        //         'total_pay' => $total_pay,
+        //     ];
+        //     $payrollChild->update($payrollChilData);
+        // }
+        
         return redirect('/payroll');
+    }
+    
+    
+    public function updatePayrollItem(Request $request, $id)
+    {
+        foreach ($variable as $key => $value) {
+            # code...
+        }
     }
 
     /**
