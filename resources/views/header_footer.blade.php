@@ -173,14 +173,15 @@
                         
                             <div class="form-group">
                                 <div class="col-sm-2">
+                                    {!! Form::text('pay_cycle', null,['class'=>'form-control', 'placeholder'=>'Select Pay Cycle']) !!}
+                                </div>
+                                <div class="col-sm-2">
                                     {!! Form::date('date_start', null,['class'=>'form-control', 'placeholder'=>'Date Start']) !!}
                                 </div>
                                 <div class="col-sm-2">
                                     {!! Form::date('date_end', null,['class'=>'form-control', 'placeholder'=>'Date Start']) !!}
                                 </div>
-                                <div class="col-sm-2">
-                                    {!! Form::text('pay_cycle', null,['class'=>'form-control', 'placeholder'=>'Select Pay Cycle']) !!}
-                                </div>
+                                
                             </div>
                             <div class="table-responsive">
                             <table width="100%" class="table table-striped table-hover">
