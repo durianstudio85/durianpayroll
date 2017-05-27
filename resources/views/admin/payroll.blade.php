@@ -30,7 +30,6 @@
     			        <thead>
     			            <tr>
     			                <th>Payroll #</th>
-                                <th>Pay Cycle</th>
     			                <th>Date Range</th>
                                 <th>Days</th>
     			                <th>Created Date</th>
@@ -42,7 +41,6 @@
     			        	@foreach( $payroll as $list )
         			        	<tr>
         			        		<td>{{ 1000 + $list->id }}</td>
-                                    <td>{{ $list->pay_cycle }}</td>
         			        		<td>{{ date('l, F d, Y', strtotime($list->date_start_range)) }} - {{ date('l, F d, Y', strtotime($list->date_end_range)) }}</td>
         			        		<td>{{ round(abs(strtotime($list->date_start_range)-strtotime($list->date_end_range))/86400) }} Days</td>
                                     <td>{{ date('l, F d, Y', strtotime($list->created_at)) }}</td>
@@ -129,7 +127,7 @@
                                                         <tr>
                                                             <td>{{ Option::employeeName($payrollItems->employee_id)->employee_id }}</td>
                                                             <td>{{ Option::employeeName($payrollItems->employee_id)->last_name }}, {{ Option::employeeName($payrollItems->employee_id)->first_name }}</td>
-                                                            <td>{{ $payrollItems->basic_pay }}</td>
+                                                            <td>{{ number_format( $payrollItems->basic_pay, 2, '.', ',')  }}</td>
                                                             <td>{{ $payrollItems->sss }}</td>
                                                             <td>{{ $payrollItems->pagibig }}</td>
                                                             <td>{{ $payrollItems->philhealth }}</td>

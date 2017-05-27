@@ -173,13 +173,13 @@
                         
                             <div class="form-group">
                                 <div class="col-sm-2">
-                                    {!! Form::text('pay_cycle', null,['class'=>'form-control', 'placeholder'=>'Select Pay Cycle']) !!}
+                                    {!! Form::label('', 'Select Pay Cycle', [ 'style' => 'font-size: 22px;']) !!}
                                 </div>
                                 <div class="col-sm-2">
-                                    {!! Form::date('date_start', null,['class'=>'form-control', 'placeholder'=>'Date Start']) !!}
+                                    {!! Form::text('date_start', null,['class'=>'form-control', 'placeholder'=>'Date Start' , 'onfocus' => '(this.type="date")']) !!}
                                 </div>
                                 <div class="col-sm-2">
-                                    {!! Form::date('date_end', null,['class'=>'form-control', 'placeholder'=>'Date Start']) !!}
+                                    {!! Form::text('date_end', null,['class'=>'form-control', 'placeholder'=>'Date End', 'onfocus' => '(this.type="date")']) !!}
                                 </div>
                                 
                             </div>
@@ -205,7 +205,7 @@
                                                 {{ $employee->employee_id }}
                                             </td>
                                             <td>{{ $employee->last_name }}, {{ $employee->first_name }}</td>
-                                            <td>{{ $employee->basic_pay }}</td>
+                                            <td>{{ number_format( $employee->basic_pay, 2, '.', ',')  }}</td>
                                             <td>{{ Option::Benefits()->getSSS($employee->basic_pay) }}</td>
                                             <td>100</td>
                                             <td>{{ Option::Benefits()->getPhilhealth($employee->basic_pay) }}</td>

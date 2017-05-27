@@ -12,7 +12,6 @@ class Payroll extends Model
         'date_start_range', 
         'date_end_range', 
         'status', 
-        'pay_cycle',
     ];
 
 }
