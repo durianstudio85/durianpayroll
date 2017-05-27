@@ -30,6 +30,7 @@
     			        <thead>
     			            <tr>
     			                <th>Payroll #</th>
+                                <th>Pay Cycle</th>
     			                <th>Date Range</th>
                                 <th>Days</th>
     			                <th>Created Date</th>
@@ -41,6 +42,7 @@
     			        	@foreach( $payroll as $list )
         			        	<tr>
         			        		<td>{{ 1000 + $list->id }}</td>
+                                    <td>{{ $list->pay_cycle }}</td>
         			        		<td>{{ date('l, F d, Y', strtotime($list->date_start_range)) }} - {{ date('l, F d, Y', strtotime($list->date_end_range)) }}</td>
         			        		<td>{{ round(abs(strtotime($list->date_start_range)-strtotime($list->date_end_range))/86400) }} Days</td>
                                     <td>{{ date('l, F d, Y', strtotime($list->created_at)) }}</td>

@@ -63,6 +63,7 @@ class PayrollController extends Controller
             'date_start_range' => $request->get('date_start'),
             'date_end_range' => $request->get('date_end'),
             'status' => 'Unpaid',
+            'pay_cycle' => $request->pay_cycle,
         ];
 
         $paypal = Payroll::create($paypal_data);
