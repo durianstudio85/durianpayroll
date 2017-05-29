@@ -160,10 +160,11 @@
     </div>
 
 <!-- Create Payroll -->
+{!! Form::open(['url'=>'payroll','files'=>'true' , 'class' => 'form-horizontal']) !!}  
     <div class="modal fade" id="createPayroll" role="dialog">
         <div class="modal-dialog modal-dialog-extended modal-lg">
             <div class="modal-content">
-                {!! Form::open(['url'=>'payroll','files'=>'true' , 'class' => 'form-horizontal']) !!}            
+                          
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h3 class="modal-title">Create Payroll</h3>
@@ -172,14 +173,14 @@
                         <div style="padding: 0px 0px;">    
                         
                             <div class="form-group">
-                                <div class="col-sm-2">
+                                <div class="col-lg-2 col-md-3 col-sm-4">
                                     {!! Form::label('', 'Select Pay Cycle', [ 'style' => 'font-size: 22px;']) !!}
                                 </div>
-                                <div class="col-sm-2">
-                                    {!! Form::text('date_start', null,['class'=>'form-control', 'placeholder'=>'Date Start' , 'onfocus' => '(this.type="date")']) !!}
+                                <div class="col-lg-2 col-md-3 col-sm-4">
+                                    {!! Form::text('date_start', null,['class'=>'form-control', 'placeholder'=>'Date Start' , 'onfocus' => '(this.type="date")', 'required']) !!}
                                 </div>
-                                <div class="col-sm-2">
-                                    {!! Form::text('date_end', null,['class'=>'form-control', 'placeholder'=>'Date End', 'onfocus' => '(this.type="date")']) !!}
+                                <div class="col-lg-2 col-md-3 col-sm-4">
+                                    {!! Form::text('date_end', null,['class'=>'form-control', 'placeholder'=>'Date End', 'onfocus' => '(this.type="date")', 'required']) !!}
                                 </div>
                                 
                             </div>
@@ -201,7 +202,7 @@
                                     @foreach ( Option::allEmployeeList() as $employee)
                                         <tr>
                                             <td>
-                                                {!! Form::hidden('employee_id[]', $employee->id) !!}
+                                                
                                                 {{ $employee->employee_id }}
                                             </td>
                                             <td>{{ $employee->last_name }}, {{ $employee->first_name }}</td>
@@ -211,7 +212,7 @@
                                             <td>{{ Option::Benefits()->getPhilhealth($employee->basic_pay) }}</td>
                                             <td>{{ number_format(Option::salaryTax($employee->basic_pay, $employee->status), 2, '.', ',')  }}</td>
                                             <td>
-                                                <a href="#edit" style="color: #adacac;margin: 0px 5px;font-size: 15px;"  data-toggle="modal" data-target="#editPayslip{{ $employee->employee_id }}"><i class="fa fa-pencil fa-btn" aria-hidden="true"></i> Edit </a>
+                                                <a href="#edit" style="color: #adacac;margin: 0px 5px;font-size: 15px;"  data-toggle="modal" data-target="#editPayslipEmployee{{ $employee->id }}"><i class="fa fa-pencil fa-btn" aria-hidden="true"></i></a>
                                                 <!-- Employee Modal -->
                                                 
                                             </td>
@@ -228,17 +229,187 @@
                             {!! Form::submit('Save', ['class'=>'btn dp-primary-bg']) !!}    
                         </div>
                     </div>
-                {!! Form::close() !!}
             </div>
         </div>
     </div>
-    
+ @foreach ( Option::allEmployeeList() as $employee)
+    <div class="modal modal2 fade" id="editPayslipEmployee{{ $employee->id }}" role="dialog">
+        
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                    <h3 class="modal-title">Edit</h3>
+                </div>
+                 <div class="modal-body">
+                    <center>
+                        <img src="{{ asset('upload/'.Option::comDetails('company_logo')) }}" style="max-height: 60px; margin-bottom: 20px;">
+                        <p>{{ Option::comDetails('business_address') }}</p>
+                        @if ( Option::comDetails('contact_telephone') != '' )
+                            <p>Tel: {{ Option::comDetails('contact_telephone') }}</p>
+                        @endif
+                        {!! Form::hidden('employee_id[]', $employee->id) !!}
+                    </center>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12">
+                            @php
+                                $id= $employee->id;
+                            @endphp
+                            <div class='row'>
+                                <div class="col-xs-5"><p>Employee Name:</p></div>
+                                <div class="col-xs-7"><p>{{ Option::employeeDetails($id)->first_name .'  '. Option::employeeDetails($id)->last_name }}</p></div>
+                            </div>
+                            <div class='row'>
+                                <div class="col-xs-5"><p>Employee Address:</p></div>
+                                <div class="col-xs-7"><p>{{ Option::employeeDetails($id)->address }}</p></div>
+                            </div>
+                            <div class='row'>
+                                <div class="col-xs-5"><p>Employee ID:</p></div>
+                                <div class="col-xs-7"><p>{{ Option::employeeDetails($id)->employee_id }}</p></div>
+                            </div>
+                            <div class='row'>
+                                <div class="col-xs-5"><p>Employee Contact:</p></div>
+                                <div class="col-xs-7"><p>{{ Option::employeeDetails($id)->mobile_no }}</p></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div class='row'>
+                                <div class="col-xs-5"><p>Employee SSN:</p></div>
+                                <div class="col-xs-7"><p>{{ Option::employeeDetails($id)->ssn }}</p></div>
+                            </div>
+                            <div class='row'>
+                                <div class="col-xs-5"><p>Mode of Payment:</p></div>
+                                <div class="col-xs-7"><p>{{ Option::employeeDetails($id)->payment_mode }}</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <p class="payslip-head">EARNING</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6"><p>Basic Pay</p></div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('basic_pay[]', Option::employeeDetails($id)->basic_pay,[ 'step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'disabled']) !!}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6"><p>Overtime</p></div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('overtime[]', '',['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6"><p>Night Differential</p></div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('night_differential[]', '',['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6"><p>Double Pay</p></div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('double_pay[]', '',['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6"><p>Holiday Pay</p></div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('holiday[]', '',['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6"><p>Bonus</p></div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('bonus[]', '',['step' => '.01' ,'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <p>&nbsp;</p>
+                                </div>
+                            
+                            </div>
+                            <div class="row">
+                                <div class="payslip-foot">
+                                    <div class="col-sm-6" style="padding-right: 0px;">
+                                        <p class="payslip-head">Total Earnings</p>
+                                    </div>
+                                    @php
+                                        $totalEarnings = Option::employeeDetails($id)->basic_pay;
+                                    @endphp
+                                    <div class="col-sm-6" style="padding-left: 0px;">
+                                        <p class="payslip-head" style="text-align: right;">{{ number_format( $totalEarnings, 2, '.', ',')  }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <p class="payslip-head">DEDUCTIONS</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6"><p>Income Tax</p></div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('tax[]', Option::salaryTax(Option::employeeDetails($id)->basic_pay, Option::employeeDetails($id)->status),['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'disabled']) !!}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6"><p>SSS</p></div> 
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('sss[]', Option::Benefits()->getSSS(Option::employeeDetails($id)->basic_pay),['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'disabled']) !!}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6"><p>Pag-Ibig</p></div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('pagibig[]', 100,['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'',  'disabled']) !!}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6"><p>Phil-Health</p></div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('philhealth[]', Option::Benefits()->getPhilhealth(Option::employeeDetails($id)->basic_pay),['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'disabled']) !!}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6"><p>Absences/Tardiness:</p></div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('absent[]', '',['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6"><p>Loans:</p></div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('loans[]', '',['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6"><p>Others:</p></div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('others[]', '',['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                            </div>
+                            <div class="row">
+                                <div class="payslip-foot">
+                                    <div class="col-sm-6" style="padding-right: 0px;">
+                                        <p class="payslip-head">Total Deductions</p>
+                                    </div>
+                                    @php
+                                        $tax =  Option::salaryTax(Option::employeeDetails($id)->basic_pay, Option::employeeDetails($id)->status);
+                                        $sss = Option::Benefits()->getSSS(Option::employeeDetails($id)->basic_pay);
+                                        $philhealth =Option::Benefits()->getPhilhealth(Option::employeeDetails($id)->basic_pay);
+                                    
+                                        $totalDeductions =  $tax + $sss + 100 + $philhealth;
+                                    @endphp
+                                    <div class="col-sm-6" style="padding-left: 0px;">
+                                        <p class="payslip-head" style="text-align: right;">{{ number_format( $totalDeductions, 2, '.', ',')  }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @php
+                                $netPay = $totalEarnings - $totalDeductions;
+                            @endphp
+                            <p class="netPayRounded"><span>NET PAY ROUNDED</span>  {{ number_format( $netPay, 2, '.', ',')  }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn dp-primary-bg"  data-number="2">Save</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+       @endforeach
+     {!! Form::close() !!}
 @endif 
 
 <!-- Payslip Modal -->
-
-
-
 
 
 
@@ -253,7 +424,7 @@
 
 <script>
     $(document).ready(function() {
- 
+        $('#editPayroll{{ session("parent_modal_flash_message") }}').modal('show');
 
         $("button[data-number=2]").click(function(){
             $('.modal2').modal('hide');
@@ -262,8 +433,6 @@
         $("button[data-number=1]").click(function(){
             $('.modal').modal('hide');
         });
-        
-    
     });
 
 </script>

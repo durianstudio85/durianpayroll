@@ -63,7 +63,6 @@ class PayrollController extends Controller
             'date_start_range' => $request->get('date_start'),
             'date_end_range' => $request->get('date_end'),
             'status' => 'Unpaid',
-            'pay_cycle' => $request->pay_cycle,
         ];
 
         $paypal = Payroll::create($paypal_data);
@@ -89,6 +88,17 @@ class PayrollController extends Controller
                 'tax' => $tax,
                 'total_pay' => $total_pay,
                 'employee_id' => $request->employee_id[$key],
+                
+                'overtime' => $request->overtime[$key],
+                'night_differential' => $request->night_differential[$key],
+                'double_pay' => $request->double_pay[$key],
+                'holiday' => $request->holiday[$key],
+                'bonus' => $request->bonus[$key],
+                
+                'loans' => $request->loans[$key],
+                'absent' => $request->absent[$key],
+                'others' => $request->others[$key],
+                
             ];
 
             Payroll_item::create($data);

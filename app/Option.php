@@ -61,6 +61,16 @@ class Option extends Model
         return $employee;
     }
     
+    // public function benefits($basic_pay='', $type ='')
+    // {
+    //     $benefit = new Benefit;
+    //     if ( $type == 'philhealth') {
+    //         return $benefit->getPhilhealth($basic_pay);
+    //     }else{
+    //         return $benefit->getSSS($basic_pay);    
+    //     }
+    // }
+    
 
     public static function allEmployeeList(){
         $company = new Company;
