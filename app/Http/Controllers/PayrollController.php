@@ -77,17 +77,42 @@ class PayrollController extends Controller
             $tax = Option::salaryTax($employee->basic_pay, $employee->status);
 
             $total_pay = $employee->basic_pay - ($sss + $pagibig + $philhealth + $tax + $request->deductions[$key]);
+            
+            // Total Earnings
+            $basic_pay = $employee->basic_pay;
+            $overtime = $request->overtime[$key];
+            $night_diff = $request->night_differential[$key];
+            $double_pay = $request->double_pay[$key];
+            $holiday = $request->holiday[$key];
+            $bonus = $request->bonus[$key];
+            
+            // Total Deductions
+            $sss = $benefit->getSSS($basic_pay);
+            $philhealth = $benefit->getPhilhealth($basic_pay);
+            $pagibig = 100;
+            $loans = $request->loans[$key];
+            $others = $request->others[$key];
+            $absent = $request->absent[$key];
+            
+            $totalEarnings = ($basic_pay + $overtime + $night_diff + $double_pay + $holiday + $bonus) - ( $absent + $sss + $philhealth + $pagibig + $others);
+            $totalTaxSalary = Option::salaryTax($totalEarnings, $employee->status);
+            $total_pay  = ($basic_pay + $overtime + $night_diff + $double_pay + $holiday + $bonus) - ( $sss + $pagibig + $philhealth + $absent + $others + $loans + $totalTaxSalary );
+            $totalDeduction = $totalTaxSalary + $sss + $philhealth + $pagibig + $loans + $others + $absent;
+            
 
             $data = [
                 'company_id' => $comId,
                 'payroll_id' => $paypal->id,
+                'employee_id' => $employee->id,
                 'basic_pay' => $employee->basic_pay,
+                
+                
                 'sss' => $sss,
                 'pagibig' => $pagibig,
                 'philhealth' => $philhealth,
-                'tax' => $tax,
+                'tax' => $totalTaxSalary,
                 'total_pay' => $total_pay,
-                'employee_id' => $request->employee_id[$key],
+                
                 
                 'overtime' => $request->overtime[$key],
                 'night_differential' => $request->night_differential[$key],
@@ -97,7 +122,9 @@ class PayrollController extends Controller
                 
                 'loans' => $request->loans[$key],
                 'absent' => $request->absent[$key],
-                'others' => $request->others[$key],
+                'others' => $request->others[$key],                
+                
+                'deduction' => $totalDeduction,
                 
             ];
 
@@ -163,8 +190,8 @@ class PayrollController extends Controller
             $bonus = $request->bonus;
             
             // Deductions 
-            $sss = Option::Benefits()->getSSS($employee->basic_pay);
-            $philhealth = Option::Benefits()->getPhilhealth($employee->basic_pay);
+            $sss = Option::Benefits()->getSSS($basic_pay);
+            $philhealth = Option::Benefits()->getPhilhealth($basic_pay);
             $pagibig = $payrollItems->pagibig;
             $loans = $request->loans;
             $others = $request->others;
@@ -179,7 +206,6 @@ class PayrollController extends Controller
             $totalTaxSalary = Option::salaryTax($totalEarnings, $employee->status);
             
             $total_pay  = ($basic_pay + $overtime + $night_diff + $double_pay + $holiday + $bonus) - ( $sss + $pagibig + $philhealth + $absent + $others + $loans + $totalTaxSalary );
-            
             $totalDeduction = $totalTaxSalary + $sss + $philhealth + $pagibig + $loans + $others + $absent;
             
             $data = [
