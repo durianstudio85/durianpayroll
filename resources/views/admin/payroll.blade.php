@@ -127,18 +127,12 @@
                                                             <td>{{ Option::employeeName($payrollItems->employee_id)->employee_id }}</td>
                                                             <td>{{ Option::employeeName($payrollItems->employee_id)->last_name }}, {{ Option::employeeName($payrollItems->employee_id)->first_name }}</td>
                                                             <td>{{ number_format( $payrollItems->basic_pay, 2, '.', ',')  }}</td>
-                                                            <td>{{ $payrollItems->sss }}</td>
-                                                            <td>{{ $payrollItems->pagibig }}</td>
-                                                            <td>{{ $payrollItems->philhealth }}</td>
-                                                            <td>{{ $payrollItems->tax }}</td>
-                                                            <td>
-                                                                {{ $payrollItems->deduction }}
-                                                                <!-- {!! Form::hidden('employee_id[]', $payrollItems->id) !!}
-                                                                {!! Form::number('deductions[]', $payrollItems->deduction,['class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px;' ,  'placeholder'=>'', 'required']) !!} -->
-                                                            </td>
-                                                            <td>
-                                                                {{ number_format( $payrollItems->total_pay, 2, '.', ',')  }}
-                                                            </td>
+                                                            <td>{{ number_format( $payrollItems->sss, 2, '.', ',')  }}</td>
+                                                            <td>{{ number_format( $payrollItems->pagibig, 2, '.', ',')  }}</td>
+                                                            <td>{{ number_format( $payrollItems->philhealth, 2, '.', ',')  }}</td>
+                                                            <td>{{ number_format( $payrollItems->tax, 2, '.', ',')  }}</td>
+                                                            <td>{{ number_format( $payrollItems->deduction, 2, '.', ',')  }}</td>
+                                                            <td>{{ number_format( $payrollItems->total_pay, 2, '.', ',')  }}</td>
                                                             <td>
                                                                 <a href="#edit" style="color: #adacac;margin: 0px 5px;font-size: 15px;" data-toggle="modal" data-target="#editPayslip{{ $payrollItems->id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                                             </td>
@@ -288,31 +282,31 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 col-xs-6"><p>Income Tax</p></div>
-                                    <div class="col-sm-6 col-xs-6">{!! Form::number('tax[]', $payrollItems->tax,['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'required', 'disabled']) !!}</div>
+                                    <div class="col-sm-6 col-xs-6">{!! Form::number('tax', $payrollItems->tax,['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'required', 'disabled']) !!}</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 col-xs-6"><p>SSS</p></div>
-                                    <div class="col-sm-6 col-xs-6">{!! Form::number('sss[]', $payrollItems->sss,['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'required', 'disabled']) !!}</div>
+                                    <div class="col-sm-6 col-xs-6">{!! Form::number('sss', $payrollItems->sss,['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'required', 'disabled']) !!}</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 col-xs-6"><p>Pag-Ibig</p></div>
-                                    <div class="col-sm-6 col-xs-6">{!! Form::number('pagibig[]', 100,['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'required', 'disabled']) !!}</div>
+                                    <div class="col-sm-6 col-xs-6">{!! Form::number('pagibig', 100.00,['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'required', 'disabled']) !!}</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 col-xs-6"><p>Phil-Health</p></div>
-                                    <div class="col-sm-6 col-xs-6">{!! Form::number('philhealth[]', $payrollItems->philhealth,['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'required', 'disabled']) !!}</div>
+                                    <div class="col-sm-6 col-xs-6">{!! Form::number('philhealth', $payrollItems->philhealth,['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'required', 'disabled']) !!}</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 col-xs-6"><p>Absences/Tardiness:</p></div>
-                                    <div class="col-sm-6 col-xs-6">{!! Form::number('absent[]', $payrollItems->absent,['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'required']) !!}</div>
+                                    <div class="col-sm-6 col-xs-6">{!! Form::number('absent', $payrollItems->absent,['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'required']) !!}</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 col-xs-6"><p>Loans:</p></div>
-                                    <div class="col-sm-6 col-xs-6">{!! Form::number('loans[]', $payrollItems->loans,['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'required']) !!}</div>
+                                    <div class="col-sm-6 col-xs-6">{!! Form::number('loans', $payrollItems->loans,['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'required']) !!}</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 col-xs-6"><p>Others:</p></div>
-                                    <div class="col-sm-6 col-xs-6">{!! Form::number('others[]', $payrollItems->others,['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'required']) !!}</div>
+                                    <div class="col-sm-6 col-xs-6">{!! Form::number('others', $payrollItems->others,['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'required']) !!}</div>
                                 </div>
                                 <div class="row">
                                     <div class="payslip-foot">

@@ -154,11 +154,33 @@ class PayrollController extends Controller
             $payrollItems = Payroll_item::findOrFail($request->child_id);
             $employee = Employee::findOrFail($payrollItems->employee_id);
             
-            $totalEarnings = ($employee->basic_pay + $request->overtime + $request->night_differential + $request->double_pay + $request->holiday + $request->bonus) - ( $request->absent + $request->others );
+            // Total Earnings 
+            $basic_pay = $employee->basic_pay;
+            $overtime = $request->overtime;
+            $night_diff = $request->night_differential;
+            $double_pay = $request->double_pay;
+            $holiday = $request->holiday;
+            $bonus = $request->bonus;
+            
+            // Deductions 
+            $sss = Option::Benefits()->getSSS($employee->basic_pay);
+            $philhealth = Option::Benefits()->getPhilhealth($employee->basic_pay);
+            $pagibig = $payrollItems->pagibig;
+            $loans = $request->loans;
+            $others = $request->others;
+            $absent = $request->absent;
+            
+            
+            
+            
+            
+            $totalEarnings = ($basic_pay + $overtime + $night_diff + $double_pay + $holiday + $bonus) - ( $request->absent + $sss + $philhealth + $pagibig + $others);
                         
             $totalTaxSalary = Option::salaryTax($totalEarnings, $employee->status);
             
-            $total_pay  = $totalEarnings - ( $payrollItems->sss + $payrollItems->pagibig + $payrollItems->philhealth + $request->absent + $request->others + $request->loans + $totalTaxSalary );
+            $total_pay  = ($basic_pay + $overtime + $night_diff + $double_pay + $holiday + $bonus) - ( $sss + $pagibig + $philhealth + $absent + $others + $loans + $totalTaxSalary );
+            
+            $totalDeduction = $totalTaxSalary + $sss + $philhealth + $pagibig + $loans + $others + $absent;
             
             $data = [
                 'overtime' => $request->overtime,
@@ -170,7 +192,8 @@ class PayrollController extends Controller
                 'others' => $request->others,
                 'bonus' => $request->bonus,
                 'total_pay' => $total_pay,
-                'tax' => $totalTaxSalary
+                'tax' => $totalTaxSalary,
+                'deduction' => $totalDeduction,
             
             ];
             

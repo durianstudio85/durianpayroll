@@ -4,6 +4,8 @@ namespace App\Options\Benefits;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Employee;
+
 class Benefit extends Model
 {
     protected $fillable = [
@@ -14,19 +16,32 @@ class Benefit extends Model
         'type',
     ];
 
-    public function getPhilhealth($pay='')
+    public function getPhilhealth($salary='', $id='')
     {
-    	$getBenefits = Benefit::where('type', '=', 'philhealth')->get();
-    	foreach ($getBenefits as $benefits) {
-    		if ($benefits->salary_start <= $pay AND $benefits->salary_end >= $pay ) 
-			{
-				return $benefits->employee;
-			}
-    	}
+        if ( $id != '') {
+            $employee = Employee::find($id);
+            $pay = $employee->basic_pay;
+        }else{
+            $pay = $salary;
+        }
+            $getBenefits = Benefit::where('type', '=', 'philhealth')->get();
+            foreach ($getBenefits as $benefits) {
+                if ($benefits->salary_start <= $pay AND $benefits->salary_end >= $pay ) 
+                {
+                    return $benefits->employee;
+                }
+            }    
     }
 
-    public function getSSS($pay='')
+    public function getSSS($salary='', $id='')
     {
+        if ( $id != '') {
+            $employee = Employee::find($id);
+            $pay = $employee->basic_pay;
+        }else{
+            $pay = $salary;
+        }
+        
     	$getBenefits = Benefit::where('type', '=', 'sss')->get();
     	foreach ($getBenefits as $benefits) {
     		if ($benefits->salary_start <= $pay AND $benefits->salary_end >= $pay ) 

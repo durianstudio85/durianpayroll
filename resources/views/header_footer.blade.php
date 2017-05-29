@@ -352,7 +352,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Pag-Ibig</p></div>
-                                <div class="col-sm-6 col-xs-6">{!! Form::number('pagibig[]', 100,['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'',  'disabled']) !!}</div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('pagibig[]', 100.00,['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'',  'disabled']) !!}</div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Phil-Health</p></div>
