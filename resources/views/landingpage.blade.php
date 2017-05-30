@@ -101,7 +101,7 @@
 				 	<div class="right-description">
 					 	<h1>Say goodbye to payroll errors</h1>
 						<p class="sub-title">Manually computing payroll is wasting valuable HR time and leads to many preventable mistakes. Human Resources can now focus on high value productivity for its organization.</p>	
-						<h4 class="second-title">We developed Salarium to alleviate the burden of manual payroll computing and to optimize HR processes:</h4>
+						<h4 class="second-title">We developed Durian Payroll to alleviate the burden ofmanual payroll computing and to optimize HR processes:</h4>
 						<ul>
 							<li>Easily manage your employees information anytime, anywhere.</li>
 							<li>Employees’ attendance is automatically calculated and sent directly to payroll.</li>

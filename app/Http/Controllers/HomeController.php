@@ -25,4 +25,9 @@ class HomeController extends Controller
     {
         return view('landingpage');
     }
+    
+    public function email()
+    {
+        return view('emails.reminder');
+    }
 }

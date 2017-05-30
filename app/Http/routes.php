@@ -43,7 +43,7 @@ Route::patch('payroll/edit/{id}', 'PayrollController@update');
 Route::delete('payroll/{id}', 'PayrollController@destroy');
 
 
-
+Route::get('email', 'HomeController@email');
 
 
 
