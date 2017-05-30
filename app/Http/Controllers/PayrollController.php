@@ -69,14 +69,6 @@ class PayrollController extends Controller
 
         foreach ($request->employee_id as $key => $value) {
             $employee = Employee::find($request->employee_id[$key]);
-
-            $basic_pay = $employee->basic_pay;
-            $sss = $benefit->getSSS($employee->basic_pay);
-            $pagibig = 100;
-            $philhealth = $benefit->getPhilhealth($employee->basic_pay);
-            $tax = Option::salaryTax($employee->basic_pay, $employee->status);
-
-            $total_pay = $employee->basic_pay - ($sss + $pagibig + $philhealth + $tax + $request->deductions[$key]);
             
             // Total Earnings
             $basic_pay = $employee->basic_pay;
@@ -106,26 +98,24 @@ class PayrollController extends Controller
                 'employee_id' => $employee->id,
                 'basic_pay' => $employee->basic_pay,
                 
-                
-                'sss' => $sss,
-                'pagibig' => $pagibig,
-                'philhealth' => $philhealth,
-                'tax' => $totalTaxSalary,
-                'total_pay' => $total_pay,
-                
-                
+                //Income 
                 'overtime' => $request->overtime[$key],
                 'night_differential' => $request->night_differential[$key],
                 'double_pay' => $request->double_pay[$key],
                 'holiday' => $request->holiday[$key],
                 'bonus' => $request->bonus[$key],
                 
+                // Total Deductions
+                'sss' => $sss,
+                'pagibig' => $pagibig,
+                'philhealth' => $philhealth,
+                'tax' => $totalTaxSalary,
                 'loans' => $request->loans[$key],
                 'absent' => $request->absent[$key],
                 'others' => $request->others[$key],                
                 
                 'deduction' => $totalDeduction,
-                
+                'total_pay' => $total_pay,
             ];
 
             Payroll_item::create($data);
