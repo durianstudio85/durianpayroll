@@ -172,7 +172,7 @@ class PayrollController extends Controller
             $employee = Employee::findOrFail($payrollItems->employee_id);
             
             // Total Earnings 
-            $basic_pay = $employee->basic_pay;
+            $basic_pay = $payrollItems->basic_pay;
             $overtime = $request->overtime;
             $night_diff = $request->night_differential;
             $double_pay = $request->double_pay;
@@ -186,8 +186,6 @@ class PayrollController extends Controller
             $loans = $request->loans;
             $others = $request->others;
             $absent = $request->absent;
-            
-            
             
             
             

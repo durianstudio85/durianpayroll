@@ -79,7 +79,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
     <!-- LOGO -->
     <tr>
-        <td bgcolor="#66BB7F" align="center">
+        <td bgcolor="#1fb4ae" align="center">
             <!--[if (gte mso 9)|(IE)]>
             <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
             <tr>
@@ -88,8 +88,8 @@
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
                 <tr>
                     <td align="center" valign="top" style="padding: 40px 10px 40px 10px;">
-                        <a href="http://litmus.com" target="_blank">
-                            <img alt="Logo" src="https://durianpayroll.com" width="40" height="40" style="display: block; width: 40px; max-width: 40px; min-width: 40px; font-family: 'Lato', Helvetica, Arial, sans-serif; color: #ffffff; font-size: 18px;" border="0">
+                        <a href="https://durianpayroll.com" target="_blank">
+                            <img alt="Logo" src="{{ asset('images/email-logo.png') }}" width="40" height="40" style="display: block; width: 456px; max-width: 456px; min-width: 456px; font-family: 'Lato', Helvetica, Arial, sans-serif; color: #ffffff; font-size: 18px;" border="0">
                         </a>
                     </td>
                 </tr>
@@ -103,7 +103,7 @@
     </tr>
     <!-- HERO -->
     <tr>
-        <td bgcolor="#66BB7F" align="center" style="padding: 0px 10px 0px 10px;">
+        <td bgcolor="#1fb4ae" align="center" style="padding: 0px 10px 0px 10px;">
             <!--[if (gte mso 9)|(IE)]>
             <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
             <tr>
@@ -112,7 +112,7 @@
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
                 <tr>
                     <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                      <h1 style="font-size: 48px; font-weight: 400; margin: 0;">We understand.</h1>
+                      <h1 style="font-size: 38px; font-weight: 400; margin: 0;">Durian Payroll has invited you to connect.</h1>
                     </td>
                 </tr>
             </table>
@@ -135,15 +135,24 @@
               <!-- COPY -->
               <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-                  <p style="margin: 0;">Our service isn't right for everyone. Your account has been canceled and you won't be billed anymore.</p>
+                  <p style="margin: 0;">Hi {{ $employee->first_name }},</p>
                 </td>
               </tr>
               <!-- COPY -->
               <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-                  <p style="margin: 0;">Although we're sad to see you go, we're here if you want to reactivate your account. Just press the button below to login and start back up.</p>
+                  <p style="margin: 0;">Get excited! Durian Payroll invites you to connect and accept this invite to stay up to date with new promotions, exclusive offers, loyalty rewards and more. You can disconnect at any time.</p>
                 </td>
               </tr>
+              <!-- COPY -->
+              <tr>
+                <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
+                  <p style="margin: 0;"> To get started, please click the button below.</p>
+                </td>
+              </tr>
+              
+              
+             
               <!-- BULLETPROOF BUTTON -->
               <tr>
                 <td bgcolor="#ffffff" align="left">
@@ -152,7 +161,7 @@
                       <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px;">
                         <table border="0" cellspacing="0" cellpadding="0">
                           <tr>
-                              <td align="center" style="border-radius: 3px;" bgcolor="#66BB7F"><a href="https://durianpayroll.com" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #66BB7F; display: inline-block;">Reactivate Account</a></td>
+                              <td align="center" style="border-radius: 3px;" bgcolor="#1fb4ae"><a href="https://durianpayroll.com" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #1fb4ae; display: inline-block;">Accept Invitation</a></td>
                           </tr>
                         </table>
                       </td>
@@ -168,41 +177,7 @@
             <![endif]-->
         </td>
     </tr>
-    <!-- COPY CALLOUT -->
-    <tr>
-        <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
-            <!--[if (gte mso 9)|(IE)]>
-            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
-            <tr>
-            <td align="center" valign="top" width="600">
-            <![endif]-->
-            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
-                <!-- HEADLINE -->
-                <tr>
-                  <td bgcolor="#111111" align="left" style="padding: 40px 30px 20px 30px; color: #ffffff; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-                    <h2 style="font-size: 24px; font-weight: 400; margin: 0;">Notify Your Users</h2>
-                  </td>
-                </tr>
-                <!-- COPY -->
-                <tr>
-                  <td bgcolor="#111111" align="left" style="padding: 0px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-                    <p style="margin: 0;">We noticed there are other users on your account. Let them know that they'll lose access soon.</p>
-                  </td>
-                </tr>
-                <!-- COPY -->
-                <tr>
-                  <td bgcolor="#111111" align="left" style="padding: 0px 30px 40px 30px; border-radius: 0px 0px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-                    <p style="margin: 0;"><a href="http://litmus.com" target="_blank" style="color: #66BB7F;">Spread the word</a></p>
-                  </td>
-                </tr>
-            </table>
-            <!--[if (gte mso 9)|(IE)]>
-            </td>
-            </tr>
-            </table>
-            <![endif]-->
-        </td>
-    </tr>
+   
     <!-- SUPPORT CALLOUT -->
     <tr>
         <td bgcolor="#f4f4f4" align="center" style="padding: 30px 10px 0px 10px;">
@@ -216,7 +191,7 @@
                 <tr>
                   <td bgcolor="#C0EDE0" align="center" style="padding: 30px 30px 30px 30px; border-radius: 4px 4px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
                     <h2 style="font-size: 20px; font-weight: 400; color: #111111; margin: 0;">Need more help?</h2>
-                    <p style="margin: 0;"><a href="http://litmus.com" target="_blank" style="color: #66BB7F;">We&rsquo;re here, ready to talk</a></p>
+                    <p style="margin: 0;"><a href="https://durianpayroll.com" target="_blank" style="color: #66BB7F;">We&rsquo;re here, ready to talk</a></p>
                   </td>
                 </tr>
             </table>
@@ -236,32 +211,10 @@
             <td align="center" valign="top" width="600">
             <![endif]-->
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
-              <!-- NAVIGATION -->
+              <!-- ADDRESS REMINDER -->
               <tr>
-                <td bgcolor="#f4f4f4" align="left" style="padding: 30px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
-                  <p style="margin: 0;">
-                    <a href="http://litmus.com" target="_blank" style="color: #111111; font-weight: 700;">Dashboard</a> -
-                    <a href="http://litmus.com" target="_blank" style="color: #111111; font-weight: 700;">Billing</a> -
-                    <a href="http://litmus.com" target="_blank" style="color: #111111; font-weight: 700;">Help</a>
-                  </p>
-                </td>
-              </tr>
-              <!-- PERMISSION REMINDER -->
-              <tr>
-                <td bgcolor="#f4f4f4" align="left" style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
-                  <p style="margin: 0;">You received this email because you canceled your account. If it looks weird, <a href="http://litmus.com" target="_blank" style="color: #111111; font-weight: 700;">view it in your browser</a>.</p>
-                </td>
-              </tr>
-              <!-- UNSUBSCRIBE -->
-              <tr>
-                <td bgcolor="#f4f4f4" align="left" style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
-                  <p style="margin: 0;">If these emails get annoying, please feel free to <a href="http://litmus.com" target="_blank" style="color: #111111; font-weight: 700;">unsubscribe</a>.</p>
-                </td>
-              </tr>
-              <!-- ADDRESS -->
-              <tr>
-                <td bgcolor="#f4f4f4" align="left" style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
-                  <p style="margin: 0;">Ceej - 1234 Main Street - Anywhere, MA - 56789</p>
+                <td bgcolor="#f4f4f4" align="center" style="padding: 30px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 25px;" >
+                  <p style="margin: 0;">Copyright @ Durian Payroll. All rights reserved. This-email was sent to <a href="https://durianpayroll.com/" target="_blank" style="color: #1fb4ae; font-weight: 700;">durianpayroll.com</a>. Door 123 F2G Building, Bonifacio St. Davao City.</p>
                 </td>
               </tr>
             </table>
