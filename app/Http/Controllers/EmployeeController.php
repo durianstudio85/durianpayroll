@@ -87,6 +87,11 @@ class EmployeeController extends Controller
                         'basic_pay' => $request->get('basic_pay'),
                     ];    
                     $employee = Employee::create($employeeData);
+                    
+                    Mail::send('emails.reminder', array('employee' => $employee), function($message)
+                    {
+                        $message->to($employee->email, 'Jaybee')->subject('Welcome to Durianpayroll');
+                    });
 
                     session()->flash('flash_message', 'Employee Added Successfully..');
                     session()->flash('flash_message_important', 'alert-success');
@@ -112,7 +117,7 @@ class EmployeeController extends Controller
 
                 Mail::send('emails.reminder', array('employee' => $employee), function($message)
                 {
-                    $message->to('jaybeeumbay159@gmail.com', 'Jaybee')->subject('Welcome to Durianpayroll');
+                    $message->to($employee->email, 'Jaybee')->subject('Welcome to Durianpayroll');
                 });
 
                 session()->flash('flash_message', 'Employee Added Successfully..');
