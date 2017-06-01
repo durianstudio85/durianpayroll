@@ -40,7 +40,6 @@ class User extends Authenticatable
         return $company;
     }
 
-
     public function getUser()
     {
         $user = User::get();

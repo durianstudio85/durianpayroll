@@ -24,42 +24,6 @@ class Tax extends Model
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function InsertTaxDataToDatabase()
     {
     	$data = array(

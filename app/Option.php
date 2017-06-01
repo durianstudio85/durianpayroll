@@ -110,10 +110,9 @@ class Option extends Model
         $sss = $benefit->getSSS($salary);
         $totalDeduction = $sss + $philhealth + 100;
         $totalSalaryDeduction = $salary - $totalDeduction;
-
-        $taxData = Tax::where('status','=',$stat)->where('tax', '<=', $salary)->where('salary_type', '=', 'm')->orderBy('tax', 'desc')->first();
+        $taxData = Tax::where('status','=', $stat)->where('tax', '<=', $salary)->where('salary_type', '=', 'm')->orderBy('tax', 'desc')->first();
         if ( empty($taxData)) {
-            $totalTax = 0;
+            $totalTax = count($taxData);
         }else{
             $taxDeduction = $totalSalaryDeduction - $taxData->tax;
             $getPercent = $taxDeduction * $taxData->percent_over;

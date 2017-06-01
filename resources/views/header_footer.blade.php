@@ -130,14 +130,17 @@
                         <div class="form-group">
                             {!! Form::label('position', 'Position', ['class' => 'col-sm-2 control-label']); !!}
                             <div class="col-sm-10">
-                                <select class="form-control" name="position" onchange="showNewPosition(this)" required>
+                                <select class="form-control" id="position" name="position" onchange="showNewPosition()" required>
                                     <option  selected="selected" value="">Select</option>
                                     @foreach ( Option::getCurrentOption('position') as $options )
                                         <option value="{{ $options->id }}">{{ $options->name }}</option>
                                     @endforeach
                                     <option value="new">( Add New )</option>
                                 </select>
-                                {!! Form::text('other_position', null,['class'=>'form-control', 'placeholder'=>'New Position', 'id'=>'other_position', 'style'=>'display: none;']) !!}
+                                <div id="other_div_position">
+                                    {!! Form::text('other_position', null,['class'=>'form-control', 'placeholder'=>'New Position', 'id'=>'other_position', 'style'=>'']) !!}
+                                </div>
+                                
                             </div>
                         </div>
                         <div class="form-group">
@@ -214,7 +217,6 @@
                                             <td>
                                                 <a href="#edit" style="color: #adacac;margin: 0px 5px;font-size: 15px;"  data-toggle="modal" data-target="#editPayslipEmployee{{ $employee->id }}"><i class="fa fa-pencil fa-btn" aria-hidden="true"></i></a>
                                                 <!-- Employee Modal -->
-                                                
                                             </td>
                                         </tr>
                                     @endforeach
@@ -234,7 +236,6 @@
     </div>
  @foreach ( Option::allEmployeeList() as $employee)
     <div class="modal modal2 fade" id="editPayslipEmployee{{ $employee->id }}" role="dialog">
-        
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -294,27 +295,27 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Basic Pay</p></div>
-                                <div class="col-sm-6 col-xs-6">{!! Form::number('basic_pay[]', Option::employeeDetails($id)->basic_pay,[ 'step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'disabled']) !!}</div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('basic_pay[]', Option::employeeDetails($id)->basic_pay,[ 'step' => '.01' , 'id'=>'payslip_basic_pay_'.$id, 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'disabled']) !!}</div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Overtime</p></div>
-                                <div class="col-sm-6 col-xs-6">{!! Form::number('overtime[]', '',['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('overtime[]', 0,['step' => '.01' , 'id'=>'payslip_overtime_'.$id, 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Night Differential</p></div>
-                                <div class="col-sm-6 col-xs-6">{!! Form::number('night_differential[]', '',['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('night_differential[]', 0,['step' => '.01' , 'id'=>'payslip_night_differential_'.$id, 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Double Pay</p></div>
-                                <div class="col-sm-6 col-xs-6">{!! Form::number('double_pay[]', '',['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('double_pay[]', 0,['step' => '.01' , 'id'=>'payslip_double_pay_'.$id, 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Holiday Pay</p></div>
-                                <div class="col-sm-6 col-xs-6">{!! Form::number('holiday[]', '',['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('holiday[]', 0,['step' => '.01' , 'id'=>'payslip_holiday_'.$id, 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Bonus</p></div>
-                                <div class="col-sm-6 col-xs-6">{!! Form::number('bonus[]', '',['step' => '.01' ,'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('bonus[]', 0,['step' => '.01' ,'id'=>'payslip_bonus_'.$id,  'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
@@ -331,7 +332,7 @@
                                         $totalEarnings = Option::employeeDetails($id)->basic_pay;
                                     @endphp
                                     <div class="col-sm-6" style="padding-left: 0px;">
-                                        <p class="payslip-head" style="text-align: right;">{{ number_format( $totalEarnings, 2, '.', ',')  }}</p>
+                                        <p id="payslip_total_earnings_{{ $id }}" class="payslip-head" style="text-align: right;">{{ number_format( $totalEarnings, 2, '.', ',')  }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -344,31 +345,31 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Income Tax</p></div>
-                                <div class="col-sm-6 col-xs-6">{!! Form::number('tax[]', Option::salaryTax(Option::employeeDetails($id)->basic_pay, Option::employeeDetails($id)->status),['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'disabled']) !!}</div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('tax[]', Option::salaryTax(Option::employeeDetails($id)->basic_pay, Option::employeeDetails($id)->status),['step' => '.01' , 'id'=>'payslip_tax_'.$id, 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'disabled']) !!}</div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>SSS</p></div> 
-                                <div class="col-sm-6 col-xs-6">{!! Form::number('sss[]', Option::Benefits()->getSSS(Option::employeeDetails($id)->basic_pay),['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'disabled']) !!}</div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('sss[]', Option::Benefits()->getSSS(Option::employeeDetails($id)->basic_pay),['step' => '.01' , 'id'=>'payslip_sss_'.$id, 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'disabled']) !!}</div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Pag-Ibig</p></div>
-                                <div class="col-sm-6 col-xs-6">{!! Form::number('pagibig[]', 100.00,['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'',  'disabled']) !!}</div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('pagibig[]', 100.00,['step' => '.01' , 'id'=>'payslip_pagibig_'.$id, 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'',  'disabled']) !!}</div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Phil-Health</p></div>
-                                <div class="col-sm-6 col-xs-6">{!! Form::number('philhealth[]', Option::Benefits()->getPhilhealth(Option::employeeDetails($id)->basic_pay),['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'disabled']) !!}</div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('philhealth[]', Option::Benefits()->getPhilhealth(Option::employeeDetails($id)->basic_pay),['step' => '.01' , 'id'=>'payslip_philhealth_'.$id, 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'', 'disabled']) !!}</div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Absences/Tardiness:</p></div>
-                                <div class="col-sm-6 col-xs-6">{!! Form::number('absent[]', '',['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('absent[]', 0,['step' => '.01' , 'id'=>'payslip_absent_'.$id, 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Loans:</p></div>
-                                <div class="col-sm-6 col-xs-6">{!! Form::number('loans[]', '',['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('loans[]', 0,['step' => '.01' , 'id'=>'payslip_loans_'.$id, 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Others:</p></div>
-                                <div class="col-sm-6 col-xs-6">{!! Form::number('others[]', '',['step' => '.01' , 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('others[]', 0,['step' => '.01' , 'id'=>'payslip_others_'.$id, 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
                             </div>
                             <div class="row">
                                 <div class="payslip-foot">
@@ -383,7 +384,7 @@
                                         $totalDeductions =  $tax + $sss + 100 + $philhealth;
                                     @endphp
                                     <div class="col-sm-6" style="padding-left: 0px;">
-                                        <p class="payslip-head" style="text-align: right;">{{ number_format( $totalDeductions, 2, '.', ',')  }}</p>
+                                        <p id="payslip_total_deductions_{{ $id }}" class="payslip-head" style="text-align: right;">{{ number_format( $totalDeductions, 2, '.', ',')  }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -394,7 +395,7 @@
                             @php
                                 $netPay = $totalEarnings - $totalDeductions;
                             @endphp
-                            <p class="netPayRounded"><span>NET PAY ROUNDED</span>  {{ number_format( $netPay, 2, '.', ',')  }}</p>
+                            <p class="netPayRounded"><span>NET PAY ROUNDED</span>  <span id="payslip_net_pay_{{ $id }}">{{ number_format( $netPay, 2, '.', ',')  }}</span></p>
                         </div>
                     </div>
                 </div>
@@ -411,16 +412,105 @@
 
 <!-- Payslip Modal -->
 
-
-
-<script type="text/javascript">
-    function showNewPosition(elem){
-        if(elem.value == 'new')
-            document.getElementById('other_position').style.display = "block";
-        else
-            document.getElementById('other_position').style.display = "none";
-    }
+<script>
+    $(document).ready(function() {
+        $('#other_div_position').hide();
+        $('#position').on('change', function() {
+            if (this.value == 'new') {
+                $('#other_div_position').show(); 
+            };
+            if (this.value != 'new') {
+                $('#other_div_position').hide(); 
+            };
+        })
+    });
 </script>
+
+@foreach ( Option::allEmployeeList() as $employee)
+    @php 
+        $id= $employee->id;
+    @endphp
+<script>
+    $(document).ready(function() {
+        $('#payslip_overtime_{{ $id }}, #payslip_night_differential_{{ $id }}, #payslip_double_pay_{{ $id }}, #payslip_holiday_{{ $id }}, #payslip_bonus_{{ $id }}, #payslip_tax_{{ $id }}, #payslip_sss_{{ $id }}, #payslip_pagibig_{{ $id }}, #payslip_philhealth_{{ $id }}, #payslip_absent_{{ $id }}, #payslip_loans_{{ $id }} , #payslip_others_{{ $id }}'  ).keyup( function () {
+            var overtime = 0;
+            var basic_pay = 0;
+            var night_diff = 0;
+            var double_pay = 0;
+            var holiday = 0;
+            var bonus = 0;
+            
+            var tax = 0;
+            var sss = 0;
+            var pagibig = 0;
+            var philhealth = 0;
+            var absent = 0;
+            var loans = 0;
+            var others = 0;
+            
+            if ( $('#payslip_basic_pay_{{ $id }}').val() != '') { basic_pay = parseFloat($('#payslip_basic_pay_{{ $id }}').val()); };
+            
+            if ($('#payslip_overtime_{{ $id }}').val() != '') { overtime = parseFloat($('#payslip_overtime_{{ $id }}').val());    };
+            
+            if ( $('#payslip_night_differential_{{ $id }}').val() != '') { night_diff = parseFloat($('#payslip_night_differential_{{ $id }}').val()); };
+            
+            if ( $('#payslip_double_pay_{{ $id }}').val() != '') { double_pay = parseFloat($('#payslip_double_pay_{{ $id }}').val()); };
+            
+            if ( $('#payslip_holiday_{{ $id }}').val() != '') { holiday = parseFloat($('#payslip_holiday_{{ $id }}').val()); };
+            
+            if ( $('#payslip_bonus_{{ $id }}').val() != '') { bonus = parseFloat($('#payslip_bonus_{{ $id }}').val()); };
+            
+            // Deductions
+            if ( $('#payslip_tax_{{ $id }}').val() != '') { tax = parseFloat($('#payslip_tax_{{ $id }}').val()); };
+            
+            if ($('#payslip_sss_{{ $id }}').val() != '') { sss = parseFloat($('#payslip_sss_{{ $id }}').val());    };
+            
+            if ( $('#payslip_pagibig_{{ $id }}').val() != '') { pagibig = parseFloat($('#payslip_pagibig_{{ $id }}').val()); };
+            
+            if ( $('#payslip_philhealth_{{ $id }}').val() != '') { philhealth = parseFloat($('#payslip_philhealth_{{ $id }}').val()); };
+            
+            if ( $('#payslip_absent_{{ $id }}').val() != '') { absent = parseFloat($('#payslip_absent_{{ $id }}').val()); };
+            
+            if ( $('#payslip_loans_{{ $id }}').val() != '') { loans = parseFloat($('#payslip_loans_{{ $id }}').val()); };
+            
+            if ( $('#payslip_others_{{ $id }}').val() != '') { others = parseFloat($('#payslip_others_{{ $id }}').val()); };
+            
+            var totalEarnings = overtime + basic_pay + night_diff + double_pay + holiday + bonus;
+            var totalDeduction = tax + sss + pagibig + philhealth + absent + loans + others;
+            
+            var valueEarnings = totalEarnings.toLocaleString(
+              undefined, // use a string like 'en-US' to override browser locale
+              { minimumFractionDigits: 2,
+                maximumFractionDigits: 2 }
+            );
+            
+            var valueDeduction = totalDeduction.toLocaleString(
+              undefined, // use a string like 'en-US' to override browser locale
+              { minimumFractionDigits: 2,
+                maximumFractionDigits: 2 }
+            );
+            
+            $('#payslip_total_deductions_{{ $id }}').html(valueDeduction);
+            $('#payslip_total_earnings_{{ $id }}').html(valueEarnings);
+            
+            var totalNetPay = totalEarnings - totalDeduction;
+            
+            var valueNetPay = totalNetPay.toLocaleString(
+              undefined, // use a string like 'en-US' to override browser locale
+              { minimumFractionDigits: 2,
+                maximumFractionDigits: 2 }
+            );
+            
+            $('#payslip_net_pay_{{ $id }}').html(valueNetPay);
+            
+            
+        });
+        
+    });
+
+</script>
+@endforeach
+
 
 <script>
     $(document).ready(function() {
@@ -434,9 +524,7 @@
             $('.modal').modal('hide');
         });
     });
-
 </script>
-
 
 <script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -445,19 +533,17 @@
 <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/dataTables.responsive.js') }}"></script>
 
-  <script>
+<script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
             responsive: true
         });
     });
-  </script>
-  
-  
+</script>
 
-  
 
-  
+
+
 
  
 </body>
