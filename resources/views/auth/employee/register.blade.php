@@ -21,11 +21,11 @@
 <div class="login-panel">
     <form class="login-form" method="POST" role="form" action="{{ url('/register') }}">
     {{ csrf_field() }}
+    {!!  Form::hidden('activation_code', $token) !!}
         <p class="register-feed">Sign Up for Activation</p>
         <p class="register-feed-2">No commitment. No credit card required.</p>
 
-        <input class="register-input" id="companyname" type="text" class="form-control" name="company_name" placeholder="Company Name" value="{{ $company_name }}">
-        <input class="register-input" id="companyname" type="text" class="form-control" name="activation_code" placeholder="Activation Code" value="{{ $token }}">
+        <input class="register-input" id="companyname" type="text" class="form-control" name="company_name" placeholder="Company Name" value="{{ $getCompany->company_name }}">
         
         <input class="register-input firstname" id="firstname" type="text" class="form-control" name="first_name" placeholder="First Name" value="{{ old('first_name') }}">
             
@@ -38,7 +38,7 @@
        
         <div class="clearfix"></div>
 
-        <input class="register-input" id="email" type="email" class="form-control" name="email" placeholder="Email Address" value="{{ old('email') }}">
+        <input class="register-input" id="email" type="email" class="form-control" name="email" placeholder="Email Address" value="{{ $activation->email }}">
             @if ($errors->has('email'))
                 <span class="help-block">
                     <strong>{{ $errors->first('email') }}</strong>

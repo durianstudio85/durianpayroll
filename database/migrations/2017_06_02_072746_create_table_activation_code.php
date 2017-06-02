@@ -17,6 +17,7 @@ class CreateTableActivationCode extends Migration
             $table->string('email');
             $table->integer('company_id');
             $table->text('token_code');
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -10,5 +10,6 @@ class Activation_code extends Model
         'email',
         'company_id', 
         'token_code', 
+        'status',
     ];
 }

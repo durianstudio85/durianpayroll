@@ -45,7 +45,7 @@ Route::delete('payroll/{id}', 'PayrollController@destroy');
 
 Route::get('email', 'HomeController@email');
 
-Route::get('user/activation/{token}/{company_name}', 'HomeController@employeeReg');
+Route::get('user/activation/{token}', 'HomeController@employeeReg');
 
 
 

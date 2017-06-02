@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 use App\Company;
 use App\Options\Company_user;
+use App\Activation_code;
 
 class AuthController extends Controller
 {
@@ -68,28 +69,58 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
-
-        $lastid = $user->id;
-
-        $business = Company::create([
-            'user_id' => $lastid,
-            'company_name' => $data['company_name'],
-            'nav' => 'side',
-        ]);
-
-        $connect = Company_user::create([
-            'user_id' => $lastid,
-            'company_id' => $business->id,
-            'company_position' => 'admin',
-        ]);
-
-        return $user;
+        
+        if (isset($data['activation_code'])) {
+            $activation = Activation_code::where('token_code', '=', $data['activation_code'])->where('email', '=', $data['email'])->first();
+            if (!empty($activation)) {
+                $user = User::create([
+                    'first_name' => $data['first_name'],
+                    'last_name' => $data['last_name'],
+                    'email' => $data['email'],
+                    'password' => bcrypt($data['password']),
+                ]);
+                $lastid = $user->id;   
+                
+                $connect = Company_user::create([
+                    'user_id' => $lastid,
+                    'company_id' => $activation->company_id,
+                    'company_position' => 'employee',
+                ]);
+                
+                $activation->update(['status'=>'none']);
+                
+                return $user;
+                
+            }else{
+                return redirect()->back();
+            }
+            
+             
+        }else{
+            
+            $user = User::create([
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+            ]);
+            $lastid = $user->id;   
+            
+            $business = Company::create([
+                'user_id' => $lastid,
+                'company_name' => $data['company_name'],
+                'nav' => 'side',
+            ]);
+            
+            $connect = Company_user::create([
+                'user_id' => $lastid,
+                'company_id' => $business->company_id,
+                'company_position' => 'admin',
+            ]);
+            
+            return $user;
+        }
+       
     }
 
 }

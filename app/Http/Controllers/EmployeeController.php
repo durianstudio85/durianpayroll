@@ -90,17 +90,20 @@ class EmployeeController extends Controller
                     $employee = Employee::create($employeeData);
                     
                     $activationData = [
-                        'token_code' => str_random(40),
+                        'token_code' => str_random(60),
                         'email' => $employee->email,
                         'company_id' => $comId,
+                        'status' => 'active',
                     ];
                     
                     $activation = Activation_code::create($activationData);
                        
+                    $this->email = $employee->email;
+                    $this->first_name = $employee->first_name;
                     
                     Mail::send('emails.reminder', array('employee' => $employee, 'activation' => $activation ), function($message)
                     {
-                        $message->to($employee->email, 'Jaybee')->subject('Welcome to Durianpayroll');
+                        $message->to($this->email, $this->first_name)->subject('Welcome to Durianpayroll');
                     });
 
                     session()->flash('flash_message', 'Employee Added Successfully..');
@@ -125,15 +128,26 @@ class EmployeeController extends Controller
                 ];    
                 $employee = Employee::create($employeeData);
 
-                Mail::send('emails.reminder', array('employee' => $employee), function($message)
+                $activationData = [
+                    'token_code' => str_random(40),
+                    'email' => $employee->email,
+                    'company_id' => $comId,
+                    'status' => 'active',
+                ];
+                
+                $activation = Activation_code::create($activationData);
+                   
+                $this->email = $employee->email;
+                $this->first_name = $employee->first_name;
+                
+                Mail::send('emails.reminder', array('employee' => $employee, 'activation' => $activation ), function($message)
                 {
-                    $message->to($employee->email, 'Jaybee')->subject('Welcome to Durianpayroll');
+                    $message->to($this->email, $this->first_name)->subject('Welcome to Durianpayroll');
                 });
 
                 session()->flash('flash_message', 'Employee Added Successfully..');
                 session()->flash('flash_message_important', 'alert-success');
             }
-
 
             
             // $user = $employee->email;

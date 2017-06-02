@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Activation_code;
+use App\Company;
 
 class HomeController extends Controller
 {
@@ -31,8 +33,18 @@ class HomeController extends Controller
         return view('emails.reminder');
     }
     
-    public function employeeReg($token, $company_name)
+    public function employeeReg($token)
     {
-        return view('auth.employee.register',compact('company_name', 'token'));
+        
+        $activation = Activation_code::where('token_code', '=', $token)->where('status', '=', 'active')->first();
+        
+        if (!empty($activation)) {
+            $getCompany = Company::find($activation->company_id);
+            
+            return view('auth.employee.register',compact( 'token', 'getCompany', 'activation'));
+        }else{
+            return redirect('/');
+        }
+        
     }
 }

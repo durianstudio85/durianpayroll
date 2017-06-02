@@ -73,7 +73,7 @@
 
 <!-- HIDDEN PREHEADER TEXT -->
 <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
-    We're sorry to see you go. We'll still be here if you ever want to reopen your account.
+    Hi {{ $employee->first_name }}, Get excited! Durian Payroll invites you to connect and accept this invite to stay up to date with new promotions, exclusive offers, loyalty rewards and more. You can disconnect at any time.
 </div>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -89,7 +89,7 @@
                 <tr>
                     <td align="center" valign="top" style="padding: 40px 10px 40px 10px;">
                         <a href="https://durianpayroll.com" target="_blank">
-                            <img alt="Logo" src="{{ asset('images/email-logo.png') }}" width="40" height="40" style="display: block; width: 456px; max-width: 456px; min-width: 456px; font-family: 'Lato', Helvetica, Arial, sans-serif; color: #ffffff; font-size: 18px;" border="0">
+                            <img alt="Logo" src="https://durianpayroll.com/images/email-logo.png" width="40" height="40" style="display: block; width: 456px; max-width: 456px; min-width: 456px; font-family: 'Lato', Helvetica, Arial, sans-serif; color: #ffffff; font-size: 18px;" border="0">
                         </a>
                     </td>
                 </tr>
@@ -161,7 +161,7 @@
                       <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px;">
                         <table border="0" cellspacing="0" cellpadding="0">
                           <tr>
-                              <td align="center" style="border-radius: 3px;" bgcolor="#1fb4ae"><a href="{{ url('user/activation/'.$activation->token_code.'/'.$activation->company_id ) }}" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #1fb4ae; display: inline-block;">Accept Invitation</a></td>
+                              <td align="center" style="border-radius: 3px;" bgcolor="#1fb4ae"><a href="{{ url('user/activation/'.$activation->token_code ) }}" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #1fb4ae; display: inline-block;">Accept Invitation</a></td>
                           </tr>
                         </table>
                       </td>
