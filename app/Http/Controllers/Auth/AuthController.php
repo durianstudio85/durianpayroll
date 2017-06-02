@@ -80,7 +80,7 @@ class AuthController extends Controller
         $business = Company::create([
             'user_id' => $lastid,
             'company_name' => $data['company_name'],
-            'nav' => 'top',
+            'nav' => 'side',
         ]);
 
         $connect = Company_user::create([

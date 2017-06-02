@@ -16,18 +16,16 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <script src="{{ asset('js/Chart.min.js') }}"></script>
 
-
 <body bgcolor="#f1f3f6">
 
 <div class="login-panel">
     <form class="login-form" method="POST" role="form" action="{{ url('/register') }}">
     {{ csrf_field() }}
-        
-        <p class="register-feed">Sign Up for a Free Account</p>
+        <p class="register-feed">Sign Up for Activation</p>
         <p class="register-feed-2">No commitment. No credit card required.</p>
 
-        <input class="register-input" id="companyname" type="text" class="form-control" name="company_name" placeholder="Company Name" value="{{ old('company_name') }}">
-
+        <input class="register-input" id="companyname" type="text" class="form-control" name="company_name" placeholder="Company Name" value="{{ $company_name }}">
+        <input class="register-input" id="companyname" type="text" class="form-control" name="activation_code" placeholder="Activation Code" value="{{ $token }}">
         
         <input class="register-input firstname" id="firstname" type="text" class="form-control" name="first_name" placeholder="First Name" value="{{ old('first_name') }}">
             
@@ -60,7 +58,6 @@
                     <strong>{{ $errors->first('password_confirmation') }}</strong>
                 </span>
             @endif
-
         <input type="submit" class="btn-login" value="Register">
 
         <p class="register-feed-2">By clicking on "Register", you <br> confirm that you accept the <a href="#" class="register-terms">Terms of Service</a></p>
@@ -71,7 +68,6 @@
 
     </form>
 </div>
-
 
 <script src="{{ asset('js/jquery-1.9.1.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.js') }}"></script>

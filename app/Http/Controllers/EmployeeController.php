@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Options\Company_user;
 use App\Options\Benefits\Benefit;
+use App\Activation_code;
 use App\Company;
 use App\Employee;
 use App\User;
@@ -57,7 +58,7 @@ class EmployeeController extends Controller
 
         $current_user = Auth::User()->id;
 
-        $getEmailValidation = Employee::where('email','=', $request->get('email'))->count();
+        $getEmailValidation = Employee::where('email','=', $request->get('email'))->where('company_id','=', $comId)->count();
         if ($getEmailValidation > 0) {
             session()->flash('flash_message', 'Email Already Exist!');
             session()->flash('flash_message_important', 'alert-danger');
@@ -88,7 +89,16 @@ class EmployeeController extends Controller
                     ];    
                     $employee = Employee::create($employeeData);
                     
-                    Mail::send('emails.reminder', array('employee' => $employee), function($message)
+                    $activationData = [
+                        'token_code' => str_random(40),
+                        'email' => $employee->email,
+                        'company_id' => $comId,
+                    ];
+                    
+                    $activation = Activation_code::create($activationData);
+                       
+                    
+                    Mail::send('emails.reminder', array('employee' => $employee, 'activation' => $activation ), function($message)
                     {
                         $message->to($employee->email, 'Jaybee')->subject('Welcome to Durianpayroll');
                     });

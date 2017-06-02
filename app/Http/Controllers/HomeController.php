@@ -30,4 +30,9 @@ class HomeController extends Controller
     {
         return view('emails.reminder');
     }
+    
+    public function employeeReg($token, $company_name)
+    {
+        return view('auth.employee.register',compact('company_name', 'token'));
+    }
 }
