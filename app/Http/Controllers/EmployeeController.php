@@ -15,6 +15,7 @@ use App\Option;
 use Auth;
 use Mail;
 
+
 class EmployeeController extends Controller
 {
     public function __construct()
@@ -28,11 +29,16 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $company = new Company;
-        $benefit = new Benefit;
-        $comId = $company->getComId();
-        $employee = Employee::where('company_id', '=', $comId)->get();
-        return view('admin.employees', compact('employee', 'benefit'));
+        if ( Company_user::getCompanyPosition() == 'admin' ) {
+            $company = new Company;
+            $benefit = new Benefit;
+            $comId = $company->getComId();
+            $employee = Employee::where('company_id', '=', $comId)->get();
+            return view('admin.employees', compact('employee', 'benefit'));    
+        }else{
+             return view('errors.503');
+        }
+        
     }
 
     /**
@@ -302,4 +308,5 @@ class EmployeeController extends Controller
                 ->orderBy('payrollreports.branch_id')
                 ->get();
     }
+    
 }

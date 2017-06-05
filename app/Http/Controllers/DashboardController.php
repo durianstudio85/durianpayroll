@@ -11,6 +11,7 @@ use App\Options\Benefits\Benefit;
 use App\Employee;
 use App\Company;
 use App\Payroll;
+use App\Options\Company_user;
 
 class DashboardController extends Controller
 {
@@ -27,40 +28,46 @@ class DashboardController extends Controller
 
     public function index()
     {
-
-        $tax = new Tax;
-        $benefit = new Benefit;
-        $getTax = $tax->InsertTaxFunction();
-        $getBenefit = $benefit->InsertBenefitFunction();
-
-        $company = new Company;
-        $comID = $company->getComId();
-
-        $countMale = 0;
-        $countFemale = 0;
-
-        // For Employee Panel
-        $recentEmployee = Employee::where('company_id', '=', $comID)->skip(0)->take(5)->orderBy('created_at','desc')->get();
-        $lastEmployeeUpdate = Employee::where('company_id', '=', $comID)->orderBy('updated_at', 'desc')->first();
-
-        // Count Employee in Pie
-        $countMale = Employee::where('company_id', '=', $comID)->where('gender', '=', 'male')->count();
-        $countFemale = Employee::where('company_id', '=', $comID)->where('gender', '=', 'female')->count();
-
-        if ($countMale == 0 AND $countFemale == 0) {
-            $percentMale = 0;
-            $percentFemale = 0;
+        
+        if ( Company_user::getCompanyPosition() == 'employee' ) {
+            return redirect('/payslip');
         }else{
-            $percentMale =  ($countMale / ($countMale + $countFemale)) * 100;
-            $percentFemale =  ($countFemale / ($countMale + $countFemale)) * 100;    
+
+            $tax = new Tax;
+            $benefit = new Benefit;
+            $getTax = $tax->InsertTaxFunction();
+            $getBenefit = $benefit->InsertBenefitFunction();
+
+            $company = new Company;
+            $comID = $company->getComId();
+
+            $countMale = 0;
+            $countFemale = 0;
+
+            // For Employee Panel
+            $recentEmployee = Employee::where('company_id', '=', $comID)->skip(0)->take(5)->orderBy('created_at','desc')->get();
+            $lastEmployeeUpdate = Employee::where('company_id', '=', $comID)->orderBy('updated_at', 'desc')->first();
+
+            // Count Employee in Pie
+            $countMale = Employee::where('company_id', '=', $comID)->where('gender', '=', 'male')->count();
+            $countFemale = Employee::where('company_id', '=', $comID)->where('gender', '=', 'female')->count();
+
+            if ($countMale == 0 AND $countFemale == 0) {
+                $percentMale = 0;
+                $percentFemale = 0;
+            }else{
+                $percentMale =  ($countMale / ($countMale + $countFemale)) * 100;
+                $percentFemale =  ($countFemale / ($countMale + $countFemale)) * 100;    
+            }
+            
+
+            //Summary Report in Dashboard
+            $summaryPayrollCount = Payroll::where('company_id', '=', $comID)->count();
+            $summaryEmployeeCount = Employee::where('company_id', '=', $comID)->count();
+
+            return view('admin.dashboard', compact('recentEmployee', 'lastEmployeeUpdate', 'countMale', 'countFemale', 'percentMale', 'percentFemale', 'summaryPayrollCount', 'summaryEmployeeCount'));    
         }
         
-
-        //Summary Report in Dashboard
-        $summaryPayrollCount = Payroll::where('company_id', '=', $comID)->count();
-        $summaryEmployeeCount = Employee::where('company_id', '=', $comID)->count();
-
-        return view('admin.dashboard', compact('recentEmployee', 'lastEmployeeUpdate', 'countMale', 'countFemale', 'percentMale', 'percentFemale', 'summaryPayrollCount', 'summaryEmployeeCount'));
     }
 
     /**

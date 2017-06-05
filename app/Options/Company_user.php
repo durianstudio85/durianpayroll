@@ -4,6 +4,7 @@ namespace App\Options;
 
 use Illuminate\Database\Eloquent\Model;
 use Auth;
+use App\Company;
 
 class Company_user extends Model
 {
@@ -13,7 +14,6 @@ class Company_user extends Model
         'company_position', 
     ];
 
-
     public static function getCompanyPosition()
     {
     	$user_id = Auth::user()->id;
@@ -21,3 +21,5 @@ class Company_user extends Model
         return $company->company_position;
     }
 }
+
+        

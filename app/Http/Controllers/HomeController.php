@@ -35,12 +35,10 @@ class HomeController extends Controller
     
     public function employeeReg($token)
     {
-        
         $activation = Activation_code::where('token_code', '=', $token)->where('status', '=', 'active')->first();
         
         if (!empty($activation)) {
             $getCompany = Company::find($activation->company_id);
-            
             return view('auth.employee.register',compact( 'token', 'getCompany', 'activation'));
         }else{
             return redirect('/');

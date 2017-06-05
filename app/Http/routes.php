@@ -47,9 +47,7 @@ Route::get('email', 'HomeController@email');
 
 Route::get('user/activation/{token}', 'HomeController@employeeReg');
 
-
-
-
+Route::get('payslip','EmployeeAccController@payslip');
 
 
 
@@ -64,22 +62,16 @@ Route::get('user/activation/{token}', 'HomeController@employeeReg');
 
 // *** PAYROLL ***
 Route::get('payrolls','PagesController@payroll');
-Route::get('payslip','PagesController@payslip');
+// Route::get('payslip','PagesController@payslip');
 Route::get('bank','PagesController@bank');
 Route::get('governmentforms','PagesController@governmentforms');
 Route::get('bonus','PagesController@bonus');
 Route::get('commision','PagesController@commision');
 
 
-
-
 // *** PAY ACCOUNT ***
 Route::get('pay/account','PagesController@pay_account');
 Route::get('pay/account/create','PagesController@pay_account_create');
-
-
-
-
 
 
 // *** EMPLOYEE ***
