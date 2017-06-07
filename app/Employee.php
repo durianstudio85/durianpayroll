@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Employee extends Model
+class Employee extends Authenticatable
 {
     protected $fillable = [
 		'company_id',
@@ -22,5 +22,10 @@ class Employee extends Model
         'address',
         'ssn',
         'payment_mode',
+        'password',
+    ];
+    
+    protected $hidden = [
+        'password', 'remember_token',
     ];
 }

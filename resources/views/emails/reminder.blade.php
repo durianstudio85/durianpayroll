@@ -135,13 +135,19 @@
               <!-- COPY -->
               <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-                  <p style="margin: 0;">Hi {{ $employee->first_name }},</p>
+                  <p style="margin: 0;">Hi {{ $employee->first_name }},</p> 
                 </td>
               </tr>
               <!-- COPY -->
               <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
                   <p style="margin: 0;">Get excited! Durian Payroll invites you to connect and accept this invite to stay up to date with new promotions, exclusive offers, loyalty rewards and more. You can disconnect at any time.</p>
+                </td>
+              </tr>
+              <!-- Copy -->
+              <tr>
+                <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
+                  <p style="margin: 0;">Password: {{ $password }}</p>
                 </td>
               </tr>
               <!-- COPY -->

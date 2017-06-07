@@ -38,7 +38,6 @@ class EmployeeController extends Controller
         }else{
              return view('errors.503');
         }
-        
     }
 
     /**
@@ -61,6 +60,7 @@ class EmployeeController extends Controller
     {
         $company = new Company;
         $comId = $company->getComId();
+        $password = str_random(8);
 
         $current_user = Auth::User()->id;
 
@@ -92,6 +92,7 @@ class EmployeeController extends Controller
                         'position' => $option->id,
                         'mobile_no' => $request->get('mobile_no'),
                         'basic_pay' => $request->get('basic_pay'),
+                        'password' => bcrypt($password),
                     ];    
                     $employee = Employee::create($employeeData);
                     
@@ -107,7 +108,7 @@ class EmployeeController extends Controller
                     $this->email = $employee->email;
                     $this->first_name = $employee->first_name;
                     
-                    Mail::send('emails.reminder', array('employee' => $employee, 'activation' => $activation ), function($message)
+                    Mail::send('emails.reminder', array('employee' => $employee, 'activation' => $activation, 'password' => $password ), function($message)
                     {
                         $message->to($this->email, $this->first_name)->subject('Welcome to Durianpayroll');
                     });
@@ -131,6 +132,7 @@ class EmployeeController extends Controller
                     'position' => $request->get('position'),
                     'mobile_no' => $request->get('mobile_no'),
                     'basic_pay' => $request->get('basic_pay'),
+                    'password' => bcrypt($password),
                 ];    
                 $employee = Employee::create($employeeData);
 
@@ -146,7 +148,7 @@ class EmployeeController extends Controller
                 $this->email = $employee->email;
                 $this->first_name = $employee->first_name;
                 
-                Mail::send('emails.reminder', array('employee' => $employee, 'activation' => $activation ), function($message)
+                Mail::send('emails.reminder', array('employee' => $employee, 'activation' => $activation, 'password' => $password ), function($message)
                 {
                     $message->to($this->email, $this->first_name)->subject('Welcome to Durianpayroll');
                 });
@@ -164,8 +166,6 @@ class EmployeeController extends Controller
             // });
             
         }
-
-
 
         return redirect('/employees');
     }
@@ -213,7 +213,6 @@ class EmployeeController extends Controller
             $getEmailValidation = 0;
         }
 
-        
         if ($getEmailValidation > 0) {
             session()->flash('flash_message', 'Email Already Exist!');
             session()->flash('flash_message_important', 'alert-danger');
