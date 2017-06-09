@@ -141,7 +141,7 @@
               <!-- COPY -->
               <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-                  <p style="margin: 0;">Get excited! Durian Payroll invites you to connect and accept this invite to stay up to date with new promotions, exclusive offers, loyalty rewards and more. You can disconnect at any time.</p>
+                  <p style="margin: 0;">Get excited! Durian Payroll invites you to connect and accept this invite to stay up to date with your payroll. You can disconnect at any time.</p>
                 </td>
               </tr>
               <!-- Copy -->
@@ -167,7 +167,7 @@
                       <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px;">
                         <table border="0" cellspacing="0" cellpadding="0">
                           <tr>
-                              <td align="center" style="border-radius: 3px;" bgcolor="#1fb4ae"><a href="{{ url('user/activation/'.$activation->token_code ) }}" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #1fb4ae; display: inline-block;">Accept Invitation</a></td>
+                              <td align="center" style="border-radius: 3px;" bgcolor="#1fb4ae"><a href="{{ url('employee/login' ) }}" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #1fb4ae; display: inline-block;">Accept Invitation</a></td>
                           </tr>
                         </table>
                       </td>

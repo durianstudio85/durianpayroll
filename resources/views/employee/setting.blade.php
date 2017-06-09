@@ -59,7 +59,6 @@
                         {!! Form::text('address', $myProfile->address,['class'=>'form-control', 'placeholder'=>'']) !!}
                     </div>
                 </div>
-                
             </div>
             <div class="col-md-6">
                 <div class="form-group">
@@ -74,23 +73,6 @@
                         {!! Form::text('contactno2', $myProfile->contactno2,['class'=>'form-control', 'placeholder'=>'']) !!}
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="dp-panel-form col-md-12">
-        <h3>Personalize</h3>
-        <br>
-        <div class="form-horizontal">
-            <div class="col-md-6">
-                <div class="form-group">
-                    {!! Form::label('nav', 'Menu Position', ['class' => 'control-label col-sm-4']); !!}
-                    <div class="col-sm-8">
-                        {!! Form::select('nav', ['top' => 'Top', 'side' => 'Side'], 'Side',['class'=>'form-control', 'required']) !!}
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                &nbsp;
             </div>
         </div>
     </div>
