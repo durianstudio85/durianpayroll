@@ -14,6 +14,7 @@ use App\Employee;
 use App\Payroll_item;
 
 use Carbon\Carbon;
+use App\Payroll;
 
 class Option extends Model
 {
@@ -61,6 +62,13 @@ class Option extends Model
         return $employee;
     }
     
+    
+    public static function payrollDet($id='')
+    {
+        $payroll = Payroll::find($id);
+        return $payroll;
+    
+    }
     // public function benefits($basic_pay='', $type ='')
     // {
     //     $benefit = new Benefit;

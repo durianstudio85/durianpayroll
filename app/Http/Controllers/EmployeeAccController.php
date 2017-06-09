@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests;
 use App\Employee;
+use App\Payroll;
+use App\Payroll_item;
+use App\Company;
 
 
 class EmployeeAccController extends Controller
@@ -27,8 +30,14 @@ class EmployeeAccController extends Controller
      */
     public function payslip()
     {
-        return view('employee.payslip');
+        $id = auth()->guard('employee')->user()->id;
+        $company = new Company;
+        
+        $myPayslip = Payroll_item::where('employee_id', '=', $id)->get();
+        return view('employee.payslip', compact('myPayslip', 'company', 'id'));
     }
+    
+    
     
     public function setting()
     {
@@ -44,4 +53,8 @@ class EmployeeAccController extends Controller
         // $id = Auth::employee()->id;
         
     }
+    
+    // functions only
+    
+    
 }

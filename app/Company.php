@@ -45,4 +45,10 @@ class Company extends Model
         $getComId = Company_user::where('user_id', '=', $userId)->first();
         return $getComId->company_id;
     }
+    
+    public function getDetails($id='')
+    {
+        $company = Company::find($id);
+        return $company;
+    }
 }

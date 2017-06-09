@@ -23,34 +23,16 @@
 //     return view('pages.dashboard');
 // });
 
-Route::group(['middlewareGroups' => 'web'], function () {
-    //Login Routes...
-    Route::get('/employee/login','Employee\AuthController@showLoginForm');
-    Route::post('/employee/login','Employee\AuthController@login');
-    Route::get('/employee/logout','Employee\AuthController@logout');
-
-    // Registration Routes...
-    Route::get('admin/register', 'Admin\AuthController@showRegistrationForm');
-    Route::post('admin/register', 'Admin\AuthController@register');
-    
-    
-    Route::get('/employee', 'EmployeeAccController@payslip');
-    Route::get('/employee/payslip', 'EmployeeAccController@payslip');
-    
-    Route::get('/employee/settings', 'EmployeeAccController@setting');
-    Route::patch('/employee/settings/{$id}/edit', 'EmployeeAccController@settingUpdate');
-    
-}); 
 
 
-
+Route::auth();
 
 
 // Landing Page
 Route::get('/','HomeController@index');
 
 // Admin Dashboard
-Route::get('dashboard/redirect','DashboardController@dashboardRedirect');
+// Route::get('dashboard/redirect','DashboardController@dashboardRedirect');
 
 Route::get('dashboard','DashboardController@index');
 
@@ -70,12 +52,28 @@ Route::get('email', 'HomeController@email');
 
 Route::get('user/activation/{token}', 'HomeController@employeeReg');
 
-Route::get('payslip','EmployeeAccController@payslip');
 
 
 
 
 
+Route::group(['middlewareGroups' => 'employee'], function () {
+    //Login Routes...
+    Route::get('/employee/login','Employee\AuthController@showLoginForm');
+    Route::post('/employee/login','Employee\AuthController@login');
+    Route::get('/employee/logout','Employee\AuthController@logout');
+
+    // Registration Routes...
+    Route::get('admin/register', 'Admin\AuthController@showRegistrationForm');
+    Route::post('admin/register', 'Admin\AuthController@register');
+    
+    Route::get('/employee', 'EmployeeAccController@payslip');
+    Route::get('/employee/payslip', 'EmployeeAccController@payslip');
+    
+    Route::get('/employee/settings', 'EmployeeAccController@setting');
+    Route::patch('/employee/settings/{$id}/edit', 'EmployeeAccController@settingUpdate');
+    
+}); 
 
 
 
@@ -219,6 +217,6 @@ Route::get('company/expenses-type','PagesController@company_expenses_type');
 
 // *** COMPANY AUTOMATION ***
 Route::get('company/work-flows','PagesController@company_work_flows');
-Route::auth();
+
 
 Route::get('/home', 'HomeController@index');

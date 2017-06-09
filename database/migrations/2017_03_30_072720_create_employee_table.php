@@ -26,6 +26,8 @@ class CreateEmployeeTable extends Migration
             $table->string('mobile_no');
             $table->integer('position');
             $table->decimal('basic_pay', 15, 2);
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

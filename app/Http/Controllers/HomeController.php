@@ -6,6 +6,8 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Activation_code;
 use App\Company;
+use Auth;
+use App\Employee;
 
 class HomeController extends Controller
 {
@@ -25,7 +27,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('landingpage');
+        if( Auth::check() == true ){
+            return redirect('/dashboard');
+        }elseif( auth()->guard('employee')->check() == true) {
+            return redirect('/employee');
+        }else{
+            return view('landingpage');    
+        }
     }
     
     public function email()
