@@ -64,7 +64,6 @@
             line-height: 32px !important;
         }
     }
-
     /* ANDROID CENTER FIX */
     div[style*="margin: 16px 0;"] { margin: 0 !important; }
 </style>

@@ -78,7 +78,6 @@
 </script>
 
 <!-- Create Payroll -->
-
 @foreach($payroll as $modalList)
     <div class="modal fade" id="editPayroll{{ $modalList->id }}" role="dialog">
         <div class="modal-dialog modal-dialog-extended modal-lg">
@@ -178,7 +177,9 @@
                     </div>
                      <div class="modal-body">
                         <center>
-                            <img src="{{ asset('upload/'.Option::comDetails('company_logo')) }}" style="max-height: 60px; margin-bottom: 20px;">
+                            @if ( Option::comDetails('company_logo') != '' )
+                                <img src="{{ asset('upload/'.Option::comDetails('company_logo')) }}" style="max-height: 60px; margin-bottom: 20px;">
+                            @endif
                             <p>{{ Option::comDetails('business_address') }}</p>
                             @if ( Option::comDetails('contact_telephone') != '' )
                                 <p>Tel: {{ Option::comDetails('contact_telephone') }}</p>
