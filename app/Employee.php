@@ -28,4 +28,11 @@ class Employee extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    
+    public function payroll_items()
+    {
+        return $this->hasMany('App\Payroll_item');
+    }
+    
 }

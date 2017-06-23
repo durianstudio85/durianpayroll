@@ -27,14 +27,24 @@
         <p class="register-feed-2">No commitment. No credit card required.</p>
 
         <input class="register-input" id="companyname" type="text" class="form-control" name="company_name" placeholder="Company Name" value="{{ old('company_name') }}">
-
+            @if ($errors->has('company_name'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('company_name') }}</strong>
+                </span>
+            @endif
         
         <input class="register-input firstname" id="firstname" type="text" class="form-control" name="first_name" placeholder="First Name" value="{{ old('first_name') }}">
             
         <input class="register-input lastname" id="lastname" type="text" class="form-control" name="last_name" placeholder="Last Name" value="{{ old('last_name') }}">
-            @if ($errors->has('name'))
+            @if ($errors->has('first_name'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('name') }}</strong>
+                    <strong>{{ $errors->first('first_name') }}</strong>
+                </span>
+            @endif
+            
+            @if ($errors->has('last_name'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('last_name') }}</strong>
                 </span>
             @endif
        

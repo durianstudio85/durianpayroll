@@ -54,6 +54,7 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'company_name' => 'required|max:255',
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
@@ -70,56 +71,37 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         
-        if (isset($data['activation_code'])) {
-            $activation = Activation_code::where('token_code', '=', $data['activation_code'])->where('email', '=', $data['email'])->first();
-            if (!empty($activation)) {
-                $user = User::create([
-                    'first_name' => $data['first_name'],
-                    'last_name' => $data['last_name'],
-                    'email' => $data['email'],
-                    'password' => bcrypt($data['password']),
-                ]);
-                $lastid = $user->id;   
-                
-                $connect = Company_user::create([
-                    'user_id' => $lastid,
-                    'company_id' => $activation->company_id,
-                    'company_position' => 'employee',
-                ]);
-                
-                $activation->update(['status'=>'none']);
-                
-                return $user;
-                
-            }else{
-                return redirect()->back();
-            }
-            
-             
-        }else{
-            
-            $user = User::create([
-                'first_name' => $data['first_name'],
-                'last_name' => $data['last_name'],
-                'email' => $data['email'],
-                'password' => bcrypt($data['password']),
-            ]);
-            $lastid = $user->id;   
-            
-            $business = Company::create([
-                'user_id' => $lastid,
-                'company_name' => $data['company_name'],
-                'nav' => 'side',
-            ]);
-            
-            $connect = Company_user::create([
-                'user_id' => $lastid,
-                'company_id' => $business->company_id,
-                'company_position' => 'admin',
-            ]);
-            
-            return $user;
-        }
+        $user = User::create([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
+        $lastid = $user->id;   
+        
+        $companyData = [
+            'company_name' => $data['company_name'],
+            'nav' => 'side',
+        ];
+        
+        $company = $user->company()->create($companyData);
+        $company->company_user()->create(['company_position' => 'admin', 'user_id' => $lastid]);
+        
+        // $business = Company::create([
+        //     'user_id' => $lastid,
+        //     'company_name' => $data['company_name'],
+        //     'nav' => 'side',
+        // ]);
+        
+        // $connect = Company_user::create([
+        //     'user_id' => $lastid,
+        //     'company_id' => $business->company_id,
+        //     'company_position' => 'admin',
+        // ]);
+        
+        return $user;
+        
+        // $article = Auth::user()->articles()->create($data);
        
     }
 

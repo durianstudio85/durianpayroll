@@ -81,10 +81,13 @@ class Option extends Model
     
 
     public static function allEmployeeList(){
-        $company = new Company;
-        $comId = $company->getComId();
-        $employee = Employee::where('company_id', '=', $comId)->get();
-        return $employee;
+        
+        $comId = Auth::user()->company_user->company_id;
+        // $company = new Company;
+        // $comId = $company->getComId();
+        $company = Company::find($comId)->employees;
+        // $employee = Employee::where('company_id', '=', $comId)->get();
+        return $company;
     }
     
 
@@ -110,15 +113,38 @@ class Option extends Model
     }
 
 
-    public static function salaryTax($salary='', $stat = '')
+    public static function tax($income='', $stat='')
     {
-        $benefit = new Benefit;
+        // $comSalaryType = Auth::user()->company_user()->salary_type;
+        $comID = Option::comID();
+        $salary_type = Company::find($comID)->salary_type;
+        $tax = Tax::where('salary_range','<=', $income)->where('status','=', $stat)->where('salary_type','=', $salary_type)->orderBy('salary_range', 'desc')->first();
+        
+        $totalTax = 0;
+        
+        if ( !empty($tax) ) {
+            $tax_child_1 = $income - $tax->salary_range;
+            $tax_child_2 = $tax_child_1 * $tax->percent_over;
+            $tax_child_3 = $tax->tax + $tax_child_2;
+            
+            return $tax_child_3;
+        }else{
+            return $totalTax; 
+        }
+    }
 
-        $philhealth = $benefit->getPhilhealth($salary);
-        $sss = $benefit->getSSS($salary);
-        $totalDeduction = $sss + $philhealth + 100;
-        $totalSalaryDeduction = $salary - $totalDeduction;
+    public static function salaryTax($salary = '', $stat = '')
+    {
+        
         $taxData = Tax::where('status','=', $stat)->where('tax', '<=', $salary)->where('salary_type', '=', 'm')->orderBy('tax', 'desc')->first();
+        $sss = Option::Benefits()->getSSS($salary);
+        $philhealth = Option::Benefits()->getPhilhealth($salary);
+        $pagibig = 100;
+        
+        $benefits = $sss + $philhealth + $pagibig;
+        $totalSalaryDeduction = $salary - $benefits;
+        
+        
         if ( empty($taxData)) {
             $totalTax = count($taxData);
         }else{

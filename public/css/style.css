@@ -82,7 +82,7 @@ table.dataTable thead .sorting:after {
 .landing-page-link {width: 480px; margin:0 auto;}
 .landing-page-link a {position: relative; top: 175px; font-size: 14px; color:#1fb4ae;}
 
-.register-input {margin-top:20px;outline-color: #1fb4ae;box-shadow: none;border-color: #b7b7b7;display: block;height: 45px;width: 100%;padding-left: 10px;font-size: 13px;line-height: 1.42857143;color: #b7b7b7;background-color: #fff;background-image: none;border: 1px solid #b7b7b7;border-radius: 0px;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);box-shadow: inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;}
+.register-input {margin-top:20px;outline-color: #1fb4ae;box-shadow: none;border-color: #b7b7b7;display: block;height: 45px;width: 100%;padding-left: 10px;font-size: 13px;line-height: 1.42857143;color: #817e78;background-color: #fff;background-image: none;border: 1px solid #b7b7b7;border-radius: 0px;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);box-shadow: inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;}
 .firstname {width: 48%; float: left;}
 .lastname {width: 48%; float: right;}
 .register-terms {color:#1fb4ae;}

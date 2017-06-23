@@ -34,7 +34,6 @@
                         {!! Form::text('org_type', $company->org_type,['class'=>'form-control', 'placeholder'=>'']) !!}
                     </div>
                 </div>
-
             </div>
             <div class="col-md-6">
                 <div class="form-group">
@@ -186,13 +185,18 @@
                 </div>
             </div>
             <div class="col-md-6">
-                &nbsp;
+                <div class="form-group">
+                    {!! Form::label('nav', 'Salary Type', ['class' => 'control-label col-sm-4']); !!}
+                    <div class="col-sm-8">
+                        {!! Form::select('salary_type', ['d' => 'Daily', 'w' => 'Weekly', 'sm' => 'Semi-Monthly', 'm' => 'Monthly'], $company->salary_type,['class'=>'form-control', 'required']) !!}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="col-md-2">
       <!-- <input type="button" class="btn dp-white-bg pull-left" value="Cancel"> -->
-      {!! Form::submit('Update Information', ['class' => 'btn dp-primary-bg']) !!}
+        {!! Form::submit('Update Information', ['class' => 'btn dp-primary-bg']) !!}
       <!-- <input type="button" class="btn dp-primary-bg pull-right" value="Submit"> -->
       <br><br><br><br>
     </div>

@@ -32,12 +32,34 @@ class Company extends Model
         'gov_sss',
         'gov_philhealth',
         'nav',
+        'salary_type',
     ];
+    
+    public function payrolls()
+    {
+        return $this->hasMany('App\Payroll');
+    }
 
     public function user()
     {
     	return $this->belongsToMany('App\User');
     }
+    
+    public function company_user()
+    {
+        return $this->hasOne('App\Options\Company_user');
+    }
+    
+    public function employees()
+    {
+        return $this->hasMany('App\Employee');
+    }
+
+
+
+
+
+
 
     public function getComId()
     {

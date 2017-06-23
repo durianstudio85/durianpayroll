@@ -35,6 +35,7 @@ class CreateCompanyDetailsTable extends Migration
             $table->string('gov_tin');
             $table->string('gov_sss');
             $table->string('gov_philhealth');
+            $table->string('salary_type');
             $table->timestamps();
         });
     }

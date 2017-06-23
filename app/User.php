@@ -29,8 +29,17 @@ class User extends Authenticatable
 
     public function company()
     {
-        return $this->belongsToMany('App\Company');
+        return $this->hasOne('App\Company');
     }
+    
+    public function company_user()
+    {
+        return $this->hasOne('App\Options\Company_user');
+    }
+    
+
+
+
 
 
     public function getCompanyUser()

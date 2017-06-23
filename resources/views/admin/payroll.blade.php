@@ -31,7 +31,7 @@
     			            <tr>
     			                <th>Payroll #</th>
     			                <th>Date Range</th>
-                                <th>Days</th>
+                                <th>Working Days</th>
     			                <th>Created Date</th>
     			                <th>Status</th>
     			                <th>&nbsp;</th>
@@ -42,7 +42,7 @@
         			        	<tr>
         			        		<td>{{ 1000 + $list->id }}</td>
         			        		<td>{{ date('l, F d, Y', strtotime($list->date_start_range)) }} - {{ date('l, F d, Y', strtotime($list->date_end_range)) }}</td>
-        			        		<td>{{ round(abs(strtotime($list->date_start_range)-strtotime($list->date_end_range))/86400) }} Days</td>
+        			        		<td>{{ round(abs(strtotime($list->date_start_range)-strtotime($list->date_end_range))/86400)- 1 }} Days</td>
                                     <td>{{ date('l, F d, Y', strtotime($list->created_at)) }}</td>
                                     <td>{{ $list->status }}</td>
         			        		<td>

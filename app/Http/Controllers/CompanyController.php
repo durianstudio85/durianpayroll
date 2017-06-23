@@ -114,6 +114,7 @@ class CompanyController extends Controller
             'gov_sss' => $request->get('gov_sss'),
             'gov_philhealth' => $request->get('gov_philhealth'),
             'nav' => $request->get('nav'),
+            'salary_type' => $request->get('salary_type'),
         ];
         $company->update($data);
         return redirect('/company/setup/'.$id);

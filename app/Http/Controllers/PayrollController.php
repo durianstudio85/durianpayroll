@@ -12,6 +12,10 @@ use App\Options\Benefits\Benefit;
 use App\Payroll;
 use App\Payroll_item;
 use App\Option;
+use App\Options\Company_user;
+use App\User;
+use Auth;
+use Carbon\Carbon;
 
 class PayrollController extends Controller
 {
@@ -26,13 +30,9 @@ class PayrollController extends Controller
      */
     public function index()
     {
-        $company = new Company;
-
-        $comId = $company->getComId();
-        $payroll = Payroll::where('company_id', '=', $comId)->get();
-
+        $comId = Auth::user()->company_user->company_id;
+        $payroll = Company::find($comId)->payrolls;
         return view('admin.payroll', compact('payroll'));
-
     }
 
     /**
@@ -53,17 +53,42 @@ class PayrollController extends Controller
      */
     public function store(Request $request)
     {
-
+        
+        
         $benefit = new Benefit;
         $company = new Company;
-        $comId = $company->getComId();
+        // $comId = $company->getComId();
+        $comId = Auth::user()->company_user->company_id;
 
+        $MyDateStartCarbon = Carbon::parse($request->get('date_start'));
+        
+        // in_array($MyDateStartCarbon->timestamp, $holidays) ||
+        
+        // while (true) {
+
+        //     // verify date,  not in holiday and is not weekend
+        //     if ( $MyDateStartCarbon->isWeekend() ) {
+
+        //         // echo "-- is holiday or weekend ". $MyDateCarbon->toRfc2822String() . " <BR>";
+
+        //         // the day is either in the holidays array or is a weekend
+        //         // add one day
+        //         $dateStart = $MyDateStartCarbon->addDay();
+        //     } else {
+        //         // ok, day should be good, exit while
+        //         break;
+        //     }
+
+        // }
+        
+        // $request->get('date_end')
         $paypal_data = [
             'company_id' => $comId,
             'date_start_range' => $request->get('date_start'),
-            'date_end_range' => $request->get('date_end'),
+            'date_end_range' => $MyDateStartCarbon->addDays(14),
             'status' => 'Unpaid',
         ];
+        
 
         $paypal = Payroll::create($paypal_data);
 
@@ -87,11 +112,13 @@ class PayrollController extends Controller
             $absent = $request->absent[$key];
             
             $totalEarnings = ($basic_pay + $overtime + $night_diff + $double_pay + $holiday + $bonus) - ( $absent + $sss + $philhealth + $pagibig + $others);
-            $totalTaxSalary = Option::salaryTax($totalEarnings, $employee->status);
+            // $totalTaxSalary = Option::salaryTax($totalEarnings, $employee->status);
+            
+            $totalTaxSalary = Option::tax($totalEarnings, $employee->status);
+            
             $total_pay  = ($basic_pay + $overtime + $night_diff + $double_pay + $holiday + $bonus) - ( $sss + $pagibig + $philhealth + $absent + $others + $loans + $totalTaxSalary );
             $totalDeduction = $totalTaxSalary + $sss + $philhealth + $pagibig + $loans + $others + $absent;
             
-
             $data = [
                 'company_id' => $comId,
                 'payroll_id' => $paypal->id,
@@ -187,8 +214,6 @@ class PayrollController extends Controller
             $others = $request->others;
             $absent = $request->absent;
             
-            
-            
             $totalEarnings = ($basic_pay + $overtime + $night_diff + $double_pay + $holiday + $bonus) - ( $request->absent + $sss + $philhealth + $pagibig + $others);
                         
             $totalTaxSalary = Option::salaryTax($totalEarnings, $employee->status);
@@ -208,7 +233,6 @@ class PayrollController extends Controller
                 'total_pay' => $total_pay,
                 'tax' => $totalTaxSalary,
                 'deduction' => $totalDeduction,
-            
             ];
             
             $payrollItems->update($data);

@@ -179,13 +179,15 @@
                                 <div class="col-lg-2 col-md-3 col-sm-4">
                                     {!! Form::label('', 'Select Pay Cycle', [ 'style' => 'font-size: 22px;']) !!}
                                 </div>
+                                <!-- <div class='col-lg-2 col-md-3 col-sm-4'>
+                                    {!! Form::select('status', ['first' => '1st - 15th', 'second' => '15th - 30th'], '',['class'=>'form-control', 'placeholder' => 'Select PayCycle']) !!}
+                                </div> -->
                                 <div class="col-lg-2 col-md-3 col-sm-4">
                                     {!! Form::text('date_start', null,['class'=>'form-control', 'placeholder'=>'Date Start' , 'onfocus' => '(this.type="date")', 'required']) !!}
                                 </div>
                                 <div class="col-lg-2 col-md-3 col-sm-4">
-                                    {!! Form::text('date_end', null,['class'=>'form-control', 'placeholder'=>'Date End', 'onfocus' => '(this.type="date")', 'required']) !!}
+                                    {!! Form::select('type', ['1' => '1st', '2' => '2nd'], null,['class'=>'form-control', 'placeholder'=>'Select', 'required']) !!}
                                 </div>
-                                
                             </div>
                             <div class="table-responsive">
                             <table width="100%" class="table table-striped table-hover">
@@ -202,18 +204,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ( Option::allEmployeeList() as $employee)
+                                    @foreach ( Option::allEmployeeList() as $employee )
                                         <tr>
                                             <td>
-                                                
                                                 {{ $employee->employee_id }}
                                             </td>
                                             <td>{{ $employee->last_name }}, {{ $employee->first_name }}</td>
-                                            <td>{{ number_format( $employee->basic_pay, 2, '.', ',')  }}</td>
+                                            <td>{{ number_format($employee->basic_pay / 2, 2, '.', ',') }}</td>
                                             <td>{{ Option::Benefits()->getSSS($employee->basic_pay) }}</td>
                                             <td>100</td>
                                             <td>{{ Option::Benefits()->getPhilhealth($employee->basic_pay) }}</td>
-                                            <td>{{ number_format(Option::salaryTax($employee->basic_pay, $employee->status), 2, '.', ',')  }}</td>
+                                            <td>{{ number_format(Option::salaryTax(Option::employeeDetails($employee->id)->basic_pay, Option::employeeDetails($employee->id)->status), 2, '.', ',')  }}</td>
                                             <td>
                                                 <a href="#edit" style="color: #adacac;margin: 0px 5px;font-size: 15px;"  data-toggle="modal" data-target="#editPayslipEmployee{{ $employee->id }}"><i class="fa fa-pencil fa-btn" aria-hidden="true"></i></a>
                                                 <!-- Employee Modal -->
@@ -234,7 +235,7 @@
             </div>
         </div>
     </div>
- @foreach ( Option::allEmployeeList() as $employee)
+ @foreach ( Option::allEmployeeList() as $employee )
     <div class="modal modal2 fade" id="editPayslipEmployee{{ $employee->id }}" role="dialog">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">

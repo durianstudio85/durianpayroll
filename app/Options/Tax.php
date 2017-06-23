@@ -7,8 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Tax extends Model
 {
     protected $fillable = [
-        'status', 'salary_range', 'percent_over', 'tax', 'salary_type',
+        'status', 
+        'salary_range', 
+        'percent_over', 
+        'tax', 
+        'salary_type',
     ];
+
+
+    
+
+
 
 
     public function InsertTaxFunction()
