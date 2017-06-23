@@ -31,6 +31,7 @@
 				<center>
 					<h3>REMOVE PAYROLL STRESS WITH OUR</h3>
 					<h1>FREE AUTOMATED PAYROLL SYSTEM</h1>
+					<!-- Free Text -->
 				</center>
 			</div>
 			<div class="landing-bt">
