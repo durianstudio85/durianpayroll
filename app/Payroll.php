@@ -11,6 +11,7 @@ class Payroll extends Model
         'payroll_id', 
         'date_start_range', 
         'date_end_range', 
+        'cycle_type',
         'status', 
     ];
     

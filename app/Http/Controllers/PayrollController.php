@@ -86,6 +86,7 @@ class PayrollController extends Controller
             'company_id' => $comId,
             'date_start_range' => $request->get('date_start'),
             'date_end_range' => $MyDateStartCarbon->addDays(14),
+            'cycle_type' => $request->get('cycle_type'),
             'status' => 'Unpaid',
         ];
         
@@ -96,7 +97,7 @@ class PayrollController extends Controller
             $employee = Employee::find($request->employee_id[$key]);
             
             // Total Earnings
-            $basic_pay = $employee->basic_pay;
+            $basic_pay = $employee->basic_pay / 2;
             $overtime = $request->overtime[$key];
             $night_diff = $request->night_differential[$key];
             $double_pay = $request->double_pay[$key];
@@ -104,17 +105,19 @@ class PayrollController extends Controller
             $bonus = $request->bonus[$key];
             
             // Total Deductions
-            $sss = $benefit->getSSS($basic_pay);
-            $philhealth = $benefit->getPhilhealth($basic_pay);
-            $pagibig = 100;
+            $sss = $benefit->getSSS($basic_pay) / 2;
+            $philhealth = $benefit->getPhilhealth($basic_pay) / 2;
+            $pagibig = 100 / 2;
             $loans = $request->loans[$key];
             $others = $request->others[$key];
             $absent = $request->absent[$key];
             
             $totalEarnings = ($basic_pay + $overtime + $night_diff + $double_pay + $holiday + $bonus) - ( $absent + $sss + $philhealth + $pagibig + $others);
-            // $totalTaxSalary = Option::salaryTax($totalEarnings, $employee->status);
+            $basic_pay_divided = $basic_pay / 2;
             
-            $totalTaxSalary = Option::tax($totalEarnings, $employee->status);
+            $totalTaxSalary = Option::salaryTax($employee->basic_pay, $employee->status);
+            
+            // $totalTaxSalary = Option::tax($totalEarnings, $employee->status);
             
             $total_pay  = ($basic_pay + $overtime + $night_diff + $double_pay + $holiday + $bonus) - ( $sss + $pagibig + $philhealth + $absent + $others + $loans + $totalTaxSalary );
             $totalDeduction = $totalTaxSalary + $sss + $philhealth + $pagibig + $loans + $others + $absent;
@@ -123,7 +126,7 @@ class PayrollController extends Controller
                 'company_id' => $comId,
                 'payroll_id' => $paypal->id,
                 'employee_id' => $employee->id,
-                'basic_pay' => $employee->basic_pay,
+                'basic_pay' => $employee->basic_pay / 2 ,
                 
                 //Income 
                 'overtime' => $request->overtime[$key],
@@ -133,10 +136,10 @@ class PayrollController extends Controller
                 'bonus' => $request->bonus[$key],
                 
                 // Total Deductions
-                'sss' => $sss,
-                'pagibig' => $pagibig,
-                'philhealth' => $philhealth,
-                'tax' => $totalTaxSalary,
+                'sss' => $sss / 2,
+                'pagibig' => $pagibig / 2,
+                'philhealth' => $philhealth / 2,
+                'tax' => $totalTaxSalary / 2,
                 'loans' => $request->loans[$key],
                 'absent' => $request->absent[$key],
                 'others' => $request->others[$key],                

@@ -18,6 +18,7 @@ class CreatePayrollTable extends Migration
             $table->string('payroll_id');
             $table->date('date_start_range');
             $table->date('date_end_range');
+            $table->string('cycle_type');
             $table->string('status');
             $table->timestamps();
         });
