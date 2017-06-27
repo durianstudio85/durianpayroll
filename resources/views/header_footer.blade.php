@@ -204,23 +204,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ( Option::allEmployeeList() as $employee )
-                                    <tr>
-                                        <td>
-                                            {{ $employee->employee_id }}
-                                        </td>
-                                        <td>{{ $employee->last_name }}, {{ $employee->first_name }}</td>
-                                        <td>{{ number_format($employee->basic_pay / 2, 2, '.', ',') }}</td>
-                                        <td>{{ Option::Benefits()->getSSS($employee->basic_pay) / 2 }}</td>
-                                        <td>{{ 100 / 2 }}</td>
-                                        <td>{{ Option::Benefits()->getPhilhealth($employee->basic_pay) / 2 }}</td>
-                                        <td>{{ number_format(Option::salaryTax(Option::employeeDetails($employee->id)->basic_pay, Option::employeeDetails($employee->id)->status) / 2, 2, '.', ',')  }}</td>
-                                        <td>
-                                            <a href="#edit" style="color: #adacac;margin: 0px 5px;font-size: 15px;"  data-toggle="modal" data-target="#editPayslipEmployee{{ $employee->id }}"><i class="fa fa-pencil fa-btn" aria-hidden="true"></i></a>
-                                            <!-- Employee Modal -->
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                @if( Option::allEmployeeList() )
+                                    @foreach ( Option::allEmployeeList() as $employee )
+                                        <tr>
+                                            <td>
+                                                {{ $employee->employee_id }}
+                                            </td>
+                                            <td>{{ $employee->last_name }}, {{ $employee->first_name }}</td>
+                                            <td>{{ number_format($employee->basic_pay / 2, 2, '.', ',') }}</td>
+                                            <td>{{ Option::Benefits()->getSSS($employee->basic_pay) / 2 }}</td>
+                                            <td>{{ 100 / 2 }}</td>
+                                            <td>{{ Option::Benefits()->getPhilhealth($employee->basic_pay) / 2 }}</td>
+                                            <td>{{ number_format(Option::salaryTax(Option::employeeDetails($employee->id)->basic_pay, Option::employeeDetails($employee->id)->status) / 2, 2, '.', ',')  }}</td>
+                                            <td>
+                                                <a href="#edit" style="color: #adacac;margin: 0px 5px;font-size: 15px;"  data-toggle="modal" data-target="#editPayslipEmployee{{ $employee->id }}"><i class="fa fa-pencil fa-btn" aria-hidden="true"></i></a>
+                                                <!-- Employee Modal -->
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             </tbody>
                         </table>
                         </div>
@@ -235,6 +237,7 @@
             </div>
         </div>
     </div>
+@if( !empty(Option::allEmployeeList()) )
  @foreach ( Option::allEmployeeList() as $employee )
     <div class="modal modal2 fade" id="editPayslipEmployee{{ $employee->id }}" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -369,7 +372,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Loans:</p></div>
-                                <div class="col-sm-6 col-xs-6">{!! Form::number('loans[]', Option::loan($id)->amount_per_pay,['step' => '.01' , 'id'=>'payslip_loans_'.$id, 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('loans[]', Option::loan($id),['step' => '.01' , 'id'=>'payslip_loans_'.$id, 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Others:</p></div>
@@ -385,7 +388,8 @@
                                         $sss = Option::Benefits()->getSSS(Option::employeeDetails($id)->basic_pay);
                                         $philhealth =Option::Benefits()->getPhilhealth(Option::employeeDetails($id)->basic_pay);
                                         
-                                        $loan = Option::loan($id)->amount_per_pay;
+                                        $loan = Option::loan($id);
+                                        
                                     
                                         $totalDeductions =  $tax + $sss + 100 + $philhealth;
                                     @endphp
@@ -394,6 +398,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- $loan = Option::loan($id)->amount_per_pay; -->
+                            <!-- Option::loan($id)->amount_per_pay -->
+                            <!-- - $loan -->
                         </div>
                     </div>
                     <div class="row">
@@ -413,6 +420,7 @@
         </div>
     </div>
        @endforeach
+@endif
      {!! Form::close() !!}
 @endif 
 

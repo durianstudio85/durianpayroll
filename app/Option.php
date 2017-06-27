@@ -83,8 +83,15 @@ class Option extends Model
     
     public static function loan($id='')
     {
+        $amount = 0;
+        
         $loan = Employee::find($id)->loans()->where('date_start','<=',date('Y-m-d'))->where('status','=',1002)->first();   
-        return $loan;
+        if ( !empty($loan)) {
+            $amount = $loan->amount_per_day;
+        }
+        
+        return $amount;
+     
     }
     
     
