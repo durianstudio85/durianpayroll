@@ -17,6 +17,8 @@ use App\User;
 use Auth;
 use Carbon\Carbon;
 
+use App\Loan;
+
 class PayrollController extends Controller
 {
     public function __construct()
@@ -108,9 +110,28 @@ class PayrollController extends Controller
             $sss = $benefit->getSSS($basic_pay) / 2;
             $philhealth = $benefit->getPhilhealth($basic_pay) / 2;
             $pagibig = 100 / 2;
-            $loans = $request->loans[$key];
+            // $loans = $request->loans[$key];
             $others = $request->others[$key];
             $absent = $request->absent[$key];
+            
+            if (Option::loan($employee->id)) {
+                $loans = Option::loan($employee->id)->amount_per_pay;
+                
+                $loan_id = Option::loan($employee->id)->id;
+                
+                $loan_items_data = [
+                    'amount' => $loans,
+                    'status' => 1001,
+                    'date' => date('Y-m-d'),
+                ];
+                
+                Loan::find($loan_id)->loan_items()->create($loan_items_data);
+                
+            }else{
+                $loans = 0;
+            }
+            
+            
             
             $totalEarnings = ($basic_pay + $overtime + $night_diff + $double_pay + $holiday + $bonus) - ( $absent + $sss + $philhealth + $pagibig + $others);
             $basic_pay_divided = $basic_pay / 2;
@@ -121,6 +142,8 @@ class PayrollController extends Controller
             
             $total_pay  = ($basic_pay + $overtime + $night_diff + $double_pay + $holiday + $bonus) - ( $sss + $pagibig + $philhealth + $absent + $others + $loans + $totalTaxSalary );
             $totalDeduction = $totalTaxSalary + $sss + $philhealth + $pagibig + $loans + $others + $absent;
+            
+            
             
             $data = [
                 'company_id' => $comId,
@@ -140,7 +163,7 @@ class PayrollController extends Controller
                 'pagibig' => $pagibig / 2,
                 'philhealth' => $philhealth / 2,
                 'tax' => $totalTaxSalary / 2,
-                'loans' => $request->loans[$key],
+                'loans' => $loans,
                 'absent' => $request->absent[$key],
                 'others' => $request->others[$key],                
                 
@@ -149,6 +172,8 @@ class PayrollController extends Controller
             ];
 
             Payroll_item::create($data);
+            
+            
         }
 
         session()->flash('flash_message', 'Payroll Created Successfully..');

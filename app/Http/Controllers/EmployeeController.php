@@ -162,7 +162,7 @@ class EmployeeController extends Controller
             // $pass = $employee->last_name;
             // Mail::send('emails.reminder', compact('user', 'pass'), function ($m) use ($current_user) {
             //     $m->from('no-reply@durianpayroll.com', 'No Reply');
-            //     $m->to('jaybeeumbay159@outlook.com', 'Jaabee')->subject('Account Details.');
+            //     $m->to($user, 'Jaabee')->subject('Account Details.');
             // });
             
         }

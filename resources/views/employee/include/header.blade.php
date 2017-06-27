@@ -34,7 +34,7 @@
             </div>
             <div class="dp-nav-menu">
                 <a class="" href="{{ Url('employee/payslip') }}"><i class="{{ Request::is('employee/payslip') ? 'active' : '' }} pe-7s-cash pe-2x"></i></a>
-                <a class="" href="{{ Url('pay/account') }}"><i class="{{ Request::is('pay/account*') ? 'active' : '' }} pe-7s-credit pe-2x"></i></a>
+                <a class="" href="{{ Url('employee/loans') }}"><i class="{{ Request::is('pay/account*') ? 'active' : '' }} pe-7s-credit pe-2x"></i></a>
             </div>
             <div class="dp-nav-logout dp-right">
                 <a href="{{ url('/employee/logout') }}"><i class="pe-7s-power pe-2x"></i></a>   

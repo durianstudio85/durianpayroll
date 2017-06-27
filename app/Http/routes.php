@@ -53,9 +53,6 @@ Route::get('user/activation/{token}', 'HomeController@employeeReg');
 
 
 
-
-
-
 Route::group(['middlewareGroups' => 'employee'], function () {
     //Login Routes...
     Route::get('/employee/login','Employee\AuthController@showLoginForm');
@@ -68,6 +65,10 @@ Route::group(['middlewareGroups' => 'employee'], function () {
     
     Route::get('/employee', 'EmployeeAccController@payslip');
     Route::get('/employee/payslip', 'EmployeeAccController@payslip');
+    
+    Route::get('employee/loans', 'EmployeeAccController@loan');
+    Route::post('employee/loans', 'EmployeeAccController@applyLoan');
+    
     
     Route::get('/employee/settings', 'EmployeeAccController@setting');
     Route::patch('/employee/settings/{$id}/edit', 'EmployeeAccController@settingUpdate');

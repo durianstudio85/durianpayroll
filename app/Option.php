@@ -15,6 +15,7 @@ use App\Payroll_item;
 
 use Carbon\Carbon;
 use App\Payroll;
+use App\Loan;
 
 class Option extends Model
 {
@@ -78,6 +79,31 @@ class Option extends Model
     //         return $benefit->getSSS($basic_pay);    
     //     }
     // }
+    
+    
+    public static function loan($id='')
+    {
+        $loan = Employee::find($id)->loans()->where('date_start','<=',date('Y-m-d'))->where('status','=',1002)->first();   
+        return $loan;
+    }
+    
+    
+    public static function totalLoanBalance($id='')
+    {
+        $loan = Loan::find($id);
+        $total = 0;
+        foreach ($loan->loan_items as $list) {
+            $total += $list->amount;
+        }
+        
+        return $loan->total_payment - $total;
+    }
+    
+    
+    
+    
+    
+    
     
 
     public static function allEmployeeList(){

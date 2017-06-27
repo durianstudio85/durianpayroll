@@ -245,7 +245,10 @@
                 </div>
                  <div class="modal-body">
                     <center>
-                        <img src="{{ asset('upload/'.Option::comDetails('company_logo')) }}" style="max-height: 60px; margin-bottom: 20px;">
+                        @if(Option::comDetails('company_logo'))
+                            <img src="{{ asset('upload/'.Option::comDetails('company_logo')) }}" style="max-height: 60px; margin-bottom: 20px;">
+                        @endif
+                        
                         <p>{{ Option::comDetails('business_address') }}</p>
                         @if ( Option::comDetails('contact_telephone') != '' )
                             <p>Tel: {{ Option::comDetails('contact_telephone') }}</p>
@@ -366,7 +369,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Loans:</p></div>
-                                <div class="col-sm-6 col-xs-6">{!! Form::number('loans[]', 0,['step' => '.01' , 'id'=>'payslip_loans_'.$id, 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('loans[]', Option::loan($id)->amount_per_pay,['step' => '.01' , 'id'=>'payslip_loans_'.$id, 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Others:</p></div>
@@ -381,11 +384,13 @@
                                         $tax =  Option::salaryTax(Option::employeeDetails($id)->basic_pay, Option::employeeDetails($id)->status);
                                         $sss = Option::Benefits()->getSSS(Option::employeeDetails($id)->basic_pay);
                                         $philhealth =Option::Benefits()->getPhilhealth(Option::employeeDetails($id)->basic_pay);
+                                        
+                                        $loan = Option::loan($id)->amount_per_pay;
                                     
                                         $totalDeductions =  $tax + $sss + 100 + $philhealth;
                                     @endphp
                                     <div class="col-sm-6" style="padding-left: 0px;">
-                                        <p id="payslip_total_deductions_{{ $id }}" class="payslip-head" style="text-align: right;">{{ number_format( $totalDeductions / 2 , 2, '.', ',')  }}</p>
+                                        <p id="payslip_total_deductions_{{ $id }}" class="payslip-head" style="text-align: right;">{{ number_format( ($totalDeductions / 2) + $loan , 2, '.', ',')  }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -394,7 +399,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             @php
-                                $netPay = $totalEarnings - $totalDeductions;
+                                $netPay = $totalEarnings - ($totalDeductions / 2) - $loan;
                             @endphp
                             <p class="netPayRounded"><span>NET PAY ROUNDED</span>  <span id="payslip_net_pay_{{ $id }}">{{ number_format( $netPay, 2, '.', ',')  }}</span></p>
                         </div>

@@ -35,4 +35,10 @@ class Employee extends Authenticatable
         return $this->hasMany('App\Payroll_item');
     }
     
+    public function loans()
+    {
+        return $this->hasMany('App\Loan');
+    }
+
+
 }

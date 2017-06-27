@@ -41,11 +41,40 @@ class EmployeeAccController extends Controller
     
     public function setting()
     {
-        // $id = Auth::employee()->id;
-        
         $id = auth()->guard('employee')->user()->id;
         $myProfile = Employee::findOrFail($id);
         return view('employee.setting', compact('myProfile'));
+    }
+    
+    public function loan()
+    {
+        $id = auth()->guard('employee')->user()->id;
+        $employee = Employee::find($id);
+        return view('employee.loan', compact('employee'));
+    }
+    
+    public function applyLoan(Request $request)
+    {
+        $id = auth()->guard('employee')->user()->id;
+        
+        $amountPayment = $request->amount / $request->no_of_payments;
+        
+        $loanData = [
+            'date_start' => $request->date_start,
+            'total_payment' => $request->amount,
+            'no_of_pay' => $request->no_of_payments,
+            'amount_per_pay' => $amountPayment,
+            'status' => 1001,
+        ];
+        
+        $employee = Employee::find($id)->loans()->create($loanData);
+        
+        // $employee->loan->create($loanData);
+        
+        session()->flash('flash_message', 'Loan Added Successfully');
+        session()->flash('flash_message_important', 'alert-success');
+        
+        return redirect('/employee/loans');
     }
     
     public function settingUpdate($id)
