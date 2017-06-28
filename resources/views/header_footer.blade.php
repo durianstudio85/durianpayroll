@@ -186,7 +186,7 @@
                                 {!! Form::text('date_start', null,['class'=>'form-control', 'placeholder'=>'Date Start' , 'onfocus' => '(this.type="date")', 'required']) !!}
                             </div>
                             <div class="col-lg-2 col-md-3 col-sm-4">
-                                {!! Form::select('cycle_type', ['1' => '1st', '2' => '2nd'], null,['class'=>'form-control', 'placeholder'=>'Select', 'required']) !!}
+                                {!! Form::select('cycle_type', ['15' => '15th', '30' => '30th'], null,['class'=>'form-control', 'placeholder'=>'Select', 'required']) !!}
                             </div>
                         </div>
                         <div class="table-responsive">
