@@ -110,14 +110,15 @@ class PayrollController extends Controller
             $sss = $benefit->getSSS($basic_pay) / 2;
             $philhealth = $benefit->getPhilhealth($basic_pay) / 2;
             $pagibig = 100 / 2;
-            // $loans = $request->loans[$key];
+            $loans = $request->loans[$key];
             $others = $request->others[$key];
             $absent = $request->absent[$key];
             
             if (Option::loan($employee->id)) {
-                $loans = Option::loan($employee->id)->amount_per_pay;
                 
-                $loan_id = Option::loan($employee->id)->id;
+                $loanData = Employee::find($employee->id)->loans()->where('date_start','<=',date('Y-m-d'))->where('status','=',1002)->first();
+                
+                // $loan_id = Option::loan($employee->id)->id;
                 
                 $loan_items_data = [
                     'amount' => $loans,
@@ -125,7 +126,7 @@ class PayrollController extends Controller
                     'date' => date('Y-m-d'),
                 ];
                 
-                Loan::find($loan_id)->loan_items()->create($loan_items_data);
+                Loan::find($loanData->id)->loan_items()->create($loan_items_data);
                 
             }else{
                 $loans = 0;

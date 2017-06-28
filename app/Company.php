@@ -54,6 +54,11 @@ class Company extends Model
     {
         return $this->hasMany('App\Employee');
     }
+    
+    public function loans()
+    {
+        return $this->hasMany('App\Loan');
+    }
 
 
 

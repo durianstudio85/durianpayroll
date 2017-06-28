@@ -47,6 +47,9 @@ Route::post('payroll', 'PayrollController@store');
 Route::patch('payroll/edit/{id}', 'PayrollController@update');
 Route::delete('payroll/{id}', 'PayrollController@destroy');
 
+Route::get('loans', 'LoanController@index');
+Route::patch('loans/{id}', 'LoanController@update');
+
 Route::get('email', 'HomeController@email');
 
 Route::get('user/activation/{token}', 'HomeController@employeeReg');

@@ -56,10 +56,12 @@ class EmployeeAccController extends Controller
     public function applyLoan(Request $request)
     {
         $id = auth()->guard('employee')->user()->id;
+        $company_id = auth()->guard('employee')->user()->company_id;
         
         $amountPayment = $request->amount / $request->no_of_payments;
         
         $loanData = [
+            'company_id' => $company_id,
             'date_start' => $request->date_start,
             'total_payment' => $request->amount,
             'no_of_pay' => $request->no_of_payments,

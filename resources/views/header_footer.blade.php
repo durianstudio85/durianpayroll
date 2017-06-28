@@ -372,7 +372,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Loans:</p></div>
-                                <div class="col-sm-6 col-xs-6">{!! Form::number('loans[]', Option::loan($id),['step' => '.01' , 'id'=>'payslip_loans_'.$id, 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
+                                <div class="col-sm-6 col-xs-6">{!! Form::number('loans[]', Option::loan($id),['step' => '.01', 'max'=> Option::totalLoanBalance($id) , 'id'=>'payslip_loans_'.$id, 'class'=>'form-control input-sm', 'style'=>'min-height: 20px; height: 24px; width: 140px; float:right;' ,  'placeholder'=>'']) !!}</div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6"><p>Others:</p></div>

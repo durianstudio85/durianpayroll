@@ -87,11 +87,20 @@ class Option extends Model
         
         $loan = Employee::find($id)->loans()->where('date_start','<=',date('Y-m-d'))->where('status','=',1002)->first();   
         if ( !empty($loan)) {
-            $amount = $loan->amount_per_day;
+            $total = 0;
+            foreach ($loan->loan_items as $list) {
+                $total += $list->amount;
+            }
+            
+            $totalBalance = $loan->total_payment - $total;
+            
+            if ($totalBalance >= $loan->amount_per_pay ) {
+                $amount = $loan->amount_per_pay;
+            }else{
+                $amount = $totalBalance;
+            }
         }
-        
         return $amount;
-     
     }
     
     
@@ -99,11 +108,16 @@ class Option extends Model
     {
         $loan = Loan::find($id);
         $total = 0;
-        foreach ($loan->loan_items as $list) {
-            $total += $list->amount;
-        }
+        if ( !empty($loan) ) {
+            foreach ($loan->loan_items as $list) {
+                $total += $list->amount;
+            }
         
-        return $loan->total_payment - $total;
+            return $loan->total_payment - $total;
+        }else{
+            return $total;
+        }
+            
     }
     
     

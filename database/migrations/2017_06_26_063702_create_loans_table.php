@@ -15,6 +15,7 @@ class CreateLoansTable extends Migration
         Schema::create('loans', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('employee_id');
+            $table->integer('company_id');
             $table->date('date_start');
             $table->date('date_end');
             $table->integer('no_of_pay');
