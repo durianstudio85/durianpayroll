@@ -22,7 +22,6 @@ class LoanController extends Controller
     	$comId = Auth::user()->company_user->company_id;
         $loans = Company::find($comId)->loans;
 
-    	
     	return view('admin.loan', compact('loans')); 
     }
     

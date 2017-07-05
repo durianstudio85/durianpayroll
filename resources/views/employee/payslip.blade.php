@@ -10,7 +10,26 @@
 		</div>	
 		@include('notification.flash')
 	</div>
-    <br><br><br>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container-fluid">
+                @if ( !empty($time) )
+                    {!! Form::model($time,['method'=>'patch','action'=>['EmployeeAccController@timeOut', $time->id],    'onsubmit' => 'return ConfirmOut()']) !!}
+                        <button type="submit" class="btn dp-primary-bg">Time Out</button>
+                    {!! Form::close() !!}
+                @else
+                    {!! Form::open(['url'=>'timein', 'class' => 'form-horizontal']) !!}
+                        <button type="submit" class="btn dp-primary-bg">Time In</button>
+                    {!! Form::close() !!}
+                
+                @endif
+                
+                
+            </div>
+        </div>
+    </div>
+    <br><br>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="container-fluid">
@@ -215,7 +234,16 @@
 @endforeach
 
 
-
+<script>
+    function ConfirmOut()
+    {
+        var x = confirm("Are you sure you want to out?");
+        if (x)
+            return true;
+        else
+            return false;
+    }
+</script>
 
 
 

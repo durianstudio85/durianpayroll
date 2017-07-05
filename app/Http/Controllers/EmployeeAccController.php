@@ -10,6 +10,8 @@ use App\Employee;
 use App\Payroll;
 use App\Payroll_item;
 use App\Company;
+use App\Time_record;
+use Carbon\Carbon;
 
 
 class EmployeeAccController extends Controller
@@ -33,8 +35,10 @@ class EmployeeAccController extends Controller
         $id = auth()->guard('employee')->user()->id;
         $company = new Company;
         
+        $time = Time_record::where('employee_id','=', $id)->where('timeout','=', '00:00:00')->first();
+        
         $myPayslip = Payroll_item::where('employee_id', '=', $id)->get();
-        return view('employee.payslip', compact('myPayslip', 'company', 'id'));
+        return view('employee.payslip', compact('myPayslip', 'company', 'id', 'time'));
     }
     
     
@@ -77,6 +81,35 @@ class EmployeeAccController extends Controller
         session()->flash('flash_message_important', 'alert-success');
         
         return redirect('/employee/loans');
+    }
+    
+    public function timeIn(Request $request)
+    {
+        $id = auth()->guard('employee')->user()->id;
+        $company_id = auth()->guard('employee')->user()->company_id;
+        
+        $now = Carbon::now();
+
+        $data = [
+            'timein'=> Carbon::now('Asia/Manila'),
+            'employee_id' => $id,
+            'company_id' => $company_id,
+        ];
+        
+        $inTime = Time_record::create($data);
+        return redirect('/employee');
+    }
+    
+    public function timeOut(Request $request, $id)
+    {
+        $time = Time_record::find($id);
+        
+        $data = [
+            'timeout' => Carbon::now('Asia/Manila'),
+        ];
+        
+        $outTime = $time->update($data);
+        return redirect('/employee');
     }
     
     public function settingUpdate($id)

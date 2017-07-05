@@ -72,6 +72,9 @@ Route::group(['middlewareGroups' => 'employee'], function () {
     Route::get('employee/loans', 'EmployeeAccController@loan');
     Route::post('employee/loans', 'EmployeeAccController@applyLoan');
     
+    Route::post('timein', 'EmployeeAccController@timeIn');
+    Route::patch('timeout/{id}', 'EmployeeAccController@timeOut');
+    
     
     Route::get('/employee/settings', 'EmployeeAccController@setting');
     Route::patch('/employee/settings/{$id}/edit', 'EmployeeAccController@settingUpdate');
