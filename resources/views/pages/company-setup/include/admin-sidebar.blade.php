@@ -1,17 +1,18 @@
-@if ( Option::getNavOption() == 'side' )
+@if ( Option::company()->nav == 'side' ) 
 <div class="dp-sidebar">
-    <div class="side-menu-title" style="background-color: #28384e;">
-        <div class="dp-employee-primary">
-            <center>
-                <img src="{{ asset('images/profile.jpg') }}" class="dp-employee-primary-img">
-                <div class="dp-employee-primary-circle"></div>
-                <div>
-                    <h4>Eduardo Barette</h4>
-                    <p>Admin</p>
-                </div>
-            </center>
+  <div class="side-menu-title" style="background-color: #28384e;">
+    <div class="dp-employee-primary">
+      <center>
+        <img src="{{ asset('images/profile.jpg') }}" class="dp-employee-primary-img">
+        <div class="dp-employee-primary-circle">
         </div>
+        <div>
+          <h4>Eduardo Barette</h4>
+          <p>Admin</p>
+        </div>
+      </center>
     </div>
+  </div>
 
 <!-- **** ORGANIZATION **** -->
       <div class="panel-group">
@@ -53,14 +54,6 @@
         </div>      
       </div>
       
-        <div class="panel-group">
-            <div class="panel panel-default {{{ ( Request::is('loans') ? 'active' : '') }}}">
-                <div class="panel-heading">  
-                    <a href="{{ Url('loans') }}"><span class="icon-sidebar"><i class="fa fa-file-text-o" aria-hidden="true"></i></span>LOANS</a>        
-                </div>
-            </div>      
-        </div>      
-      
 
       <div class="panel-group">
           <div class="panel panel-default">
@@ -69,26 +62,25 @@
             </div>
           </div>      
       </div>
-      
-   <!--  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab">
-                <a data-toggle="collapse" data-parent="#accordion" href="#organizational"  aria-controls="organizational" class="collapsed">
-                    Organizational Structure
-                    <i class="pull-right fa fa-caret-down"></i>
-                </a>
-            </div>      
-            <div id="organizational" class="panel-collapse collapse" role="tabpanel"> 
-                <div>
-                    <a href="{{ Url('company/departments') }}" class="list-group-item">Departments</a>
-                    <a href="{{ Url('company/positions') }}" class="list-group-item">Positions</a>
-                    <a href="{{ Url('company/ranks') }}" class="list-group-item">Ranks</a>
-                    <a href="{{ Url('company/employment-type') }}" class="list-group-item">Employment Type</a>
-                </div>
-            </div>
-        </div>    
-    </div>  
- -->
+    <!-- <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab">
+          <a data-toggle="collapse" data-parent="#accordion" href="#organizational"  aria-controls="organizational" class="collapsed">
+            Organizational Structure
+            <i class="pull-right fa fa-caret-down"></i>
+          </a>
+      </div>      
+      <div id="organizational" class="panel-collapse collapse" role="tabpanel">
+        <div>
+          <a href="{{ Url('company/departments') }}" class="list-group-item">Departments</a>
+          <a href="{{ Url('company/positions') }}" class="list-group-item">Positions</a>
+          <a href="{{ Url('company/ranks') }}" class="list-group-item">Ranks</a>
+          <a href="{{ Url('company/employment-type') }}" class="list-group-item">Employment Type</a>
+       </div>
+      </div>
+    </div>    
+  </div>   -->
+
 <!-- **** END ORGANIZATION **** -->
 
 
@@ -180,5 +172,4 @@
  <br><br><br>
 
 </div>
-
 @endif

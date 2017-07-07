@@ -50,6 +50,15 @@ class Benefit extends Model
 			}
     	}	
     }
+    
+    public function getPagibig($salary='')
+    {
+        if ($salary > 1500) {
+            return $salary * 0.02;
+        }else{
+            return $salary * 0.01;
+        }
+    }
 
 
 

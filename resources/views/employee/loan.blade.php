@@ -15,16 +15,12 @@
 		<div class="col-md-12">
 			<div class="container-fluid">
                  <div class="dp-right full-width dp-text-right">
-                    <button class="btn dp-primary-bg" data-toggle="modal" data-target="#apply">Apply Loan</button>
-                    <!-- <button class="btn dp-primary-bg" data-toggle="modal" data-target="#Mass-Employee"><i class="fa fa-upload"></i> Mass and Employees</button> -->
-                    <!-- <button class="btn dp-danger-bg"><i class="fa fa-download"></i> Download 201</button> -->
+                    <button class="btn dp-primary-bg" data-toggle="modal" data-target="#apply_loan">Apply Loan Request</button>
                 </div>  
-                
 			    <table width="100%" class="table table-striped table-hover">
 			        <thead>
 			            <tr>
 			                <th>Date Start</th>
-			                <th>No. Payments</th>
 			                <th>Amount</th>
                             <th>Amount per Pay</th>
                             <th>Balance</th>
@@ -36,14 +32,13 @@
                         @foreach( $employee->loans as $list )
     			        	<tr>
                                 <td>{{ $list->date_start }}</td>
-                                <td>{{ $list->no_of_pay }}</td>
-                                <td>{{ number_format($list->total_payment, 2, '.', ',')  }}</td>
+                                <td>{{ number_format($list->loan_amount, 2, '.', ',')  }}</td>
                                 <td>{{ number_format($list->amount_per_pay, 2, '.', ',') }}</td>
-                                <td>{{ number_format(Option::totalLoanBalance($list->id), 2, '.', ',') }}</td>
+                                <td>{{ number_format($list->balance($list->id), 2, '.', ',') }}</td>
                                 <td>
-                                    @if($list->status == 1001)
+                                    @if($list->status == 1)
                                         Pending
-                                    @elseif($list->status == 1002)
+                                    @elseif($list->status == 2)
                                         Approve
                                     @else
                                         Paid
@@ -61,8 +56,65 @@
 	</div>
 </div>
 
-<div class="modal fade" id="apply" role="dialog">
-    <div class="modal-dialog  modal-md">
+@foreach( $employee->loans as $list )
+    <div class="modal fade" id="loanChild-{{ $list->id }}" role="dialog">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Loan</h3>
+                </div>
+                <div class="modal-body">
+                    <div style="padding: 0px 0px;">  
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table width="100%" class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Payment Date</th>
+                                                <th>Amount</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach( $list->loan_items as $items )
+                                                <tr>
+                                                    <td>{{ $items->date }}</td>
+                                                    <td>{{ number_format($items->amount, 2, '.', ',')  }}</td>
+                                                    <td>
+                                                        @if($items->status == 1)
+                                                            Pending
+                                                        @elseif($items->status == 2)
+                                                            Approve
+                                                        @else
+                                                            Paid
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div style="padding: 0px 20px;">    
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        {!! Form::submit('Apply', ['class'=>'btn dp-primary-bg']) !!} 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
+
+
+
+<div class="modal fade" id="apply_loan" role="dialog">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             {!! Form::open(['url'=>'employee/loans','files'=>'true', 'class' => 'form-horizontal']) !!}
                 <div class="modal-header">
@@ -111,11 +163,10 @@
                             </div>
                         </div>
                     </div>
-                    
                 </div>
                 <div class="modal-footer">
                     <div style="padding: 0px 20px;">    
-                        <button type="button" class="btn btn-default" data-dismiss="modal" data-number="1">Cancel</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         {!! Form::submit('Apply', ['class'=>'btn dp-primary-bg']) !!} 
                     </div>
                 </div>
@@ -123,6 +174,7 @@
         </div>
     </div>
 </div>
+
 <script>
     $(document).ready(function() {
        $('#no_of_payment, #amount').keyup( function () {
@@ -144,8 +196,5 @@
             $('#amount_per_pay').val(totalAmount);
        });
     });
-
 </script>
-
-
 @stop

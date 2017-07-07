@@ -35,47 +35,26 @@ class Company extends Model
         'salary_type',
     ];
     
-    public function payrolls()
-    {
-        return $this->hasMany('App\Payroll');
-    }
-
-    public function user()
-    {
-    	return $this->belongsToMany('App\User');
-    }
     
-    public function company_user()
-    {
-        return $this->hasOne('App\Options\Company_user');
-    }
     
     public function employees()
     {
         return $this->hasMany('App\Employee');
     }
     
-    public function loans()
+    public function positions()
     {
-        return $this->hasMany('App\Loan');
-    }
-
-
-
-
-
-
-
-    public function getComId()
-    {
-        $userId = Auth::User()->id;
-        $getComId = Company_user::where('user_id', '=', $userId)->first();
-        return $getComId->company_id;
+        return $this->hasMany('App\Position');
     }
     
-    public function getDetails($id='')
+    public function payrolls()
     {
-        $company = Company::find($id);
-        return $company;
+        return $this->hasMany('App\Payroll');
     }
+    
+    public function payroll_items()
+    {
+        return $this->hasMany('App\Payroll_item');
+    }
+    
 }

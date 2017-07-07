@@ -18,6 +18,6 @@ class Payroll extends Model
     
     public function payroll_items()
     {
-    	return $this->hasMany('App\Payroll_items');
+        return $this->hasMany('App\Payroll_item');
     }
 }

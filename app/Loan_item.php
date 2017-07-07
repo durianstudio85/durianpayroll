@@ -13,4 +13,3 @@ class Loan_item extends Model
         'date',
     ];
 }
-

@@ -85,7 +85,6 @@ class AuthController extends Controller
         ];
         
         $company = $user->company()->create($companyData);
-        $company->company_user()->create(['company_position' => 'admin', 'user_id' => $lastid]);
         
         // $business = Company::create([
         //     'user_id' => $lastid,

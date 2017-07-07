@@ -1,10 +1,7 @@
 @extends('header_footer')
 @section('content')
-@include('pages.company-setup.include.admin-sidebar')
-
 <br><br></br>
-
-@if ( Option::getNavOption() == 'side' )
+@if ( $company->nav == 'side' )
 	<div class="dp-container">
 @else
 	<div class="container-fluid">
@@ -78,24 +75,20 @@
 				          	</p>
 				          	<div class="table-responsive">
 					          	<table class="table">
-					          		@foreach ( $recentEmployee as $employeeList )
-						          		<tr>
-						          			<td width="20px">
-						          				<i class="pe-7s-user pe-3x"></i>
-						          			</td>
-						          			<td><p>{{ $employeeList->first_name.' '.$employeeList->last_name }}</p></td>
-						          			<td><p>{{ Option::optionDetails($employeeList->position)->name }}</p></td>
-						          			<td><p>{{ ucfirst($employeeList->gender) }}</p></td>
-						          			<td><p>Single</p></td>
-						          		</tr>
-					          		@endforeach
+					          		<tr>
+					          			<td width="20px">
+					          				<i class="pe-7s-user pe-3x"></i>
+					          			</td>
+					          			<td><p>Jaybee Umbay</p></td>
+					          			<td><p>Web Developer</p></td>
+					          			<td><p>Male</p></td>
+					          			<td><p>Single</p></td>
+					          		</tr>
 					          	</table>
 				          	</div>
 				        </div>
 				        <div class="dp-board-bottom">
-				        	@if( !empty($lastEmployeeUpdate->updated_at))
-				          		<p>Last update: {{ date('l, F d, Y', strtotime($lastEmployeeUpdate->updated_at)) }}</p>
-				          	@endif
+				        	
 				        </div>
 			        </div>
 	        	</div>
@@ -110,8 +103,8 @@
 					        <p class="dp-default">SUMMARY 
 					            <i class="dp-right pe-7s-note2 pe-2x"></i>
 					        </p>
-					        <p class="dp-default  dp-border-bottom">Total Payroll <b class="dp-primary dp-right">{{ $summaryPayrollCount }}</b></p>
-					        <p class="dp-default  dp-border-bottom">Total Employees<b class="dp-primary dp-right">{{ $summaryEmployeeCount }}</b></p>
+					        <p class="dp-default  dp-border-bottom">Total Payroll <b class="dp-primary dp-right">20</b></p>
+					        <p class="dp-default  dp-border-bottom">Total Employees<b class="dp-primary dp-right">50</b></p>
 					        <p class="dp-default ">Total Holidays<b class="dp-primary dp-right">0</b></p>
 
 				        </div>
@@ -131,23 +124,22 @@
 			            	<script>
 			              		var pieData = [
 			               			{
-			                  			value: {{ $countFemale }},
+			                  			value: 20,
 			                  			label: 'Female',
 			                  			color: '#28384e'
 			               			},
 			               			{
-			                  			value: {{ $countMale }},
+			                  			value: 50,
 			                  			label: 'Male',
 			                  			color: '#1fb4ae'
 			               			}
-			              
 					            ];
 			    		        var context = document.getElementById('gender').getContext('2d');
 			            		var genderChart = new Chart(context).Pie(pieData);
 			            	</script>
 			            	<div class="dp-right dp-gender-label">
-			              		<i class="dp-gender-male"></i><label> Male {{ $percentMale }}% </label><br>
-			              		<i class="dp-gender-female"></i><label> Female {{ $percentFemale }}% </label>
+			              		<i class="dp-gender-male"></i><label> Male 20% </label><br>
+			              		<i class="dp-gender-female"></i><label> Female 20% </label>
 			            	</div>
 			            	
 			          	</div>

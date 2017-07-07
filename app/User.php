@@ -32,11 +32,16 @@ class User extends Authenticatable
         return $this->hasOne('App\Company');
     }
     
-    public function company_user()
-    {
-        return $this->hasOne('App\Options\Company_user');
-    }
     
+    
+
+
+
+
+
+
+
+
 
 
 

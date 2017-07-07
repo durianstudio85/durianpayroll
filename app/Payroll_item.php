@@ -26,4 +26,16 @@ class Payroll_item extends Model
         'loans',
         'others'
     ];
+    
+    public function employee()
+    {
+        return $this->hasOne('App\Employee','id', 'employee_id');
+    }
+    
+    public function payroll()
+    {
+        return $this->hasOne('App\Payroll','id', 'payroll_id');
+    }
+    
+    
 }

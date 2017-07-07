@@ -4,26 +4,38 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Loan_item;
+
 class Loan extends Model
 {
     protected $fillable = [
-		'employee_id',
-        'date_start',
-        'date_end',
-        'total_payment',
-        'no_of_pay',
+        'company_id', 
+        'employee_id', 
+        'date_start', 
+        'loan_amount', 
         'amount_per_pay',
-        'status',
-        'company_id',
+        'status', 
     ];
+    
     
     public function loan_items()
     {
         return $this->hasMany('App\Loan_item');
     }
     
-    public function employee()
+    public function balance($id='')
     {
-        return $this->hasOne('App\Employee', 'id', 'employee_id');
+    	$loan = Loan::find($id);
+    	$total = 0;
+    	
+		if ( !empty($loan) ) {
+	        foreach ($loan->loan_items as $list) {
+	            $total += $list->amount;
+	        }
+           	return $loan->loan_amount - $total;
+        }else{
+            return $loan->loan_amount;
+        }
+    	
     }
 }

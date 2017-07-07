@@ -34,21 +34,26 @@ Route::get('/','HomeController@index');
 // Admin Dashboard
 // Route::get('dashboard/redirect','DashboardController@dashboardRedirect');
 
-Route::get('dashboard','DashboardController@index');
+
+Route::get('dashboard','Admin\DashboardController@index');
 
 // Admin Employees
-Route::get('employees', 'EmployeeController@index');
-Route::post('employees', 'EmployeeController@store');
-Route::patch('employees/{id}', 'EmployeeController@update');
+Route::get('employees', 'Admin\EmployeeController@index');
+Route::post('employees', 'Admin\EmployeeController@store');
+Route::patch('employees/{id}', 'Admin\EmployeeController@update');
 
 //Admin Payroll
-Route::get('payroll', 'PayrollController@index');
-Route::post('payroll', 'PayrollController@store');
-Route::patch('payroll/edit/{id}', 'PayrollController@update');
-Route::delete('payroll/{id}', 'PayrollController@destroy');
+Route::get('payroll', 'Admin\PayrollController@index');
+Route::post('payroll', 'Admin\PayrollController@store');
+Route::patch('payroll/editItem/{id}', 'Admin\PayrollController@updateItems');
+Route::patch('payroll/edit/{id}', 'Admin\PayrollController@update');
+Route::delete('payroll/{id}', 'Admin\PayrollController@destroy');
 
-Route::get('loans', 'LoanController@index');
-Route::patch('loans/{id}', 'LoanController@update');
+//Admin Company
+Route::get('company/setup','Admin\CompanyController@index');
+Route::patch('company/setup','Admin\CompanyController@update');
+
+
 
 Route::get('email', 'HomeController@email');
 
@@ -56,24 +61,43 @@ Route::get('user/activation/{token}', 'HomeController@employeeReg');
 
 
 
+
+
+// Employee Pages
 Route::group(['middlewareGroups' => 'employee'], function () {
     //Login Routes...
     Route::get('/employee/login','Employee\AuthController@showLoginForm');
     Route::post('/employee/login','Employee\AuthController@login');
     Route::get('/employee/logout','Employee\AuthController@logout');
 
-    // Registration Routes...
+    // Employee Dashboard
+    Route::get('/employee/dashboard', 'Employee\DashboardController@index');
+    Route::post('/employee/timein', 'Employee\DashboardController@timeIn');
+    Route::patch('/employee/timeout/{id}', 'Employee\DashboardController@timeOut');
+    
+    Route::get('/employee/clock', 'Employee\DashboardController@time');
+    
+    // Employee Attendance
+    Route::get('/employee/attendance', 'Employee\AttendanceController@index');
+    
+
+    // Employee Payslip...
+    Route::get('/employee/payslip', 'Employee\PayslipController@index');
+    
+    // Employee Loans..
+    Route::get('/employee/loans', 'Employee\LoanController@index');
+    Route::post('/employee/loans', 'Employee\LoanController@store');
+    
+    
+    
+    
+    
+    
     Route::get('admin/register', 'Admin\AuthController@showRegistrationForm');
     Route::post('admin/register', 'Admin\AuthController@register');
     
-    Route::get('/employee', 'EmployeeAccController@payslip');
-    Route::get('/employee/payslip', 'EmployeeAccController@payslip');
+    Route::get('/employee', 'Employee\PayslipController@index');
     
-    Route::get('employee/loans', 'EmployeeAccController@loan');
-    Route::post('employee/loans', 'EmployeeAccController@applyLoan');
-    
-    Route::post('timein', 'EmployeeAccController@timeIn');
-    Route::patch('timeout/{id}', 'EmployeeAccController@timeOut');
     
     
     Route::get('/employee/settings', 'EmployeeAccController@setting');
@@ -136,9 +160,7 @@ Route::get('YTD-summary','PagesController@ytd_summary');
 
 // *** COMPANY SETUP ***
 // Route::get('company/setup','PagesController@company');
-Route::get('company/setup','CompanyController@index');
-Route::get('company/setup/{id}','CompanyController@edit');
-Route::patch('company/setup/{id}','CompanyController@update');
+
 
 
 
