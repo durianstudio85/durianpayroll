@@ -74,10 +74,10 @@ class EmployeeController extends Controller
     	$this->email = $employee->email;
         $this->first_name = $employee->first_name;
         
-        // Mail::send('emails.reminder', array('employee' => $employee, 'activation' => $activation, 'password' => $password ), function($message)
-        // {
-        //     $message->to($this->email, $this->first_name)->subject('Welcome to Durianpayroll');
-        // });
+        Mail::send('emails.reminder', array('employee' => $employee, 'activation' => $activation, 'password' => $password ), function($message)
+        {
+            $message->to($this->email, $this->first_name)->subject('Welcome to Durianpayroll');
+        });
         
     	session()->flash('flash_message', 'Employee Added Successfully..');
         session()->flash('flash_message_important', 'alert-success');
