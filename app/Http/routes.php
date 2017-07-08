@@ -49,9 +49,13 @@ Route::patch('payroll/editItem/{id}', 'Admin\PayrollController@updateItems');
 Route::patch('payroll/edit/{id}', 'Admin\PayrollController@update');
 Route::delete('payroll/{id}', 'Admin\PayrollController@destroy');
 
+//Admin Attendance
+Route::get('attendance', 'Admin\AttendanceController@index');
+
 //Admin Company
 Route::get('company/setup','Admin\CompanyController@index');
 Route::patch('company/setup','Admin\CompanyController@update');
+
 
 
 

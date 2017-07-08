@@ -25,33 +25,44 @@
       <div class="panel-group">
           <div class="panel panel-default {{{ ( Request::is('employees') ? 'active' : '') }}}">
             <div class="panel-heading">  
-                <a href="{{ Url('employees') }}"><span class="icon-sidebar"><i class="fa fa-user" aria-hidden="true"></i></span>EMPLOYEES</a>        
+                <a href="{{ Url('employees') }}"><span class="icon-sidebar"><i class="fa fa-user" aria-hidden="true"></i></span>EMPLOYEES<i class="pull-right fa fa-caret-down" style="margin-top: 7px;"></i></a>        
             </div>
           </div>      
       </div>
 
-      <div class="panel-group">
-        <div class="panel panel-default ">
-          <div class="panel-heading">  
-              <a href="#" data-toggle="modal" data-target="#addEmployee"><span class="icon-sidebar">&nbsp;&nbsp;&nbsp;</span>Add Employee</a>        
-          </div>
-        </div>      
-      </div>
-
-      <div class="panel-group">
-          <div class="panel panel-default {{{ ( Request::is('payroll') ? 'active' : '') }}}">
-            <div class="panel-heading">  
-                <a href="{{ Url('payroll') }}"><span class="icon-sidebar"><i class="fa fa-file-text-o" aria-hidden="true"></i></span>PAYROLL</a>        
+        @if ( Request::is('employees') )
+            <div class="panel-group">
+                <div class="panel panel-default ">
+                    <div class="panel-heading panel-heading-sub" style="background-color: #28384e;">  
+                        <a href="#" data-toggle="modal" data-target="#addEmployee"><span class="icon-sidebar">&nbsp;&nbsp;&nbsp;</span>Add Employee</a>        
+                    </div>
+                </div>      
             </div>
-          </div>      
-      </div>
+        @endif
 
+        <div class="panel-group">
+            <div class="panel panel-default {{{ ( Request::is('payroll') ? 'active' : '') }}}">
+                <div class="panel-heading">  
+                    <a href="{{ Url('payroll') }}"><span class="icon-sidebar"><i class="fa fa-file-text-o" aria-hidden="true"></i></span>PAYROLL<i class="pull-right fa fa-caret-down" style="margin-top: 7px;"></i></a>        
+                </div>
+            </div>      
+        </div>
+        @if ( Request::is('payroll') )
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-heading-sub">  
+                        <a href="#" data-toggle="modal" data-target="#createPayroll"><span class="icon-sidebar">&nbsp;&nbsp;&nbsp;</span>Create Payroll</a>        
+                    </div>
+                </div>      
+            </div>
+        @endif
+      
       <div class="panel-group">
-        <div class="panel panel-default">
-          <div class="panel-heading">  
-              <a href="#" data-toggle="modal" data-target="#createPayroll"><span class="icon-sidebar">&nbsp;&nbsp;&nbsp;</span>Create Payroll</a>        
-          </div>
-        </div>      
+            <div class="panel panel-default {{{ ( Request::is('attendance') ? 'active' : '') }}}">
+                <div class="panel-heading">  
+                    <a href="{{ Url('attendance') }}"><span class="icon-sidebar"><i class="fa fa-calendar" aria-hidden="true"></i></span>ATTENDANCE</a>        
+                </div>
+            </div>      
       </div>
       
 
@@ -62,24 +73,28 @@
             </div>
           </div>      
       </div>
+      
+      
+      
+      
     <!-- <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-    <div class="panel panel-default">
-      <div class="panel-heading" role="tab">
-          <a data-toggle="collapse" data-parent="#accordion" href="#organizational"  aria-controls="organizational" class="collapsed">
-            Organizational Structure
-            <i class="pull-right fa fa-caret-down"></i>
-          </a>
-      </div>      
-      <div id="organizational" class="panel-collapse collapse" role="tabpanel">
-        <div>
-          <a href="{{ Url('company/departments') }}" class="list-group-item">Departments</a>
-          <a href="{{ Url('company/positions') }}" class="list-group-item">Positions</a>
-          <a href="{{ Url('company/ranks') }}" class="list-group-item">Ranks</a>
-          <a href="{{ Url('company/employment-type') }}" class="list-group-item">Employment Type</a>
-       </div>
-      </div>
-    </div>    
-  </div>   -->
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+                <a data-toggle="collapse" data-parent="#accordion" href="#organizational"  aria-controls="organizational" class="collapsed">
+                    Organizational Structure
+                    <i class="pull-right fa fa-caret-down"></i>
+                </a>
+            </div>      
+            <div id="organizational" class="panel-collapse collapse" role="tabpanel">
+                <div>
+                    <a href="{{ Url('company/departments') }}" class="list-group-item">Departments</a>
+                    <a href="{{ Url('company/positions') }}" class="list-group-item">Positions</a>
+                    <a href="{{ Url('company/ranks') }}" class="list-group-item">Ranks</a>
+                    <a href="{{ Url('company/employment-type') }}" class="list-group-item">Employment Type</a>
+                </div>
+            </div>
+        </div>    
+    </div>   -->
 
 <!-- **** END ORGANIZATION **** -->
 
@@ -104,7 +119,6 @@
         <div>
           <a href="{{ Url('company/leave-types') }}" class="list-group-item">Leave Types</a>
           <a href="{{ Url('company/leave-entitlement') }}" class="list-group-item">Leave Entitlement</a>
-          
        </div>
       </div>
     </div>    

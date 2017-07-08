@@ -24,6 +24,6 @@ class Attendance_record extends Model
     
     public function employee()
     {
-    	return $this->hasOne('App\Employee');
+    	return $this->hasOne('App\Employee', 'id', 'employee_id');
     }
 }

@@ -57,4 +57,9 @@ class Company extends Model
         return $this->hasMany('App\Payroll_item');
     }
     
+    public function attendance()
+    {
+        return $this->hasMany('App\Attendance_record');
+    }
+    
 }

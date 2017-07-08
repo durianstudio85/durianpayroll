@@ -332,9 +332,11 @@ table.dataTable thead .sorting:after {
 .list-group-item{padding: 10px 15px 10px 30px;background-color: #28384e;color:#fff !important;border: 0px;}
 .panel{border: 0px;border-radius: 0px !important;background-color: #28384e !important}
 .panel-heading{border: 0px;border-radius: 0px !important;background-color: #223248 !important; padding: 13px 20px;font-size: 14px;}
+.panel-heading-sub{border: 0px;border-radius: 0px !important;background-color: #28384e !important; padding: 13px 20px;font-size: 14px;}
+.active > .panel-heading{background-color: #1fb4ae !important;}
 .panel-heading:hover, .list-group-item:hover{background-color: #1fb4ae !important;}
 
-.active > .panel-heading{background-color: #1fb4ae !important;}
+
 
 .icon-sidebar{ padding-right: 10px; font-size: 20px;}
 

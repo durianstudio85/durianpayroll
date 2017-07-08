@@ -47,7 +47,7 @@
     			        		<td>{{ $list->first_name }}</td>
     			        		<td>{{ $list->last_name }}</td>
     			        		<td>{{ $list->position->name }}</td>
-    			        		<td>{{ $list->basic_pay }}</td>
+    			        		<td>{{ number_format( $list->basic_pay, 2, '.', ',')  }}</td>
     			        		<td>{{ $benefit->getSSS($list->basic_pay) }}</td>
     			        		<td>{{ $benefit->getPagibig($list->basic_pay) }}</td>
     			        		<td>{{ $benefit->getPhilhealth($list->basic_pay) }}</td>
