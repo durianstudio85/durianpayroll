@@ -11,6 +11,8 @@ use App\Options\Benefits\Benefit;
 
 use App\Position;
 
+use Mail;
+
 use Auth;
 
 class EmployeeController extends Controller

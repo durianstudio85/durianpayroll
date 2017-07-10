@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>Durian Payroll</title>
@@ -22,10 +22,11 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
         <script src="{{ asset('js/Chart.min.js') }}"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <style type="text/css">
-            i.active { background-color: #1fb4ae;  color: #fff;}
+        <style>
+            i.active { 
+                background-color: #1fb4ae;  color: #fff;
+            }
         </style>
-
     </head>
     <body onload="displayLineChart();">
 

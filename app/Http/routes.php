@@ -70,11 +70,14 @@ Route::get('user/activation/{token}', 'HomeController@employeeReg');
 // Employee Pages
 Route::group(['middlewareGroups' => 'employee'], function () {
     //Login Routes...
+    
     Route::get('/employee/login','Employee\AuthController@showLoginForm');
     Route::post('/employee/login','Employee\AuthController@login');
     Route::get('/employee/logout','Employee\AuthController@logout');
 
     // Employee Dashboard
+    Route::get('/employee', 'Employee\DashboardController@index');
+    
     Route::get('/employee/dashboard', 'Employee\DashboardController@index');
     Route::post('/employee/timein', 'Employee\DashboardController@timeIn');
     Route::patch('/employee/timeout/{id}', 'Employee\DashboardController@timeOut');
@@ -100,7 +103,7 @@ Route::group(['middlewareGroups' => 'employee'], function () {
     Route::get('admin/register', 'Admin\AuthController@showRegistrationForm');
     Route::post('admin/register', 'Admin\AuthController@register');
     
-    Route::get('/employee', 'Employee\PayslipController@index');
+    
     
     
     

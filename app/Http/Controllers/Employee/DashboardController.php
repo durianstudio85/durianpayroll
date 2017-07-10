@@ -94,7 +94,6 @@ class DashboardController extends Controller
     public function time()
     {
     	// $time = Carbon::now('Asia/Manila');
-    	
     	$dt = Carbon::now('Asia/Manila');
 		$time = $dt->format('H:i:s');
 		
