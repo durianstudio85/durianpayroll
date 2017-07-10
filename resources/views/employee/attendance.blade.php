@@ -22,7 +22,7 @@
 			            <tr>
 			                <th>Date</th>
 			                <th>Time In</th>
-                            <th>Time Out</th>asdasdas
+                            <th>Time Out</th>
                             <th>Note</th>
 			                <th>Action</th>
 			            </tr>
@@ -30,9 +30,9 @@
 			        <tbody>
                         @foreach( $employee->attendance as $list )
     			        	<tr>
-                                <td>{{ date('l, F d, Y', strtotimes($list->date)) }}</td>
-                                <td>{{ $list->time_in }}</td>
-                                <td>{{ $list->time_out  }}</td>
+                                <td>{{ date('l, F d, Y', strtotime($list->date)) }}</td>
+                                <td>{{ date("g:i a", strtotime($list->time_in)) }}</td>
+                                <td>{{ date("g:i a", strtotime($list->time_out)) }}</td>
                                 <td>{{ $list->note }}</td>
                                 <td>
                                     <a href="#edit" style="color: #adacac;margin: 0px 5px;font-size: 15px;"  data-toggle="modal" data-target="#loanChild-{{ $list->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
