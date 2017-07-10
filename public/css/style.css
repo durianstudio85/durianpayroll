@@ -487,8 +487,6 @@ input:checked + .slider:before {
 
 
 
-
-
 #lineChart{width: 80% !important; height: 255px !important;}
 
 
@@ -524,7 +522,10 @@ input:checked + .slider:before {
 
 
 
-
+@media (max-width: 1400px){
+.clock-bg .time {
+    font-size: 70px !important;
+}
 
 
 
