@@ -86,6 +86,7 @@ Route::group(['middlewareGroups' => 'employee'], function () {
     
     // Employee Attendance
     Route::get('/employee/attendance', 'Employee\AttendanceController@index');
+    Route::get('/employee/attendance/{date_start}/{date_end}', 'Employee\AttendanceController@search');
     
 
     // Employee Payslip...

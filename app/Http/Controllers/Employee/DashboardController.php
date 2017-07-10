@@ -70,6 +70,7 @@ class DashboardController extends Controller
         ];
         
         $employee->attendance()->create($data);
+        
         return redirect()->back();
     }
     
