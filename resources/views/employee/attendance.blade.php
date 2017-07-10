@@ -31,9 +31,9 @@
                         @foreach( $employee->attendance as $list )
     			        	<tr>
                                 <td>{{ date('l, F d, Y', strtotimes($list->date)) }}</td>
-                                <td>{{ date('h:i A', strtotime($list->time_in)) }}asdasasdas</td>
-                                <td>{{ date('h:i A', strtotime($list->time_out)) }}</td>
-                                <td>{{ $list->note }}asdasd</td>
+                                <td>{{ $list->time_in }}</td>
+                                <td>{{ $list->time_out  }}</td>
+                                <td>{{ $list->note }}</td>
                                 <td>
                                     <a href="#edit" style="color: #adacac;margin: 0px 5px;font-size: 15px;"  data-toggle="modal" data-target="#loanChild-{{ $list->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                 </td>
